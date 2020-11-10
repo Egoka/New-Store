@@ -13,7 +13,8 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 /////////////////////////////////////////////////
-app.use(express.static(path.join(__dirname,'styles')))
+app.use(express.static(path.join(__dirname,'static')))
+/////////////////////////////////////////////////
 /////////////////////////////////////////////////
 const PORT = process.env.PORT || 3000
 async function startProgram(){
