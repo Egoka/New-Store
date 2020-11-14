@@ -3,11 +3,12 @@
     <div class="row center">
         {{#each topics}}
             <a class="col s12 m6 l3" href="{{link}}">
-                <div class="card-panel hoverable"
-                     style="padding: 0 10px; border-radius: 30px; height: 200px;overflow: hidden; background: {{backColor}}">
-                    <h5 style="margin: 10px; color: {{titleColor}}">{{title}}</h5>
-                    <img src="{{photoURL}}" alt=""
-                         style="height: 500px">
+                <div class="card-panel hoverable cardMy"
+                     style="background: {{backColor}}"
+                     onmouseover="this.style.backgroundColor='rgb(145,153,170)'"
+                     onmouseout="this.style.backgroundColor='{{backColor}}'">
+                    <h5 style=" color: {{titleColor}}">{{title}}</h5>
+                    <img src="{{photoURL}}" alt="">
                 </div>
             </a>
         {{/each}}

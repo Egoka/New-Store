@@ -1,0 +1,17 @@
+.cardMy{
+    padding: 0 10px;
+    border-radius: 30px;
+    height: 200px;
+    overflow: hidden;
+    user-select: none;
+
+}
+.cardMy:hover img{
+    transform: translateY(-100px) translateX(-10px) scale(.6, .6);
+    transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);
+}
+.cardMy h5{margin: 10px;}
+.cardMy img{
+    height: 500px;
+    transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);
+}
