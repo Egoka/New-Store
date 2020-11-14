@@ -1,0 +1,30 @@
+.infCarousel {
+    width: 50%;
+    margin: auto;
+    transition: .4s linear;
+}
+.infCarousel:hover{
+    background-color: rgba(192, 192, 192, .5);
+    border-radius: 40px;
+    border-color: cornflowerblue;
+    transition: .4s linear;
+}
+.infCarousel h3{
+    margin: 20px 0;
+    color: #fff;
+}
+.infCarousel p{
+    font-size:20px;
+    color: #fff;
+}
+.infCarousel a{
+    margin-top: 30px;
+}
+.carouselBtn{
+    background: #929aab;
+    color:#f7f7f7;
+    border-radius: 5px;
+}
+.carouselBtn:hover{
+    background: #393e46;
+}
