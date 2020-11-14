@@ -3,6 +3,8 @@ const exps = require('express-handlebars')
 const session = require('express-session')
 const path = require('path')
 /////////////////////////////////////////////////
+const start = require('./crs/start')
+/////////////////////////////////////////////////
 const app = express()
 const hbs = exps.create({
     defaultLayout: 'main',
@@ -15,6 +17,7 @@ app.set('views', 'views')
 /////////////////////////////////////////////////
 app.use(express.static(path.join(__dirname,'static')))
 /////////////////////////////////////////////////
+app.use('/', start)
 /////////////////////////////////////////////////
 const PORT = process.env.PORT || 3000
 async function startProgram(){

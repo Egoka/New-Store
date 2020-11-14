@@ -1,0 +1,12 @@
+<div class="carousel carousel-slider center" >
+    {{#each selection}}
+        <div class="carousel-item white-text" href="#{{number}}!" style="background: radial-gradient(at top, {{colorBackground}} 30%, rgba(255,255,255,0) 73%)" >
+            <img src="{{photoURL}}" alt="" style="height: 400px;width: auto">
+            <div class="carousel-fixed-item center infCarousel" style="height: 50%">
+                <h3>{{title}}</h3>
+                <p>{{text}}</p>
+                <a class="btn carouselBtn" href="{{URL}}">КУПИТЬ</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

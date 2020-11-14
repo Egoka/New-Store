@@ -1,0 +1,16 @@
+<div class="center" style="margin: 10px 0">
+    <h3 class="left-align">Купить в Маркете</h3>
+    <div class="row center">
+        {{#each topics}}
+            <a class="col s12 m6 l3" href="{{link}}">
+                <div class="card-panel hoverable" id="cardMy"
+                     style="background: {{backColor}}"
+                     onmouseover="this.style.backgroundColor='rgb(145,153,170)'"
+                     onmouseout="this.style.backgroundColor='{{backColor}}'">
+                    <h5 style=" color: {{titleColor}}">{{title}}</h5>
+                    <img src="{{photoURL}}" alt="">
+                </div>
+            </a>
+        {{/each}}
+    </div>
+</div>
