@@ -1,3 +1,11 @@
+body .container{
+    display: flex;
+}
+@media (max-width: 1300px) {
+    body .container{
+        width: 100%;
+    }
+}
 .nav-wrapper{padding: 0 20px;}
 .navMy a{
     text-transform: uppercase;
@@ -70,14 +78,12 @@
     transition: .1s linear}
 /*//////////////////////////////*/
 .filter{
-    position: static;
-    max-width: 25%;
+    position: absolute;
+    width: 18%;
     min-width: 185px;
     height: 100%;
-    left: 0;
-    top: 0;
-    margin-left: auto;
-    margin-right: 0;}
+    right: 15%;
+    z-index: 100}
 .filter .collapsible{margin: 0;}
 .options{
     background-color: #e9f0ff;
@@ -87,7 +93,9 @@
      transition: .4s linear }
 .options>.collapsible-header{
     background-color: #e5e9f5;
-    font-size: 18px;}
+    font-size: 18px;
+    white-space: normal;
+}
 .options>.collapsible-header:hover{color: #eaeaea;}
 .collapsible-header>span{background-color: #929aab;}
 .collapsible-header:hover{
@@ -104,10 +112,9 @@
     font-size: 15px;}
 .options .collapsible-body .optionsText{font-size: 15px;}
 .optionsText:hover{color: #1dac00;}
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
     .filter{
         position: absolute;
-        right: 0;
-        top: 66px
-    }
+        width: 25%;
+        right: 0;}
 }
