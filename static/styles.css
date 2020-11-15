@@ -68,3 +68,46 @@
 .brandsMy:hover img{
     transform:  scale(1.3, 1.3);
     transition: .1s linear}
+/*//////////////////////////////*/
+.filter{
+    position: static;
+    max-width: 25%;
+    min-width: 185px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin-left: auto;
+    margin-right: 0;}
+.filter .collapsible{margin: 0;}
+.options{
+    background-color: #e9f0ff;
+    transition: .4s linear}
+.options:hover{
+     background-color: #eaeaea;
+     transition: .4s linear }
+.options>.collapsible-header{
+    background-color: #e5e9f5;
+    font-size: 18px;}
+.options>.collapsible-header:hover{color: #eaeaea;}
+.collapsible-header>span{background-color: #929aab;}
+.collapsible-header:hover{
+    background-color: #8f8f8f;
+    transition: .4s linear}
+.collapsible-header>i{
+    color: #888888;
+    transition: .3s linear}
+.collapsible-header:hover i{
+    color: #ffffff;
+    transition: .2s linear}
+.options .collapsible-body{
+    padding: 0 2rem;
+    font-size: 15px;}
+.options .collapsible-body .optionsText{font-size: 15px;}
+.optionsText:hover{color: #1dac00;}
+@media (max-width: 1000px) {
+    .filter{
+        position: absolute;
+        right: 0;
+        top: 66px
+    }
+}
