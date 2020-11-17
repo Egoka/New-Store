@@ -3,7 +3,7 @@ const exps = require('express-handlebars')
 const session = require('express-session')
 const path = require('path')
 /////////////////////////////////////////////////
-const start = require('./crs/start')
+const start = require('./crs/catalog')
 /////////////////////////////////////////////////
 const app = express()
 const hbs = exps.create({
