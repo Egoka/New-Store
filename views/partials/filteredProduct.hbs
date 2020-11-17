@@ -1,0 +1,30 @@
+<div class="filteredProduct" id="product">
+    {{#each products}}
+        <div class="device">
+            <div class="image">
+                <img class="materialboxed" src="{{photoURL}}" alt="">
+            </div>
+            <div class="description">
+                <a href="" class="" title="{{name}}">
+                    <span class="">{{name}}</span>
+                </a>
+                <ul class="">
+                    {{#each description}}
+                        <li>{{OS}}</li>
+                        <li>{{SIM}}</li>
+                        <li>{{screen}}</li>
+                        <li>{{carmera}}</li>
+                        <li>{{CPU}}</li>
+                    {{/each}}
+                </ul>
+                <div class="purchase">
+                    <i class="material-icons js-remove">playlist_add</i>
+                    <i class="material-icons js-remove">favorite_border</i>
+                    <div class="priceFilter">
+                        <a href="" class="price">{{price}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
