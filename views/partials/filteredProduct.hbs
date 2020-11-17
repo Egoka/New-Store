@@ -1,4 +1,4 @@
-<div class="filteredProduct" id="product">
+<div class="filteredProduct request">
     {{#each products}}
         <div class="device">
             <div class="image">
@@ -18,8 +18,10 @@
                     {{/each}}
                 </ul>
                 <div class="purchase">
-                    <i class="material-icons js-remove">playlist_add</i>
-                    <i class="material-icons js-remove">favorite_border</i>
+                    {{#if @root.userStatus}}
+                        <i class="material-icons js-filter" data-id="{{name}}" data-form="list" data-status="true">playlist_add</i>
+                        <i class="material-icons js-filter" data-id="{{name}}" data-form="like" data-status="true">favorite_border</i>
+                    {{/if}}
                     <div class="priceFilter">
                         <a href="" class="price">{{price}}</a>
                     </div>
