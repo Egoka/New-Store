@@ -1,3 +1,8 @@
+@media (max-width: 1300px) {
+    body .container{
+        width: 100%;
+    }
+}
 .nav-wrapper{padding: 0 20px;}
 .navMy a{
     text-transform: uppercase;
@@ -27,17 +32,13 @@
     transition: .4s linear;
 }
 .infCarousel h3{
+    white-space: nowrap;
     margin: 20px 0;
-    color: #fff;
 }
-.infCarousel p{
-    font-size:20px;
-    color: #fff;
-}
+.container h6{font-size:20px;}
 .infCarousel a{
     margin-top: 30px;
-    background: #929aab;
-    color:#f7f7f7;
+    color: #2b2b2b;
     border-radius: 5px;
 }
 .infCarousel a:hover {background: #393e46;}
@@ -49,22 +50,134 @@
     user-select: none;
 }
 #cardMy:hover img{
-    transform: translateY(-100px) translateX(-10px) scale(.6, .6);
+    transform: translateY(-50px) scale(.6, .6);
     transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);
 }
 #cardMy h5{margin: 10px;}
+.imageTop{
+    display:flex;
+    justify-content: center;
+}
 #cardMy img{
-    height: 500px;
+    height: 300px;
     transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);
 }
-.brandsMy{
+.row .card-panel{
     padding: 20px 10px;
     border-radius: 10px;
     height: 100px;}
 .brandsMy img{
     max-width: 100%;
-    max-height: 100%;
-    transition: .1s linear}
-.brandsMy:hover img{
-    transform:  scale(1.3, 1.3);
-    transition: .1s linear}
+    max-height: 100%;}
+/*//////////////////////////////*/
+.filter{
+    position: absolute;
+    width: 18%;
+    min-width: 185px;
+    height: 100%;
+    right: 15%;
+    z-index: 100}
+.filter .collapsible{margin: 0;}
+.options{
+    background-color: #e9f0ff;
+    transition: .4s linear}
+.options:hover{
+     background-color: #eaeaea;
+     transition: .4s linear }
+.options>.collapsible-header{
+    background-color: #e5e9f5;
+    font-size: 18px;
+    white-space: normal;
+}
+.options>.collapsible-header:hover{color: #eaeaea;}
+.collapsible-header>span{background-color: #929aab;}
+.collapsible-header:hover{
+    background-color: #8f8f8f;
+    transition: .4s linear}
+.collapsible-header>i{
+    color: #888888;
+    transition: .3s linear}
+.collapsible-header:hover i{
+    color: #ffffff;
+    transition: .2s linear}
+.options .collapsible-body{
+    padding: 0 2rem;
+    font-size: 15px;}
+.options .collapsible-body .optionsText{font-size: 15px;}
+.optionsText:hover{color: #1dac00;}
+@media (max-width: 1300px) {
+    .filter{
+        position: absolute;
+        width: 25%;
+        right: 0;}
+}
+.filteredProduct{
+    position: static;
+    max-width: 75%;
+    min-width: 185px;}
+.device{
+    margin: 10px;
+    padding: 20px;
+    width: 97%;
+    height: 280px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);}
+.image{
+    height: 100%;
+    width: 25%;}
+.device .material-placeholder{
+    height: 250px;
+    margin-right: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center; }
+.image img{height: inherit;}
+.description{
+    height: inherit;
+    width: 65%;
+    padding: 20px;
+    z-index: 10;}
+.description a{
+    font-size: 22px;
+    white-space: nowrap;
+    color: #000;
+    font-weight: 700;
+    transition: .4s linear}
+.description a:hover{
+    color: #929aab;
+    transition: .4s linear}
+ul{white-space: nowrap}
+@media (max-width: 1300px) {
+    .filteredProduct{
+        position: absolute;
+        left: 0;}
+}
+@media (max-width: 900px) {
+    .device .material-placeholder{margin-right: 0}
+    .device .material-placeholder img{
+        width: 100%;
+        height: initial}
+}
+.purchase{
+    display: flex;
+    width: 100%;}
+.purchase i{
+    position: static;
+    bottom: 0;
+    margin: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: .2s linear}
+.purchase i:hover{
+    color: #f00;
+    transition: .2s linear}
+.priceFilter{
+    margin-left: auto;
+    display:flex;
+    align-items: center;
+    color: #222;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;}
