@@ -118,3 +118,73 @@ body .container{
         width: 25%;
         right: 0;}
 }
+.filteredProduct{
+    position: static;
+    max-width: 75%;
+    min-width: 185px;}
+.device{
+    margin: 10px;
+    padding: 20px;
+    width: 97%;
+    height: 280px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);}
+.image{
+    height: 100%;
+    width: 25%;}
+.device .material-placeholder{
+    height: 250px;
+    margin-right: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center; }
+.image img{height: inherit;}
+.description{
+    height: inherit;
+    width: 65%;
+    padding: 20px;
+    z-index: 10;}
+.description a{
+    font-size: 22px;
+    white-space: nowrap;
+    color: #000;
+    font-weight: 700;
+    transition: .4s linear}
+.description a:hover{
+    color: #929aab;
+    transition: .4s linear}
+ul{white-space: nowrap}
+@media (max-width: 1300px) {
+    .filteredProduct{
+        position: absolute;
+        left: 0;}
+}
+@media (max-width: 900px) {
+    .device .material-placeholder{margin-right: 0}
+    .device .material-placeholder img{
+        width: 100%;
+        height: initial}
+}
+.purchase{
+    display: flex;
+    width: 100%;}
+.purchase i{
+    position: static;
+    bottom: 0;
+    margin: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: .2s linear}
+.purchase i:hover{
+    color: #f00;
+    transition: .2s linear}
+.priceFilter{
+    margin-left: auto;
+    display:flex;
+    align-items: center;
+    color: #222;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;}
