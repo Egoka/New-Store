@@ -1,0 +1,31 @@
+<div class="product">
+    <div class="photoProduct">
+        <img class="materialboxed" src="{{product.photoURL}}" alt="" >
+    </div>
+    <div class="descriptionProduct request">
+        <h4 style="color:{{product.colorBackground}}">{{product.name}}</h4>
+        <div class="centerMy">
+            {{#if userStatus}}
+                <i class="material-icons js-filter"
+                   data-id="{{product.name}}" data-form="list" data-status="true"
+                   title="Добавить в список сравнения">playlist_add</i>
+                <i class="material-icons js-filter"
+                   data-id="{{product.name}}" data-form="like" data-status="true"
+                   title="Сохранить">favorite_border</i>
+            {{/if}}
+        </div>
+        <h4 class="price">{{product.price}}</h4>
+        <div class="centerMy">
+            <button class="btn btnProduct" style="background:{{product.colorBackground}}">добавить в корзину</button>
+        </div>
+        <ul>
+            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.OS}}</span></li>
+            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.SIM}}</span></li>
+            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.screen}}</span></li>
+            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.carmera}}</span></li>
+            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.CPU}}</span></li>
+        </ul>
+    </div>
+</div>
+
+

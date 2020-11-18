@@ -181,3 +181,67 @@ ul{white-space: nowrap}
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;}
+.product{
+    display: flex;
+}
+.photoProduct{
+    width: 45%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.photoProduct img{
+    margin-top: 40px;
+    width: initial;
+    height: auto;
+    max-height: 600px;
+}
+.photoProduct:hover{
+    background: rgba(0,0,0,0.2);
+    border-radius: 30px;
+    transition: .4s linear
+}
+.descriptionProduct{
+    width: 55%;
+    padding: 30px;
+}
+.descriptionProduct h4{
+    font-weight: 700;
+}
+.descriptionProduct i{
+    margin: 20px;
+    font-size: 25px;
+    transition: .2s linear
+}
+.descriptionProduct i:hover{
+    color: #f00;
+    transition: .2s linear}
+.descriptionProduct .price{
+    font-weight: 700;
+    text-align: center;
+}
+.descriptionProduct .centerMy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descriptionProduct .btnProduct{
+    font-size: 16px;
+    font-weight: 700;
+}
+.product li {
+    list-style-type: initial;
+    font-size: 18px;
+    padding-bottom: 20px;
+    font-weight: 500;
+}
+/*.product li::marker{*/
+/*    color:#1dac00;*/
+/*    font-size: 25px;*/
+/*}*/
+.product li span{
+    color: #000000;
+}
