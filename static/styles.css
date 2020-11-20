@@ -3,6 +3,7 @@
         width: 100%;
     }
 }
+h3{padding-left: 100px;}
 .nav-wrapper{padding: 0 20px;}
 .navMy a{
     text-transform: uppercase;
@@ -181,9 +182,7 @@ ul{white-space: nowrap}
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;}
-.product{
-    display: flex;
-}
+.product{display: flex;}
 .photoProduct{
     width: 45%;
     display:flex;
@@ -191,57 +190,64 @@ ul{white-space: nowrap}
     justify-content: center;
     padding: 30px;
     margin-top:10px;
-    margin-left:10px;
-}
+    margin-left:10px;}
 .photoProduct img{
     margin-top: 40px;
     width: initial;
     height: auto;
-    max-height: 600px;
-}
+    max-height: 600px;}
 .photoProduct:hover{
     background: rgba(0,0,0,0.2);
     border-radius: 30px;
-    transition: .4s linear
-}
+    transition: .4s linear}
 .descriptionProduct{
     width: 55%;
-    padding: 30px;
-}
-.descriptionProduct h4{
-    font-weight: 700;
-}
+    padding: 30px;}
+.descriptionProduct h4{font-weight: 700;}
 .descriptionProduct i{
     margin: 20px;
     font-size: 25px;
-    transition: .2s linear
-}
+    transition: .2s linear}
 .descriptionProduct i:hover{
     color: #f00;
     transition: .2s linear}
 .descriptionProduct .price{
     font-weight: 700;
-    text-align: center;
-}
+    text-align: center;}
 .descriptionProduct .centerMy{
     display: flex;
     justify-content: center;
-    align-items: center;
-}
+    align-items: center;}
 .descriptionProduct .btnProduct{
     font-size: 16px;
-    font-weight: 700;
-}
+    font-weight: 700;}
 .product li {
     list-style-type: initial;
     font-size: 18px;
     padding-bottom: 20px;
-    font-weight: 500;
-}
-/*.product li::marker{*/
-/*    color:#1dac00;*/
-/*    font-size: 25px;*/
-/*}*/
-.product li span{
-    color: #000000;
-}
+    font-weight: 500;}
+.product li span{color: #000000;}
+/*//////////////////////////////*/
+.shop{
+    display: flex;
+    padding: 20px;
+    border-top: 1px solid rgba(100,100,100,0.2);
+    border-bottom: 1px solid rgba(100,100,100,0.2);}
+.shop i{user-select: none;}
+.logoStore{
+    min-width: 140px;
+    width: 25%;
+    height: 100px;
+    text-align: center;}
+.logoStore img{
+    max-height: 40px;
+    margin: 20px 0;
+    user-select: none;}
+.shopExtra{
+    margin: 0 auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;}
+.shopExtra p{
+    margin: 10px;
+    font-size: 18px;}
