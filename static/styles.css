@@ -339,3 +339,24 @@ ul{white-space: nowrap}
     }
     .recallInf{width: 100%;}
 }
+/*//////////////////////////////*/
+.characteristics{
+    margin: 0 50px;
+    border-bottom:1px solid rgba(100,100,100,0.2);}
+.characteristics p{
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;}
+.parameter{
+    display: flex;
+    margin: 20px 0;}
+.parameter p{
+    font-weight: normal;
+    font-size: 16px;}
+.points {
+    height: 18px;
+    margin: 0 8px;
+    background: linear-gradient(90deg, #989898 33%,transparent 0) repeat-x bottom;
+    background-size: 3px 1px;
+    flex-grow: 1;}
+.value{width: 50%;}
