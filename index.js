@@ -9,7 +9,8 @@ const catalog = require('./crs/catalog')
 const app = express()
 const hbs = exps.create({
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: require('./utils/hbs-helpers')
 })
 /////////////////////////////////////////////////
 app.engine('hbs', hbs.engine)

@@ -1,0 +1,65 @@
+<div class="recall">
+    <div class="recallInf">
+        <h3>Отзовы <strong>{{recall.length}}</strong></h3>
+        <div class="filterRecall">
+            <a class="btn" href="/catalog" style="background:{{product.colorBackground}}">Оставить отзыв</a>
+            <div>
+                <p>Показать отзывы с оценкой</p>
+                <div class="listStarsRecall">
+                    <a href="/catalog">
+                        {{#stars 5}}{{body}}{{/stars}}
+                        {{product.recallList.scoreFive}} отзыв</a></div>
+                <div class="listStarsRecall">
+                    <a href="/catalog">
+                        {{#stars 4}}{{body}}{{/stars}}
+                        {{product.recallList.scoreFour}} отзыв</a></div>
+                <div class="listStarsRecall">
+                    <a href="/catalog">
+                        {{#stars 3}}{{body}}{{/stars}}
+                        {{product.recallList.scoreThree}} отзыв</a></div>
+                <div class="listStarsRecall">
+                    <a href="/catalog">
+                        {{#stars 2}}{{body}}{{/stars}}
+                        {{product.recallList.scoreTwo}} отзыв</a></div>
+                <div class="listStarsRecall">
+                    <a href="/catalog">
+                        {{#stars 1}}{{body}}{{/stars}}
+                        {{product.recallList.scoreOne}} отзыв</a></div>
+            </div>
+        </div>
+        {{#each recall}}
+            <div class="recallList">
+                <div class="recallUser">
+                    <div class="photoProduct">
+                        <img src="{{photoUser}}" alt="">
+                    </div>
+                    <strong>{{name}}</strong>
+                    {{#if verifiedUser}}
+                        <i class="material-icons" style="color: #29ad2e">assignment_turned_in</i>
+                        <span>Проверенный покупатель</span>
+                    {{else}}
+                        <span style="color: #474747">Не проверенный покупатель</span>
+                    {{/if}}
+                    <div class="starsRecall">{{#stars rating}}{{body}}{{/stars}}</div>
+                </div>
+                <div class="messageRecall">
+                    {{#if photo}}
+                        <div class="photoProduct">
+                            <img class="materialboxed" src="{{photo}}" alt="">
+                        </div>
+                    {{/if}}
+                    {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{advantages}}</div>{{/if}}
+                    {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
+                    {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
+                    <div class="dateRecall">
+                        Коментарий был написан <b class="date">{{date}}</b>
+                        <div class="likeRecall">
+                            <i class="material-icons">thumb_up</i><span>{{like}}</span>
+                            <i class="material-icons">thumb_down</i><span>{{likeNot}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
