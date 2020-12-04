@@ -19,11 +19,13 @@
             <button class="btn btnProduct" style="background:{{product.colorBackground}}">добавить в корзину</button>
         </div>
         <ul>
-            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.OS}}</span></li>
-            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.SIM}}</span></li>
-            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.screen}}</span></li>
-            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.carmera}}</span></li>
-            <li style="list-style-type: initial; color: {{product.colorBackground}};"><span>{{product.description.CPU}}</span></li>
+            {{#each product.description}}
+                {{#if @first}}
+                    {{#each parameter}}
+                        <li style="list-style-type: initial; color: {{@root.product.colorBackground}};"><span>{{value}}</span></li>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
         </ul>
     </div>
 </div>

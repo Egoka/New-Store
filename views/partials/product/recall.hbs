@@ -1,36 +1,22 @@
-<div class="recall">
+<div class="recall request">
     <div class="recallInf">
         <h3>Отзовы <strong>{{recall.length}}</strong></h3>
         <div class="filterRecall">
             <a class="btn" href="/catalog" style="background:{{product.colorBackground}}">Оставить отзыв</a>
-            <div>
+            <div class="listStarsRecall">
                 <p>Показать отзывы с оценкой</p>
-                <div class="listStarsRecall">
-                    <a href="/catalog">
-                        {{#stars 5}}{{body}}{{/stars}}
-                        {{product.recallList.scoreFive}} отзыв</a></div>
-                <div class="listStarsRecall">
-                    <a href="/catalog">
-                        {{#stars 4}}{{body}}{{/stars}}
-                        {{product.recallList.scoreFour}} отзыв</a></div>
-                <div class="listStarsRecall">
-                    <a href="/catalog">
-                        {{#stars 3}}{{body}}{{/stars}}
-                        {{product.recallList.scoreThree}} отзыв</a></div>
-                <div class="listStarsRecall">
-                    <a href="/catalog">
-                        {{#stars 2}}{{body}}{{/stars}}
-                        {{product.recallList.scoreTwo}} отзыв</a></div>
-                <div class="listStarsRecall">
-                    <a href="/catalog">
-                        {{#stars 1}}{{body}}{{/stars}}
-                        {{product.recallList.scoreOne}} отзыв</a></div>
+                {{#each product.recallList}}
+                    <div><a class="recall-filter" data-id="{{size}}">
+                        {{#stars size}}{{body}}{{/stars}}
+                        <span class="recall-filter" data-id="{{size}}">{{#starRecall value}}{{body}}{{/starRecall}}</span>
+                    </a></div>
+                {{/each}}
             </div>
         </div>
         {{#each recall}}
             <div class="recallList">
                 <div class="recallUser">
-                    <div class="photoProduct">
+                    <div class="photoRecall">
                         <img src="{{photoUser}}" alt="">
                     </div>
                     <strong>{{name}}</strong>
@@ -44,7 +30,7 @@
                 </div>
                 <div class="messageRecall">
                     {{#if photo}}
-                        <div class="photoProduct">
+                        <div class="photoRecall">
                             <img class="materialboxed" src="{{photo}}" alt="">
                         </div>
                     {{/if}}
@@ -52,7 +38,7 @@
                     {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
                     {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
                     <div class="dateRecall">
-                        Коментарий был написан <b class="date">{{date}}</b>
+                        Коментарий был написан  <b class="date">{{toDate date}}</b>
                         <div class="likeRecall">
                             <i class="material-icons">thumb_up</i><span>{{like}}</span>
                             <i class="material-icons">thumb_down</i><span>{{likeNot}}</span>
