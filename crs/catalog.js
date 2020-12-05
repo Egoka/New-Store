@@ -1,8 +1,7 @@
 const {Router} = require('express')
 const router = Router()
-const {filter, products} = require('./inf/filter.js')
+const {filter, products, product, brands, recall} = require('./inf/filter.js')
 router.get('/',(req, res) => {
-    console.log(products)
     const user = true
     res.render('catalog', {
         title: 'Стартовая страница',
@@ -10,6 +9,15 @@ router.get('/',(req, res) => {
         user,
         products,
         filters:filter
+    })
+})
+router.get('/:id', async (req, res)=>{
+    res.render('product.hbs',{
+        title:`${product.name}`,
+        userStatus:true,
+        product,
+        brands,
+        recall
     })
 })
 module.exports = router
