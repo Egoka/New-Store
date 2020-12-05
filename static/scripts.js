@@ -12,10 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Materialbox.init(elems);
 });
 document.querySelectorAll('.price').forEach(node =>{
-    node.textContent = new Intl.NumberFormat('ru-RU',{
-        currency:'rub',
-        style:'currency'
-    }).format(node.textContent)
+    if(node.textContent==="null")
+        node.textContent = "Нет в продажи"
+    else{
+        node.textContent = new Intl.NumberFormat('ru-RU',{
+            currency:'rub',
+            style:'currency'
+        }).format(node.textContent)}
 })
 var instance = M.Carousel.init({
     fullWidth: true,
@@ -32,6 +35,15 @@ if ($filter){
             const status = event.target.dataset.status
             console.log(id, form, status)
             const csrf = event.target.dataset.csrf
+        }
+    })
+}
+const $filterRecall = document.querySelector('.filterRecall')
+if ($filterRecall){
+    $filterRecall.addEventListener('click',event=>{
+        if (event.target.classList.contains('recall-filter')){
+            const star = event.target.dataset.id
+            console.log(star)
         }
     })
 }

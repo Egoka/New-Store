@@ -5,16 +5,16 @@
                 <img class="materialboxed" src="{{photoURL}}" alt="">
             </div>
             <div class="description">
-                <a href="" class="" title="{{name}}">
+                <a href="/catalog/{{name}}" class="" title="{{name}}">
                     <span class="">{{name}}</span>
                 </a>
                 <ul class="">
                     {{#each description}}
-                        <li>{{OS}}</li>
-                        <li>{{SIM}}</li>
-                        <li>{{screen}}</li>
-                        <li>{{carmera}}</li>
-                        <li>{{CPU}}</li>
+                        {{#if @first}}
+                            {{#each parameter}}
+                                <li>{{value}}</li>
+                            {{/each}}
+                        {{/if}}
                     {{/each}}
                 </ul>
                 <div class="purchase">
@@ -23,7 +23,7 @@
                         <i class="material-icons js-filter" data-id="{{name}}" data-form="like" data-status="true">favorite_border</i>
                     {{/if}}
                     <div class="priceFilter">
-                        <a href="" class="price">{{price}}</a>
+                        <a href="/catalog/{{name}}" class="price">{{price}}</a>
                     </div>
                 </div>
             </div>
