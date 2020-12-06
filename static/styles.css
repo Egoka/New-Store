@@ -202,12 +202,15 @@ ul{white-space: nowrap}
     width: initial;
     height: auto;
     max-height: 600px;
-    animation-name: linee;
+    animation-name: lineeLeft;
     animation-duration:2s;
     animation-fill-mode: forwards;}
 .descriptionProduct{
     width: 55%;
-    padding: 30px;}
+    padding: 30px;
+    animation-name: lineeRight;
+    animation-duration:2s;
+    animation-fill-mode: forwards;}
 .descriptionProduct h4{font-weight: 700;}
 .descriptionProduct i{
     margin: 20px;
@@ -233,15 +236,13 @@ ul{white-space: nowrap}
     padding-bottom: 20px;
     font-weight: 500;}
 .product li span{color: #000000;}
-@keyframes linee{
-    0%  {
-        opacity:0;
-        transform: translateX(-200px);
-    }
-    100%{
-        opacity:1;
-        transform: translateX(0);
-    }
+@keyframes lineeLeft{
+    0%  {opacity:0;transform: translateX(-200px);}
+    100%{opacity:1;transform: translateX(0);}
+}
+@keyframes lineeRight{
+    0%  {opacity:0;transform: translateX(200px);}
+    100%{opacity:1;transform: translateX(0);}
 }
 /*//////////////////////////////*/
 /*/////////SHOP/////////////////*/
@@ -394,3 +395,18 @@ ul{white-space: nowrap}
     background-size: 3px 1px;
     flex-grow: 1;}
 .value{width: 50%;}
+/*//////////////////////////////*/
+/*//////COMMENT/////////////////*/
+/*//////////////////////////////*/
+.commentProduct .centerMy, .centerMy{display: none}
+.commentProduct .photoProduct{padding: 0;justify-content: flex-end;}
+.commentProduct .price{text-align: left;margin-top: 30px}
+.commentProduct h5{text-align: center;font-weight: 700;user-select: none;}
+.commentProduct img{max-height: 150px;margin-top: 0}
+.commentProduct ul{display: none}
+.commentInput{
+    margin:  30px 15% 20px 15%;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;}
+

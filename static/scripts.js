@@ -20,6 +20,9 @@ document.querySelectorAll('.price').forEach(node =>{
             style:'currency'
         }).format(node.textContent)}
 })
+$(document).ready(function() {
+    $('input#input_text, textarea#textarea2').characterCounter();
+});
 var instance = M.Carousel.init({
     fullWidth: true,
     indicators: true
@@ -44,6 +47,27 @@ if ($filterRecall){
         if (event.target.classList.contains('recall-filter')){
             const star = event.target.dataset.id
             console.log(star)
+        }
+    })
+}
+const $filterComment = document.querySelector('.commentInput')
+if ($filterComment){
+    $filterComment.addEventListener('click',event=>{
+        if (event.target.classList.contains('comment-filter')){
+            let number = event.target.dataset.id
+            console.log(number)
+            const size = number
+            const star = new Array(5).fill("#bcbcbc");
+            while(number) {
+                number -= 1
+                star[number] = "#e7ad00"}
+            $filterComment.querySelector('.commentInput').innerHTML =
+                `<i data-id="1" class="material-icons comment-filter" style="color: ${star[0]}">star</i>
+                 <i data-id="2" class="material-icons comment-filter" style="color: ${star[1]}">star</i>
+                 <i data-id="3" class="material-icons comment-filter" style="color: ${star[2]}">star</i>
+                 <i data-id="4" class="material-icons comment-filter" style="color: ${star[3]}">star</i>
+                 <i data-id="5" class="material-icons comment-filter" style="color: ${star[4]}">star</i>
+                 <input name="stars" id="stars" class="commentStar" type="number" style="display: none" value="${size}" required>`
         }
     })
 }
