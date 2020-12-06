@@ -2,7 +2,7 @@
     <div class="recallInf">
         <h3>Отзовы <strong>{{recall.length}}</strong></h3>
         <div class="filterRecall">
-            <a class="btn" href="/catalog" style="background:{{product.colorBackground}}">Оставить отзыв</a>
+            <a class="btn" href="/catalog/{{product.id}}/comment" style="background:{{product.colorBackground}}">Оставить отзыв</a>
             <div class="listStarsRecall">
                 <p>Показать отзывы с оценкой</p>
                 {{#each product.recallList}}
