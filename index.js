@@ -1,7 +1,8 @@
 const express = require('express')
 const exps = require('express-handlebars')
-const session = require('express-session')
 const path = require('path')
+const bodyParser = require('body-parser');
+const session = require('express-session')
 /////////////////////////////////////////////////
 const start = require('./crs/start')
 const catalog = require('./crs/catalog')
@@ -13,6 +14,8 @@ const hbs = exps.create({
     helpers: require('./utils/hbs-helpers')
 })
 /////////////////////////////////////////////////
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
