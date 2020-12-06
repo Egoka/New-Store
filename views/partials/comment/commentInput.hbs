@@ -17,12 +17,14 @@
             <label for="textComment">Комментарий</label>
         </div>
     </div>
-    <div class="commentInput">
+    <div class="commentInput" data-success="{{product.colorBackground}}">
         <i data-id="1" class="material-icons comment-filter">star_border</i>
         <i data-id="2" class="material-icons comment-filter">star_border</i>
         <i data-id="3" class="material-icons comment-filter">star_border</i>
         <i data-id="4" class="material-icons comment-filter">star_border</i>
         <i data-id="5" class="material-icons comment-filter">star_border</i>
+        <input name="stars" id="stars"  type="number" style="display:none" value="${size}" required>
+        <label for="stars"></label>
     </div>
     <button class="btn" type="submit" style="background:{{product.colorBackground}};">Оставить отзыв</button>
 </form>
