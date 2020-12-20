@@ -1,8 +1,8 @@
-<div class="filteredProduct request">
+<div class="filteredProduct request" id="gridPhoto" data-success="{{products.length}}">
     {{#each products}}
         <div class="device">
-            <div class="image">
-                <img class="materialboxed" src="{{photoURL}}" alt="">
+            <div class="filterImage">
+                <img id="adaptivePhoto{{@index}}" class="materialboxed" src="{{photoURL}}" alt="">
             </div>
             <div class="description">
                 <a href="/catalog/{{id}}" class="" title="{{name}}">

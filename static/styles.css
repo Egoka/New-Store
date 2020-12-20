@@ -127,16 +127,21 @@ h3{padding-left: 100px;
     overflow: hidden;
     border-radius: 30px;
     border: 1px solid rgba(0, 0, 0, 0.2);}
-.image{
+.filterImage{
     height: 100%;
-    width: 25%;}
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
 .device .material-placeholder{
     height: 250px;
     margin-right: 10px;
     display:flex;
     align-items: center;
     justify-content: center; }
-.image img{height: inherit;}
+.filterImage img{
+    max-height: 100%;
+    max-width: 170px;}
 .description{
     height: inherit;
     width: 65%;
@@ -187,7 +192,7 @@ ul{white-space: nowrap}
 /*//////////////////////////////*/
 /*/////PRODUCT//////////////////*/
 /*//////////////////////////////*/
-.product{display: flex;}
+.product{display: flex; height: 600px}
 .photoProduct{
     width: 45%;
     display:flex;
@@ -198,10 +203,9 @@ ul{white-space: nowrap}
     margin-left:10px;
     user-select: none;}
 .photoProduct img{
-    margin-top: 40px;
-    width: initial;
-    height: auto;
     max-height: 600px;
+    max-width: 400px;
+    margin-top: 40px;
     animation-name: lineeLeft;
     animation-duration:2s;
     animation-fill-mode: forwards;}
