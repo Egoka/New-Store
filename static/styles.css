@@ -114,6 +114,23 @@ h3{padding-left: 100px;
         width: 25%;
         right: 0;}
 }
+/*//////////////////////////////*/
+/*/////FILTERED_PRODUCT/////////*/
+/*//////////////////////////////*/
+.productFork{
+    width: 75%;
+    margin-left: 0;
+    padding: 0 30%}
+.productFork li{
+    width: 45%}
+.productFork a{
+    padding: 0;}
+.productFork i{
+    font-size: 25px;
+    color: #929aab;}
+.productFork a:focus{
+    color: #1dac00;
+}
 .filteredProduct{
     position: static;
     max-width: 75%;
