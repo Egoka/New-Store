@@ -1,15 +1,15 @@
 {{>catalog/filter}}
 <div class="productFork">
-    <ul class="tabs">
-        <li class="tab"><a style="padding:0" href="#lowercase" class="active">
+    <ul class="tabs" style="height: 100px">
+        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#lowercase" class="active">
             <i class="material-icons">dns</i></a></li>
-        <li class="tab"><a style="padding:0" href="#bloc">
+        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#bloc">
             <i class="material-icons">dashboard</i></a></li>
     </ul>
 </div>
-<div id="lowercase" style="width: 100%">
+<div id="lowercase" style="width: 75%">
     {{>catalog/filteredProduct}}
 </div>
-<div id="bloc" style="width: 70%">
+<div id="bloc" style="width: 75%">
     {{>catalog/productGrid}}
 </div>

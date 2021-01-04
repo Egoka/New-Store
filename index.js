@@ -6,6 +6,11 @@ const session = require('express-session')
 /////////////////////////////////////////////////
 const start = require('./crs/start')
 const catalog = require('./crs/catalog')
+const favorites = require('./crs/favorites')
+const comparison = require('./crs/comparison')
+const reviews = require('./crs/reviews')
+const basket = require('./crs/basket')
+const account = require('./crs/account')
 /////////////////////////////////////////////////
 const app = express()
 const hbs = exps.create({
@@ -24,6 +29,11 @@ app.use(express.static(path.join(__dirname,'static')))
 /////////////////////////////////////////////////
 app.use('/', start)
 app.use('/catalog', catalog)
+app.use('/favorites', favorites)
+app.use('/comparison', comparison)
+app.use('/reviews', reviews)
+app.use('/basket', basket)
+app.use('/account', account)
 /////////////////////////////////////////////////
 const PORT = process.env.PORT || 3000
 async function startProgram(){
