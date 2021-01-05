@@ -82,6 +82,7 @@ h3  {padding-left: 100px;
     z-index: 100}
 .filter .collapsible{margin: 0;}
 .options{
+    height: 100%;
     background-color: #e9f0ff;
     transition: .4s linear}
 .options:hover{
@@ -118,8 +119,7 @@ h3  {padding-left: 100px;
 /*/////FILTERED_PRODUCT/////////*/
 /*//////////////////////////////*/
 .productFork{
-    width: 75%;
-    margin-left: 0;
+    width: 100%;
     padding: 0 30%}
 .productFork li{
     width: 45%}
@@ -133,7 +133,7 @@ h3  {padding-left: 100px;
 }
 .filteredProduct{
     position: static;
-    max-width: 75%;
+    width: 100%;
     min-width: 185px;}
 .device{
     margin: 10px;
@@ -176,14 +176,12 @@ h3  {padding-left: 100px;
 ul{white-space: nowrap}
 @media (max-width: 1300px) {
     .filteredProduct{
+        width: inherit;
         position: absolute;
         left: 0;}
 }
 @media (max-width: 900px) {
     .device .material-placeholder{margin-right: 0}
-    .device .material-placeholder img{
-        width: 100%;
-        height: initial}
 }
 .purchase{
     display: flex;
@@ -438,7 +436,7 @@ ul{white-space: nowrap}
     cursor: pointer;
     user-select: none;}
 /*//////////////////////////////*/
-/*//////BRAND/////////////////*/
+/*//////BRAND///////////////////*/
 /*//////////////////////////////*/
 .brandLogo{
     width: 100%;
@@ -484,4 +482,57 @@ ul{white-space: nowrap}
     margin: 0;
     font-size: 20px;
     color: #474747}
+/*//////////////////////////////*/
+/*//////TABLE_PRODUCTS//////////*/
+/*//////////////////////////////*/
+.typeTable{
+    position: absolute;
+    z-index: 100;
+    top: 150px;
+    left: 0;
+    right: 0;
+    width: 250px;
+    margin: 0 auto;
+    user-select: none;
+    border-radius: 10px;
+    background: #e9f0ff;
+    overflow: hidden;
+}
+.typeTable .typeTytle{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaeaea;
+}
+.typeTable .typeTytle:hover {
+    background-color: #8f8f8f;
+    transition: .4s linear;}
+.typeTable .typeTytle b{
+    font-size: 18px;
+}
+.typeTable .typeBody{
+    height: 0;
+    transition: .2s linear;
+}
+.typeTable:hover .typeBody{
+    height: 210px;
+    transition: .2s linear;
+}
+.typeProduct{
+    height: 35px;
+    padding: 5px 0;
+    display: flex;
+    cursor: pointer;
+    transition: .2s linear}
+.typeProduct i{margin: 0 5% 0 25%;}
+.typeProduct:hover{
+    background: #bfe5d2;
+    transition: .3s linear}
+.typeProduct:hover b{color:#1dac00;}
+.typeProduct:hover i{color:#1dac00;}
+.typeTable .collapsible-body{
+    display: none;
+    transition: .4s linear;
+}
 
