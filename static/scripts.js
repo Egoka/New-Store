@@ -71,3 +71,12 @@ if ($filterComment){
         }
     })
 }
+const $typeProducts = document.querySelector('#typeProducts')
+if ($typeProducts){
+    $typeProducts.addEventListener('click',event=>{
+        if (event.target.classList.contains('js-typeProduct')){
+            const number = event.target.dataset.id
+            console.log(number)
+        }
+    })
+}
