@@ -1,0 +1,22 @@
+<div class="slider">
+    {{#each products}}
+        <div class="item item-{{../slider}}">
+            <div  class="photoSlider">
+                <img class="materialboxed" src="{{photoURL}}" alt="" >
+            </div>
+            <h4 style="font-size: 2vh;text-align: center">{{name}}</h4>
+            {{#each description}}
+                {{#each parameter}}
+                <div class="parameterSlider">
+                    <b>{{name}}</b>
+                    <p>{{value}}</p>
+                </div>
+                {{/each}}
+            {{/each}}
+        </div>
+    {{/each}}
+    <div class="btnShift slide-prev-{{slider}} btnShiftComparison" onclick="previousSlide{{slider}}()">
+        <i class="material-icons">chevron_left</i></div>
+    <div class="btnShift slide-next-{{slider}} btnShiftComparison" onclick="nextSlide{{slider}}()">
+        <i class="material-icons">chevron_right</i></div>
+</div>
