@@ -535,4 +535,9 @@ ul{white-space: nowrap}
     display: none;
     transition: .4s linear;
 }
+/*//////////////////////////////*/
+/*//////COMPARISON//////////////*/
+/*//////////////////////////////*/
+.comparison{display: flex;}
+.comparison .comparisonProduct{width: 50%;}
 
