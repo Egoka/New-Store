@@ -20,3 +20,24 @@
     <div class="btnShift slide-next-{{slider}} btnShiftComparison" onclick="nextSlide{{slider}}()">
         <i class="material-icons">chevron_right</i></div>
 </div>
+<script>
+    let slideIndex{{slider}} = {{slideIndex}};
+    showSlides{{slider}}(slideIndex{{slider}});
+    function nextSlide{{slider}}(){showSlides{{slider}}(slideIndex{{slider}} += 1,true);}
+    function previousSlide{{slider}}(){showSlides{{slider}}(slideIndex{{slider}} -= 1, false);}
+    function currentSlide{{slider}}(n){showSlides{{slider}}(slideIndex{{slider}} = n);}
+    function showSlides{{slider}}(n, direction) {
+        /* Обращаемся к элементам с названием класса "item", то есть к картинкам: */
+        let slides = document.getElementsByClassName("item-{{slider}}");
+        /* Проверяем количество слайдов: */
+        if (n > slides.length) {slideIndex{{slider}} = 1}
+        if (n < 1) {slideIndex{{slider}} = slides.length}
+        /* Проходим по каждому слайду в цикле for: */
+        for (let slide of slides) {slide.style.display = "none";}
+        /* Делаем элемент блочным: */
+        slides[slideIndex{{slider}} - 1].style.display = "block";
+        if (direction === true){
+        slides[slideIndex{{slider}} - 1].style.animationName = "lineeRight";}
+        if(direction === false){slides[slideIndex{{slider}} - 1].style.animationName = "lineeLeft";}
+    }
+</script>
