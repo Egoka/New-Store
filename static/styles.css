@@ -23,6 +23,30 @@ h3  {padding-left: 100px;
 }
 .activeMy {background-color: #bbbfca}
 .activeMy a{color: #f2f4c0}
+/*//////////////////////////////*/
+/*/////CAROUSEL/////////////////*/
+/*//////////////////////////////*/
+.btnShift{
+    top: 0;
+    position: fixed;
+    height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    transition: .4s linear;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;}
+.btnShift i{
+    font-size: 35px;
+    color: #474747;}
+.btnShift:hover{
+    background-color: rgba(192, 192, 192, .5);
+    transition: .4s linear;}
+.btnShift:first-child{left: 0;}
+.btnShift:last-child{right: 0;}
 .infCarousel {
     width: 50%;
     margin: auto;
