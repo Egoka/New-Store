@@ -1,3 +1,7 @@
+.filter::-webkit-scrollbar {display:none}
+::selection{
+    background: #929aab;
+    color: #f2f4c0;}
 @media (max-width: 1300px) {
     body .container{
         width: 100%;
@@ -53,9 +57,9 @@ h3  {padding-left: 100px;
     transition: .4s linear;
 }
 .infCarousel:hover{
-    background-color: rgba(192, 192, 192, .5);
-    border-radius: 40px;
-    border-color: cornflowerblue;
+    background-color: rgba(105, 105, 105, 0.15);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
     transition: .4s linear;
 }
 .infCarousel h4{
@@ -98,12 +102,14 @@ h3  {padding-left: 100px;
     max-height: 100%;}
 /*//////////////////////////////*/
 .filter{
-    position: absolute;
+    position: fixed;
+    overflow-y: scroll;
     width: 18%;
     min-width: 185px;
-    height: 100%;
+    height: 93%;
     right: 15%;
     z-index: 100}
+
 .filter .collapsible{margin: 0;}
 .options{
     height: 100%;
@@ -135,7 +141,6 @@ h3  {padding-left: 100px;
 .optionsText:hover{color: #1dac00;}
 @media (max-width: 1300px) {
     .filter{
-        position: absolute;
         width: 25%;
         right: 0;}
 }
@@ -378,8 +383,9 @@ ul{white-space: nowrap}
     height: 400px;
     min-height: 100px;
     margin-right: 0;
-    border-radius: 10%;}
+    border-radius: 25px;}
 .infRecall{margin-top: 10px;}
+.infRecall p{white-space:normal}
 .dateRecall{
     display: flex;
     margin-bottom: 20px;}
