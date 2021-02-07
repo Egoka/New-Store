@@ -1,0 +1,36 @@
+<h3 class="left-align">Ваши отзывы</h3>
+<div class="reviews">
+    <ul class="collapsible">
+        {{#each recall}}
+        <li>
+            <div class="collapsible-header">
+                <div class="titleReviews">
+                    {{product}}
+                </div>
+                <div class="starsRecall">{{#stars rating}}{{body}}{{/stars}}</div>
+                <a href="/catalog/{{idProduct}}/comment"><i class="material-icons edit">border_color</i></a>
+            </div>
+            <div class="collapsible-body">
+                <div class="messageRecall">
+                    {{#if photo}}
+                        <div class="photoRecall">
+                            <img class="materialboxed" src="{{photo}}" alt="">
+                        </div>
+                    {{/if}}
+                    {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{advantages}}</div>{{/if}}
+                    {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
+                    {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
+                    <div class="dateRecall">
+                        Коментарий был написан  <b class="date">{{toDate date}}</b>
+                        <div class="likeRecall">
+                            <i class="material-icons">thumb_up</i><span>{{like}}</span>
+                            <i class="material-icons">thumb_down</i><span>{{likeNot}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

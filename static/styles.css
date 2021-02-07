@@ -600,4 +600,14 @@ ul{white-space: nowrap}
     max-width: 100%;
     max-height: 15vh;}
 .slider .item {animation-duration: 2s;}
-
+/*//////////////////////////////*/
+/*//////REVIEWS//////////////////*/
+/*//////////////////////////////*/
+.reviews .collapsible-header{
+    padding: 1rem 6rem;}
+.titleReviews{
+    font-size: 22px;
+    font-weight: 600;}
+.reviews .collapsible-header:hover .titleReviews{color:#fff;}
+.reviews .edit{margin-left: 5%;}
+.reviews a{color: #888888}
