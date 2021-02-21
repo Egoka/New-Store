@@ -299,6 +299,10 @@ ul{white-space: nowrap}
     0%  {opacity:0;transform: translateY(-200px);}
     100%{opacity:1;transform: translateY(0);}
 }
+@keyframes opacityMy{
+    0%  {opacity:0}
+    100%{opacity:1}
+}
 /*//////////////////////////////*/
 /*/////////SHOP/////////////////*/
 /*//////////////////////////////*/
@@ -617,3 +621,61 @@ ul{white-space: nowrap}
 .reviews .collapsible-header:hover .titleReviews{color:#fff;}
 .reviews .edit{margin-left: 5%;}
 .reviews a{color: #888888}
+/*//////////////////////////////*/
+/*//////BASKET//////////////////*/
+/*//////////////////////////////*/
+.tableBasket td{
+    color:#393e46;
+    font-size: 16px;
+    font-weight: 500;
+}
+.tableBasket tr:hover td{
+    background: rgba(160, 160, 160, 0.5);
+    color: #fdfdfd;}
+.tableBasket td:first-child{text-align: initial;}
+.tableBasket a{color:#393e46; margin-left: 35%}
+.tableBasket tr:hover a{color: #fdfdfd;}
+.tableBasket .clear{
+    border-radius: 50%;
+    transition: .4s linear;}
+.tableBasket .clear:hover{
+    background: rgba(255, 66, 66, 0.8);
+    transition: .4s linear;
+    cursor: pointer;}
+.quantity{
+    user-select: none;
+    font-size: 18px;
+    margin: auto;
+    width: max-content;
+    border: 1px solid rgba(100,100,100,0.2);
+    border-radius: 15px;}
+.tableBasket tr:hover .quantity{border: 1px solid #d7d7d7;}
+.quantity i{
+    font-weight: 700;
+    margin: 10px;
+    border: 0;
+    background: none;
+    border-radius: 15px;}
+.basketPrice{
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 17px;
+    border:1px solid rgba(177, 177, 177, 0.2);
+    width: max-content;
+    text-align: center;
+    font-size: 18px;
+    transition: .4s linear;
+}
+.basketPrice:hover{
+    background: #e8e9ff;
+    transition: .4s linear;
+}
+.basketPrice button{
+    margin-top: 10px;
+    background: #bbbfca;
+    color: #f2f4c0;
+    border-radius: 10px;
+}
+.basketPrice button:hover{
+    background: #828491;
+}
