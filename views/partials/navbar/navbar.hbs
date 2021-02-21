@@ -10,5 +10,10 @@
     </nav>
 </div>
 <ul class="sidenav navMy" id="mobile-demo" style="background: #929aab">
+    <li><a href="/account" class="user-view" style="height: min-content;background: #bfe5d2">
+        <span class="avatar"><img src="{{account.photoUser}}" alt=""></span>
+        <span class="name">{{account.nameOne}} {{account.nameTwo}}</span>
+        <span class="email">{{account.emailUser}}</span>
+    </a></li>
     {{>navbar/navbar_logics}}
 </ul>

@@ -1,11 +1,12 @@
 const {Router} = require('express')
 const router = Router()
-const {filter, products, product, brands, recall,topics} = require('./inf/filter.js')
+const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
     const user = true
     res.render('catalog', {
         title: 'Стартовая страница',
         catalog: true,
+        account,
         user,
         products,
         filters:filter
@@ -16,6 +17,7 @@ router.get('/:id', async (req, res)=>{
     res.render('product.hbs',{
         title:`${product.name}`,
         userStatus:true,
+        account,
         product:products[id],
         brands,
         recall
@@ -26,6 +28,7 @@ router.get('/:id/comment', async (req, res)=>{
     res.render('comment.hbs',{
         title:`${product.name}`,
         userStatus:true,
+        account,
         product:products[id]
     })
 })
@@ -40,6 +43,7 @@ router.get('/:id/brand',async (req, res)=>{
     res.render('brand.hbs',{
         title:`${product.name}`,
         userStatus:true,
+        account,
         brand:brands[n],
         products,
         brands,

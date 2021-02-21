@@ -10,6 +10,9 @@
 body::-webkit-scrollbar {display:none}
 h3  {padding-left: 100px;
     user-select: none;}
+/*//////////////////////////////*/
+/*//////NAVBAR//////////////////*/
+/*//////////////////////////////*/
 .nav-wrapper{padding: 0 20px;}
 .navMy a{
     text-transform: uppercase;
@@ -24,6 +27,23 @@ h3  {padding-left: 100px;
 }
 .navMy li:hover a{
     color: #474747
+}
+.navMy .user-view{
+    margin: 0;
+}
+.avatar{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.avatar img{
+    width: 100%;
+    height: fit-content;
 }
 .activeMy {background-color: #bbbfca}
 .activeMy a{color: #f2f4c0}
