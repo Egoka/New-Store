@@ -299,6 +299,10 @@ ul{white-space: nowrap}
     0%  {opacity:0;transform: translateY(-200px);}
     100%{opacity:1;transform: translateY(0);}
 }
+@keyframes opacityMy{
+    0%  {opacity:0}
+    100%{opacity:1}
+}
 /*//////////////////////////////*/
 /*/////////SHOP/////////////////*/
 /*//////////////////////////////*/
@@ -652,3 +656,26 @@ ul{white-space: nowrap}
     border: 0;
     background: none;
     border-radius: 15px;}
+.basketPrice{
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 17px;
+    border:1px solid rgba(177, 177, 177, 0.2);
+    width: max-content;
+    text-align: center;
+    font-size: 18px;
+    transition: .4s linear;
+}
+.basketPrice:hover{
+    background: #e8e9ff;
+    transition: .4s linear;
+}
+.basketPrice button{
+    margin-top: 10px;
+    background: #bbbfca;
+    color: #f2f4c0;
+    border-radius: 10px;
+}
+.basketPrice button:hover{
+    background: #828491;
+}
