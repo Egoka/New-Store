@@ -1,0 +1,20 @@
+{{#each orders}}
+    <div class="orders">
+        <span>Заказ {{idOrders}}</span>
+        <span class="dateOrders"></span>
+        <ul>{{#each products}}
+            <li style="list-style-type: initial;">
+                {{productName}}
+                <strong class="price">{{priceProduct}}</strong>
+                <i>{{amountProduct}}шт.</i>
+            </li>{{/each}}
+        </ul>
+        <hr style="width: 100%">
+        <span style="text-align: center">Итог: <strong class="price">{{priseOrders}}</strong></span>
+    </div>
+    <script>
+        let date{{@index}} = new Date('{{dateOrders}}');
+        document.querySelectorAll('.dateOrders')[{{@index}}].textContent  = date{{@index}}.toLocaleString('ru',
+                {day: 'numeric',month: 'long',year: 'numeric',hour:'numeric',minute:'numeric'})
+    </script>
+{{/each}}
