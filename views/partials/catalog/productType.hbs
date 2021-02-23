@@ -1,0 +1,11 @@
+<div id="typeProducts" class="typeTable">
+    <div class="typeTytle"><b>Тип</b></div>
+    <div class="typeBody">
+    {{#each options}}
+        <div class="typeProduct js-typeProduct" data-id="{{id}}">
+            <i class="material-icons js-typeProduct" data-id="{{id}}">{{icon}}</i>
+            <b class="optionsText js-typeProduct" data-id="{{id}}">{{name}}</b>
+        </div>
+    {{/each}}
+    </div>
+</div>

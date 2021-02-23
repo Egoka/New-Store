@@ -1,13 +1,12 @@
 const {Router} = require('express')
 const router = Router()
-const {selection, topics, brands,account} = require('./inf/filter.js')
+const {account, orders} = require('./inf/filter.js')
 router.get('/',(req, res) => {
-    res.render('start', {
+    res.render('account', {
         title: 'Стартовая страница',
+        privateOffice:true,
         account,
-        selection,
-        topics,
-        brands
+        orders
     })
 })
 module.exports = router

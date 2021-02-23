@@ -1,6 +1,10 @@
 <div class="carousel carousel-slider center" >
+    <div class="carousel-fixed-item center">
+        <div class="btnShift slide-prev"><i class="material-icons">chevron_left</i></div>
+        <div class="btnShift slide-next"><i class="material-icons">chevron_right</i></div>
+    </div>
     {{#each selection}}
-        <div class="carousel-item" href="#{{number}}!" style="background: radial-gradient(at top, {{colorBackground}} 30%, rgba(255,255,255,0) 73%)" >
+        <div class="carousel-item" href="#{{@index}}" style="background: radial-gradient(at top, {{colorBackground}} 30%, rgba(255,255,255,0) 73%)" >
             <img src="{{photoURL}}" alt="" style="height: 400px;width: auto">
             <div class="carousel-fixed-item center infCarousel" style="height: 50%">
                 <h4 style="color:{{titleColor}}">{{title}}</h4>

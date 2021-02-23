@@ -1,13 +1,12 @@
 const {Router} = require('express')
 const router = Router()
-const {selection, topics, brands,account} = require('./inf/filter.js')
+const {recall, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
-    res.render('start', {
+    res.render('reviews', {
         title: 'Стартовая страница',
+        reviews: true,
         account,
-        selection,
-        topics,
-        brands
+        recall
     })
 })
 module.exports = router

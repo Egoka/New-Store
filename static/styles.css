@@ -1,3 +1,7 @@
+.filter::-webkit-scrollbar {display:none}
+::selection{
+    background: #929aab;
+    color: #f2f4c0;}
 @media (max-width: 1300px) {
     body .container{
         width: 100%;
@@ -6,6 +10,9 @@
 body::-webkit-scrollbar {display:none}
 h3  {padding-left: 100px;
     user-select: none;}
+/*//////////////////////////////*/
+/*//////NAVBAR//////////////////*/
+/*//////////////////////////////*/
 .nav-wrapper{padding: 0 20px;}
 .navMy a{
     text-transform: uppercase;
@@ -21,17 +28,58 @@ h3  {padding-left: 100px;
 .navMy li:hover a{
     color: #474747
 }
+.navMy .user-view{
+    margin: 0;
+}
+.avatar{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.avatar img{
+    width: 100%;
+    height: fit-content;
+}
 .activeMy {background-color: #bbbfca}
 .activeMy a{color: #f2f4c0}
+/*//////////////////////////////*/
+/*/////CAROUSEL/////////////////*/
+/*//////////////////////////////*/
+.btnShift{
+    top: 0;
+    position: fixed;
+    height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    transition: .4s linear;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;}
+.btnShift i{
+    font-size: 35px;
+    color: #474747;}
+.btnShift:hover{
+    background-color: rgba(192, 192, 192, .5);
+    transition: .4s linear;}
+.btnShift:first-child{left: 0;}
+.btnShift:last-child{right: 0;}
 .infCarousel {
     width: 50%;
     margin: auto;
     transition: .4s linear;
 }
 .infCarousel:hover{
-    background-color: rgba(192, 192, 192, .5);
-    border-radius: 40px;
-    border-color: cornflowerblue;
+    background-color: rgba(105, 105, 105, 0.15);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
     transition: .4s linear;
 }
 .infCarousel h4{
@@ -74,14 +122,17 @@ h3  {padding-left: 100px;
     max-height: 100%;}
 /*//////////////////////////////*/
 .filter{
-    position: absolute;
+    position: fixed;
+    overflow-y: scroll;
     width: 18%;
     min-width: 185px;
-    height: 100%;
+    height: 93%;
     right: 15%;
     z-index: 100}
+
 .filter .collapsible{margin: 0;}
 .options{
+    height: 100%;
     background-color: #e9f0ff;
     transition: .4s linear}
 .options:hover{
@@ -110,7 +161,6 @@ h3  {padding-left: 100px;
 .optionsText:hover{color: #1dac00;}
 @media (max-width: 1300px) {
     .filter{
-        position: absolute;
         width: 25%;
         right: 0;}
 }
@@ -118,8 +168,7 @@ h3  {padding-left: 100px;
 /*/////FILTERED_PRODUCT/////////*/
 /*//////////////////////////////*/
 .productFork{
-    width: 75%;
-    margin-left: 0;
+    width: 100%;
     padding: 0 30%}
 .productFork li{
     width: 45%}
@@ -133,7 +182,7 @@ h3  {padding-left: 100px;
 }
 .filteredProduct{
     position: static;
-    max-width: 75%;
+    width: 100%;
     min-width: 185px;}
 .device{
     margin: 10px;
@@ -176,14 +225,12 @@ h3  {padding-left: 100px;
 ul{white-space: nowrap}
 @media (max-width: 1300px) {
     .filteredProduct{
+        width: inherit;
         position: absolute;
         left: 0;}
 }
 @media (max-width: 900px) {
     .device .material-placeholder{margin-right: 0}
-    .device .material-placeholder img{
-        width: 100%;
-        height: initial}
 }
 .purchase{
     display: flex;
@@ -272,6 +319,10 @@ ul{white-space: nowrap}
     0%  {opacity:0;transform: translateY(-200px);}
     100%{opacity:1;transform: translateY(0);}
 }
+@keyframes opacityMy{
+    0%  {opacity:0}
+    100%{opacity:1}
+}
 /*//////////////////////////////*/
 /*/////////SHOP/////////////////*/
 /*//////////////////////////////*/
@@ -356,8 +407,9 @@ ul{white-space: nowrap}
     height: 400px;
     min-height: 100px;
     margin-right: 0;
-    border-radius: 10%;}
+    border-radius: 25px;}
 .infRecall{margin-top: 10px;}
+.infRecall p{white-space:normal}
 .dateRecall{
     display: flex;
     margin-bottom: 20px;}
@@ -438,7 +490,7 @@ ul{white-space: nowrap}
     cursor: pointer;
     user-select: none;}
 /*//////////////////////////////*/
-/*//////BRAND/////////////////*/
+/*//////BRAND///////////////////*/
 /*//////////////////////////////*/
 .brandLogo{
     width: 100%;
@@ -484,4 +536,230 @@ ul{white-space: nowrap}
     margin: 0;
     font-size: 20px;
     color: #474747}
-
+/*//////////////////////////////*/
+/*//////TABLE_PRODUCTS//////////*/
+/*//////////////////////////////*/
+.typeTable{
+    position: absolute;
+    z-index: 100;
+    top: 150px;
+    left: 0;
+    right: 0;
+    width: 250px;
+    margin: 0 auto;
+    user-select: none;
+    border-radius: 10px;
+    background: #e9f0ff;
+    overflow: hidden;
+}
+.typeTable .typeTytle{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaeaea;
+}
+.typeTable .typeTytle:hover {
+    background-color: #8f8f8f;
+    transition: .4s linear;}
+.typeTable .typeTytle b{
+    font-size: 18px;
+}
+.typeTable .typeBody{
+    height: 0;
+    transition: .2s linear;
+}
+.typeTable:hover .typeBody{
+    height: 210px;
+    transition: .2s linear;
+}
+.typeProduct{
+    height: 35px;
+    padding: 5px 0;
+    display: flex;
+    cursor: pointer;
+    transition: .2s linear}
+.typeProduct i{margin: 0 5% 0 25%;}
+.typeProduct:hover{
+    background: #bfe5d2;
+    transition: .3s linear}
+.typeProduct:hover b{color:#1dac00;}
+.typeProduct:hover i{color:#1dac00;}
+.typeTable .collapsible-body{
+    display: none;
+    transition: .4s linear;
+}
+/*//////////////////////////////*/
+/*//////COMPARISON//////////////*/
+/*//////////////////////////////*/
+.comparison{display: flex;}
+.comparison .comparisonProduct{width: 50%;}
+.btnShiftComparison{
+    position:absolute;
+    height: 20%;
+    border-radius: 20px;}
+.parameterSlider{
+    margin: 15px 0;
+    overflow:hidden;
+    transition: .4s linear;}
+.parameterSlider p{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500}
+.parameterSlider:hover{
+    background: #e9e9e9;
+    border-radius: 20px;
+    transition: .4s linear;}
+.comparisonOne .slider .item .parameterSlider{padding-left: 50px; text-align: left;}
+.comparisonTwo .slider .item .parameterSlider{padding-right: 50px; text-align: right;}
+/*//////////////////////////////*/
+/*//////SLIDER//////////////////*/
+/*//////////////////////////////*/
+.slider{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    height: 300px;}
+.photoSlider{
+    height: 200px;
+    padding: 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+.photoSlider img{
+    max-width: 100%;
+    max-height: 15vh;}
+.slider .item {animation-duration: 2s;}
+/*//////////////////////////////*/
+/*//////REVIEWS//////////////////*/
+/*//////////////////////////////*/
+.reviews .collapsible-header{
+    padding: 1rem 6rem;}
+.titleReviews{
+    font-size: 22px;
+    font-weight: 600;}
+.reviews .collapsible-header:hover .titleReviews{color:#fff;}
+.reviews .edit{margin-left: 5%;}
+.reviews a{color: #888888}
+/*//////////////////////////////*/
+/*//////BASKET//////////////////*/
+/*//////////////////////////////*/
+.tableBasket td{
+    color:#393e46;
+    font-size: 16px;
+    font-weight: 500;
+}
+.tableBasket tr:hover td{
+    background: rgba(160, 160, 160, 0.5);
+    color: #fdfdfd;}
+.tableBasket td:first-child{text-align: initial;}
+.tableBasket a{color:#393e46; margin-left: 35%}
+.tableBasket tr:hover a{color: #fdfdfd;}
+.tableBasket .clear{
+    border-radius: 50%;
+    transition: .4s linear;}
+.tableBasket .clear:hover{
+    background: rgba(255, 66, 66, 0.8);
+    transition: .4s linear;
+    cursor: pointer;}
+.quantity{
+    user-select: none;
+    font-size: 18px;
+    margin: auto;
+    width: max-content;
+    border: 1px solid rgba(100,100,100,0.2);
+    border-radius: 15px;}
+.tableBasket tr:hover .quantity{border: 1px solid #d7d7d7;}
+.quantity i{
+    font-weight: 700;
+    margin: 10px;
+    border: 0;
+    background: none;
+    border-radius: 15px;}
+.basketPrice{
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 17px;
+    border:1px solid rgba(177, 177, 177, 0.2);
+    width: max-content;
+    text-align: center;
+    font-size: 18px;
+    transition: .4s linear;
+}
+.basketPrice:hover{
+    background: #e8e9ff;
+    transition: .4s linear;
+}
+.basketPrice button{
+    margin-top: 10px;
+    background: #bbbfca;
+    color: #f2f4c0;
+    border-radius: 10px;
+}
+.basketPrice button:hover{
+    background: #828491;
+}
+/*//////////////////////////////*/
+/*//////ACCOUNT/////////////////*/
+/*//////////////////////////////*/
+.persanalInfo{text-align: center;}
+.persanalInfo .editAccount{
+    position: relative;
+    top: 20px;
+    left: 45%;
+    font-size: 30px;
+    border-radius: 5px;
+    cursor: default;}
+.photoAccount{
+    width: 150px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -20px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.photoAccount img{
+    width: 100%;
+    height: fit-content;}
+.infoAccount{
+    text-align: center;
+    font-weight: 100;
+    width: max-content;
+    margin: auto;
+    user-select: none;}
+.exitAccount{
+    margin: 20px auto 0;
+    width: max-content;}
+.exitAccount a{
+    color: #393e46;
+    background: #dee7f8;
+    font-size: 24px;
+    font-weight: 100;
+    border-radius: 10px;
+    padding: 3px 8px;
+}
+.exitAccount a:hover, .editAccount:hover, .orders:hover{
+    background: #f2f4c0;
+    transition: .4s linear;
+}
+/*//////////////////////////////*/
+/*//////ORDERS//////////////////*/
+/*//////////////////////////////*/
+.orders{
+    background: #dee7f8;
+    display: grid;
+    margin: 20px auto;
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.orders span{
+    font-size: 21px;
+    font-weight: 100;
+    margin: 20px 0 0;
+    text-align: left;
+}
+.orders li {font-size:17px;margin-left: 20px;}
+.orders li::marker{color: #544d4d;}
