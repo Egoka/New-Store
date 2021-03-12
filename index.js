@@ -1,7 +1,8 @@
 const express = require('express')
 const exps = require('express-handlebars')
 const path = require('path')
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
+const flash = require('connect-flash')
 const session = require('express-session')
 /////////////////////////////////////////////////
 const start = require('./crs/start')
@@ -28,6 +29,12 @@ app.set('views', 'views')
 /////////////////////////////////////////////////
 app.use(express.static(path.join(__dirname,'static')))
 /////////////////////////////////////////////////
+app.use(flash())
+app.use(session({ cookie: { maxAge: 60000 },
+    secret: 'woot',
+    resave: false,
+    saveUninitialized: false}));
+// /////////////////////////////////////////////////
 app.use('/', start)
 app.use('/authorization', authorization)
 app.use('/catalog', catalog)
