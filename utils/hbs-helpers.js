@@ -86,5 +86,9 @@ module.exports = {
         var d1 = new Date(date);
         var d2 = new Date(+Date.now())
         return dateDiff(d1, d2);
+    },
+    ifeq(a,b,options){
+        if(a==b) return options.fn(this)
+        return options.inverse(this)
     }
 }
