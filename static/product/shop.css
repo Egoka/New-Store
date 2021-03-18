@@ -1,0 +1,26 @@
+.shop{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-top: 1px solid #8f8f8f70;
+    border-bottom: 1px solid #8f8f8f70;}
+@media (max-width: 600px) {.shop{justify-content: space-around;}}
+.shop i{user-select: none;}
+.logoStore{
+    min-width: 140px;
+    width: 25%;
+    height: 100px;
+    text-align: center;
+    user-select: none;}
+.logoStore img{
+    max-height: 40px;
+    margin: 20px 0;
+    user-select: none;}
+.shopExtra{
+    display:flex;
+    align-items: center;
+    justify-content: center;}
+.shopExtra p{
+    margin: 10px;
+    font-size: 1rem;}

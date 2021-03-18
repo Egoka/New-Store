@@ -1,9 +1,9 @@
 const {Router} = require('express')
 const router = Router()
-const {account, orders} = require('./inf/filter.js')
+const {account, orders} = require('../inf/filter.js')
 router.get('/',(req, res) => {
     res.render('account', {
-        title: 'Стартовая страница',
+        title: 'Профиль',
         privateOffice:true,
         account,
         orders

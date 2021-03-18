@@ -1,0 +1,25 @@
+.navMy a{
+    text-transform: uppercase;
+    text-align: center;
+    color:#f7f7f7}
+.navMy{background: #929aab}
+.navMy li:hover {background: #f2f4c0}
+.navMy li:hover a{color: #474747}
+.navMy .user-view{margin: 0;}
+.navMy .brand-logo{font-size: 1.6rem;}
+.avatar{
+    width: 150px;
+    height: 150px;
+    margin: 30px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.avatar img{
+    width: 100%;
+    height: auto;}
+.activeMy {background-color: #bbbfca}
+.activeMy a{color: #f2f4c0}
+@media (min-width: 500px) {
+    .navbar-fixed .sidenav-trigger {
+        display: block;}
+}

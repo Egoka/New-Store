@@ -2,7 +2,7 @@
     <div class="infoUser">
         <div class="editAccount material-icons" onclick="editAccout(event)">edit</div>
         <div>
-        <div class="photoAccount">
+        <div class="photoAccount flexCenter">
             <img src="{{account.photoUser}}" alt="">
         </div>
         </div>
@@ -13,7 +13,9 @@
     <div class="exitAccount"><a href="/entry/logout" >Выход</a></div>
     <hr>
 </div>
-{{>orders/orders}}
+<div class="listOrders">
+    {{>orders/orders}}
+</div>
 <script>
     function editAccout(event){
         let object = event.path[1].children

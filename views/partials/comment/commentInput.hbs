@@ -1,21 +1,15 @@
 <form action="/catalog/{{product.id}}/comment" method="post">
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="inputAdvantages" name="inputAdvantages" type="text" data-length="100">
-            <label for="inputAdvantages">Достоинства</label>
-        </div>
+    <div class="input-field col s12">
+        <input id="inputAdvantages" name="inputAdvantages" type="text" data-length="100">
+        <label for="inputAdvantages">Достоинства</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="inputDisadvantages" name="inputDisadvantages" type="text" data-length="100">
-            <label for="inputDisadvantages">Недостатки</label>
-        </div>
+    <div class="input-field col s12">
+        <input id="inputDisadvantages" name="inputDisadvantages" type="text" data-length="100">
+        <label for="inputDisadvantages">Недостатки</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <textarea id="textComment" name="textComment" class="materialize-textarea" data-length="1500"></textarea>
-            <label for="textComment">Комментарий</label>
-        </div>
+    <div class="input-field col s12">
+        <textarea id="textComment" name="textComment" class="materialize-textarea" data-length="1500"></textarea>
+        <label for="textComment">Комментарий</label>
     </div>
     <div class="commentInput" data-success="{{product.colorBackground}}">
         <i data-id="1" class="material-icons comment-filter">star_border</i>

@@ -4,6 +4,7 @@ router.get('/login',(req, res) => {
     const password = req.flash('password')
     res.render('authorization', {
         title: 'Авторизация',
+        authorization:true,
         login:true,
         email:req.flash('email'),
         emailStatus:(req.flash('email')&&(!password)),
@@ -24,6 +25,7 @@ router.post('/login',(req, res) => {
 router.get('/registration',(req, res) => {
     res.render('authorization', {
         title: 'Регистрация',
+        authorization:true,
         registration:true,
         name:req.flash('name'),
         email:req.flash('email'),
@@ -47,6 +49,7 @@ router.post('/registration',(req,res)=>{
 router.get('/resetAccount',(req, res) => {
     res.render('authorization',{
         title: 'Восстановление пароля',
+        authorization:true,
         resetAccount:true,
         email:req.flash('email'),
         error:req.flash('error')

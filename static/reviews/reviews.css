@@ -1,0 +1,10 @@
+.reviews .collapsible-header{
+    padding: 1rem 1rem;}
+.titleReviews{
+    width: 50%;
+    overflow: overlay;
+    font-size: 1.5rem;
+    font-weight: 600;}
+.starsRecall .material-icons{
+    font-size: 1.5rem;}
+.reviews a{color: #888888}

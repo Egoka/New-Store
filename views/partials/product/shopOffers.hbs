@@ -1,4 +1,4 @@
-<h3 class="left-align">Предложения магазинов</h3>
+<h3>Предложения магазинов</h3>
 <div>{{getTime}}</div>
 {{#each brands}}
 <div class="shop">
@@ -8,7 +8,6 @@
             <div>{{#stars rating}}{{body}}{{/stars}}</div>
         </a>
     </div>
-
     <div class="shopExtra" style="color: {{@root.product.colorBackground}}">
         {{#paymentFormat format}}{{{body}}}{{/paymentFormat}}
     </div>

@@ -3,8 +3,7 @@
         <img class="materialboxed" src="{{product.photoURL}}" alt="" >
     </div>
     <div class="descriptionProduct request">
-        <h4 style="color:{{product.colorBackground}}">{{product.name}}</h4>
-        <div class="centerMy">
+        <div class="centerMy flexCenter">
             {{#if userStatus}}
                 <i class="material-icons js-filter"
                    data-id="{{product.name}}" data-form="list" data-status="true"
@@ -14,9 +13,9 @@
                    title="Сохранить">favorite_border</i>
             {{/if}}
         </div>
-        <h4 class="price">{{product.price}}</h4>
-        <div class="centerMy">
-            <button class="btn btnProduct" style="background:{{product.colorBackground}}">добавить в корзину</button>
+        <h5 class="price">{{product.price}}</h5>
+        <div class="centerMy flexCenter">
+            <button class="btn btnProduct" style="background:{{product.colorBackground}}">в корзину</button>
         </div>
         <ul>
             {{#each product.description}}

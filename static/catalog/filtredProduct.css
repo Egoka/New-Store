@@ -1,0 +1,94 @@
+#lowercase,#bloc{width: 75%}
+.productFork{
+    width: 100%;
+    padding: 6rem 30% 0}
+.productFork li{
+    width: 45%}
+.productFork a{
+    padding: 0;}
+.productFork i{
+    font-size: 25px;
+    color: #929aab;}
+.productFork a:focus{
+    color: #1dac00;}
+.filteredProduct{
+    position: static;
+    width: 100%;
+    min-width: 185px;
+    padding: 2%}
+.device{
+    margin: 10px 0;
+    padding: 1.1rem;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);}
+.filterImage{
+    height: 100%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+#lowercase .filterImage{width: 35%;}
+.device .material-placeholder{
+    height: 250px;
+    margin-right: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;}
+.filterImage img{
+    max-height: 100%;
+    max-width: 16rem;}
+@media (max-width: 850px){.filterImage img{max-width: 14rem;}}
+@media (max-width: 750px){.filterImage img{max-width: 12rem;}}
+@media (max-width: 650px){.filterImage img{max-width: 11rem;}}
+@media (max-width: 550px){.filterImage img{max-width: 10rem;}}
+@media (max-width: 500px){.filterImage img{max-width: 8rem;}}
+@media (max-width: 400px){.filterImage img{max-width: 6rem;}}
+.description{
+    height: max-content;
+    width: 75%;
+    padding: 1.1rem;
+    z-index: 10;}
+.description a{
+    font-size: 22px;
+    white-space: nowrap;
+    color: #000;
+    font-weight: 700;
+    transition: .4s linear}
+.description a:hover{
+    color: #929aab;
+    transition: .4s linear}
+@media (max-width: 1300px) {
+    .filteredProduct{
+        width: inherit;
+        position: absolute;
+        left: 0;}
+}
+@media (max-width: 900px) {
+    .device .material-placeholder{margin-right: 0}
+}
+.purchase{
+    display: flex;
+    width: 100%;}
+.purchase i{
+    position: static;
+    bottom: 0;
+    margin: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: .2s linear}
+.purchase i:hover{
+    color: #f00;
+    transition: .2s linear}
+.priceFilter{
+    display:flex;
+    align-items: center;
+    margin: 0 1rem;
+    color: #222;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;}
+.priceFilter p{margin: 0;}
