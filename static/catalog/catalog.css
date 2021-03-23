@@ -6,6 +6,7 @@
     height: 93%;
     right: 15%;
     z-index: 100}
+#filterMobile{display: none}
 .filter::-webkit-scrollbar {display:none}
 .filter .collapsible{margin: 0;}
 .options{
