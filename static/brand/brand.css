@@ -1,0 +1,34 @@
+.brandLogo{
+    width: 100%;
+    height: 150px;
+    padding: 20px 30%;
+    animation-name: lineeTop;
+    animation-duration:1s;
+    animation-fill-mode: forwards;}
+.brandTypes h3{display: none}
+.productGrid{
+    width: 100%;
+    flex-wrap: wrap;}
+.productGrid img{
+    max-height: 100%;
+    max-width: 100%;}
+.productObject{
+    display: block;
+    text-align: center;
+    min-width: 200px;
+    max-width: 500px;
+    height: 350px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid rgba(100,100,100,0.2);
+    border-radius: 15px;
+    overflow: hidden;}
+.productPhoto{
+    display: flex;
+    justify-content: center;
+    height: 80%;}
+.productObject div{height: 80%;}
+.productObject p{
+    margin: 0;
+    font-size: 20px;
+    color: #474747}

@@ -1,11 +1,13 @@
 const {Router} = require('express')
 const router = Router()
-const {filter, products, product, brands, recall,topics} = require('./inf/filter.js')
+const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
     const user = true
     res.render('catalog', {
-        title: 'Стартовая страница',
-        catalog: true,
+        title: 'Каталог',
+        catalog:true,
+        catalogPage: true,
+        account,
         user,
         products,
         filters:filter
@@ -13,9 +15,11 @@ router.get('/',(req, res) => {
 })
 router.get('/:id', async (req, res)=>{
     const id = Number(req.params.id)
-    res.render('product.hbs',{
+    res.render('product',{
         title:`${product.name}`,
+        productPage: true,
         userStatus:true,
+        account,
         product:products[id],
         brands,
         recall
@@ -23,9 +27,11 @@ router.get('/:id', async (req, res)=>{
 })
 router.get('/:id/comment', async (req, res)=>{
     const id = Number(req.params.id)
-    res.render('comment.hbs',{
-        title:`${product.name}`,
+    res.render('comment',{
+        title:"Отзыв",
+        commentPage: true,
         userStatus:true,
+        account,
         product:products[id]
     })
 })
@@ -37,9 +43,11 @@ router.post('/:id/comment', async (req, res) => {
 })
 router.get('/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
-    res.render('brand.hbs',{
+    res.render('brand',{
         title:`${product.name}`,
+        brandPage: true,
         userStatus:true,
+        account,
         brand:brands[n],
         products,
         brands,

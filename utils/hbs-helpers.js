@@ -6,11 +6,11 @@ module.exports = {
         while(rating) {
             rating -= 1
             star[rating] = "#e7ad00"}
-        return (`<i data-id="${size}" class="material-icons recall-filter" style="color: ${star[0]}">star</i>
-                 <i data-id="${size}" class="material-icons recall-filter" style="color: ${star[1]}">star</i>
-                 <i data-id="${size}" class="material-icons recall-filter" style="color: ${star[2]}">star</i>
-                 <i data-id="${size}" class="material-icons recall-filter" style="color: ${star[3]}">star</i>
-                 <i data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</i>`)
+        return (`<span data-id="${size}" class="material-icons recall-filter" style="color: ${star[0]}">star</span>
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[1]}">star</span>
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[2]}">star</span>
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[3]}">star</span>
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</span>`)
     },
     starRecall(number){
         if (number>0) {
@@ -86,5 +86,9 @@ module.exports = {
         var d1 = new Date(date);
         var d2 = new Date(+Date.now())
         return dateDiff(d1, d2);
+    },
+    ifeq(a,b,options){
+        if(a==b) return options.fn(this)
+        return options.inverse(this)
     }
 }

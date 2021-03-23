@@ -1,0 +1,17 @@
+<table class="centered tableBasket">
+    <thead><tr><th>Название</th><th>Цена</th><th>Колличество</th><th></th></tr></thead>
+    <tbody>
+    {{#each basketList}}
+        <tr>
+            <td><a href="/catalog/{{idProduct}}">{{productName}}</a></td>
+            <td class="price">{{price}}</td>
+            <td><div class="quantity">
+                <span>&minus;</span>
+                <span>{{quantity}}</span>
+                <span>&plus;</span>
+            </div></td>
+            <td style="width:10%"><i class="material-icons clear">clear</i></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

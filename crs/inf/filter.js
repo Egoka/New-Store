@@ -48,6 +48,39 @@ filter = [
             {name:"16ГБ"}
         ]}
 ]
+productTypes = [
+    {
+        id:0,
+        name:"Смартфоны",
+        icon:"smartphone"
+    },
+    {
+        id:1,
+        name:"Ноутбуки",
+        icon:"laptop"
+    },
+    {
+        id:2,
+        name:"Гарнитура",
+        icon:"headset"
+    }
+    ,
+    {
+        id:3,
+        name:"Часы",
+        icon:"watch"
+    },
+    {
+        id:4,
+        name:"Компьютеры",
+        icon:"desktop_windows"
+    },
+    {
+        id:5,
+        name:"Телевизоры",
+        icon:"tv"
+    }
+]
 products = [
     {
         id: 0,
@@ -133,7 +166,7 @@ products = [
     },
     {
         id: 3,
-        name: 'Смартфон Google Pixel 3',
+        name: 'Google Pixel 3',
         photoURL: 'https://cdn.shopify.com/s/files/1/0280/2037/5604/products/PIXEL3.3xlclean_1600x.png?v=1588653300',
         description:[
             {
@@ -256,6 +289,31 @@ products = [
             {size: 1,value: 22}
         ]
     },
+    {
+        id: 8,
+        name:'Apple Watch Series 3 GPS',
+        photoURL: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/42-alu-silver-sport-white-nc-s3-1up_GEO_RU?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1594318652000',
+        description:[
+            {
+                nameDescription: "Общие характеристики",
+                parameter: [
+                    {value: 'iOS 14', name: "Операционная система"},
+                    {value: 'поддержка двух SIM-карт', name: "Симкарта"},
+                    {value: 'экран 6.53", разрешение 2340x1080', name: "Экран"},
+                    {value: '4 камеры: широкоугольная (13 МП), сверхширокоугольная', name: "Камеры"},
+                    {value: 'процессор MediaTek Helio G80', name: "Процессор"}]
+            }
+        ],
+        price:'30990',
+        colorBackground:'#3db4d1',
+        recallList:[
+            {size: 5,value: 0},
+            {size: 4,value: 2},
+            {size: 3,value: 1},
+            {size: 2,value: NaN},
+            {size: 1,value: 22}
+        ]
+    },
 ]
 selection = [
     {
@@ -276,7 +334,7 @@ selection = [
     },
     {
         id: 3,
-        title:'Apple iPad Air',
+        title:'Apple iPad',
         text:'Лучший планшет',
         photoURL:'https://nice-case.ru/images/detailed/6/ipad-air-select-wifi-green-202009_2qln-1c.png',
         colorBackground:'#abbda8',
@@ -298,7 +356,7 @@ topics = [
     },
     {
         title:'Умные часы',
-        photoURL:'https://www.iport.ru/promo/watchs5/main.png',
+        photoURL:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/42-alu-silver-sport-white-nc-s3-1up_GEO_RU?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1594318652000',
         backColor:'#d1e0bd',
         titleColor:'#fff'
     },
@@ -358,42 +416,51 @@ brands = [
     }
 ]
 product = {
-        id:514,
-        name: 'Apple iPhone 12 Pro',
-        photoURL: 'https://www.ixbt.com/img/n1/news/2020/8/5/google-pixel-5-official-press-renders-in-black-and-green-colors-243_large.png',
-        description:[
-            {
-                nameDescription: "Общие характеристики",
-                parameter: [
-                    {value: 'iOS 14', name: "Операционная система"},
-                    {value: 'поддержка двух SIM-карт', name: "Симкарта"},
-                    {value: 'экран 6.53", разрешение 2340x1080', name: "Экран"},
-                    {value: '4 камеры: широкоугольная (13 МП), сверхширокоугольная', name: "Камеры"},
-                    {value: 'процессор MediaTek Helio G80', name: "Процессор"}]
-            },
-            {
-                nameDescription: "Экран",
-                parameter: [
-                    {value: 'цветной Super AMOLED, 16.78 млн цветов, сенсорный', name: "Тип экрана"},
-                    {value: 'мультитач, емкостный', name: "Тип сенсорного экрана"},
-                    {value: '6.5 дюйм.', name: "Диагональ"}]
-            }
-        ],
-        price:'90900',
-        colorBackground:'#95aca4',
-        recallList:[
-            {size: 5,value: 0},
-            {size: 4,value: 2},
-            {size: 3,value: 1},
-            {size: 2,value: NaN},
-            {size: 1,value: 22}
-        ]
-    }
+    id:514,
+    name: 'iPhone 12 Pro',
+    photoURL: 'https://www.ixbt.com/img/n1/news/2020/8/5/google-pixel-5-official-press-renders-in-black-and-green-colors-243_large.png',
+    description:[
+        {
+            nameDescription: "Общие характеристики",
+            parameter: [
+                {value: 'iOS 14', name: "Операционная система"},
+                {value: 'поддержка двух SIM-карт', name: "Симкарта"},
+                {value: 'экран 6.53", разрешение 2340x1080', name: "Экран"},
+                {value: '4 камеры: широкоугольная (13 МП), сверхширокоугольная', name: "Камеры"},
+                {value: 'процессор MediaTek Helio G80', name: "Процессор"}]
+        },
+        {
+            nameDescription: "Экран",
+            parameter: [
+                {value: 'цветной Super AMOLED, 16.78 млн цветов, сенсорный', name: "Тип экрана"},
+                {value: 'мультитач, емкостный', name: "Тип сенсорного экрана"},
+                {value: '6.5 дюйм.', name: "Диагональ"}]
+        }
+    ],
+    price:'90900',
+    colorBackground:'#95aca4',
+    recallList:[
+        {size: 5,value: 0},
+        {size: 4,value: 2},
+        {size: 3,value: 1},
+        {size: 2,value: NaN},
+        {size: 1,value: 22}
+    ]
+}
+account= {
+    nameOne: "Николай",
+    nameTwo: "Гоголь",
+    verifiedUser: "true",
+    emailUser: "gogol@gmail.com",
+    photoUser: "https://briefly.ru/static/authors/gogol.jpg?1479846041"
+}
 recall = [
     {
         name:"Николай Г.",
         verifiedUser:"true",
         photoUser: "https://briefly.ru/static/authors/gogol.jpg?1479846041",
+        idProduct:1,
+        product:'Apple iPhone 12 Pro',
         photo:"https://avatars.mds.yandex.net/get-market-ugc/2386291/2a000001717380ad438b79b7b7f87ef534a6/700-700",
         rating:2,
         date:'Sat Nov 21 2020 05:22:22 GMT+0300 (Москва, стандартное время)',
@@ -411,10 +478,58 @@ recall = [
         name:"Александр П.",
         verifiedUser:null,
         photoUser: "https://avatars.mds.yandex.net/get-zen_doc/1878668/pub_5cf4beb15c133600b374ebdb_5cf4d481bb53da00af249c20/scale_1200",
+        idProduct:0,
+        product:'Apple iPad Air',
         rating:2,
         date:'Sat Nov 30 2020 01:22:22 GMT+0300 (Москва, стандартное время)',
         like:null,
         likeNot:null,
     }
 ]
-module.exports = {filter, products, selection, topics, brands, product, recall}
+basket = [
+    {
+        idProduct:0,
+        productName:'iPhone 12 mini',
+        price:55000,
+        quantity:4
+    },
+    {
+        idProduct:1,
+        productName:'Apple iPhone 12 Pro',
+        price:55000,
+        quantity:2
+    },
+    {
+        idProduct:2,
+        productName:'Google Pixel 5',
+        price:55000,
+        quantity:5
+    },
+    {
+        idProduct:3,
+        productName:'Apple iPad Air',
+        price:55000,
+        quantity:1
+    },
+]
+orders=[
+    {
+        idOrders:'hg53j45gj34h5g34k5g',
+        dateOrders:'2020-10-26T11:10:50.805+00:00',
+        priseOrders:90000,
+        products:[{
+                productName:'iphone 12 mini Красный',
+                priceProduct:90000,
+                amountProduct:1}]
+    },
+    {
+        idOrders:'hg53j45gj34h5g34k5g',
+        dateOrders:'2021-10-26T11:10:50.805+00:00',
+        priseOrders:90000,
+        products:[{
+            productName:'iphone 12 mini Красный',
+            priceProduct:90000,
+            amountProduct:1}]
+    }
+]
+module.exports = {filter, products, selection, topics, brands, product,account, recall, productTypes, basket,orders}

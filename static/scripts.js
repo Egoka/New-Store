@@ -23,10 +23,6 @@ document.querySelectorAll('.price').forEach(node =>{
 $(document).ready(function() {
     $('input#input_text, textarea#textarea2').characterCounter();
 });
-var instance = M.Carousel.init({
-    fullWidth: true,
-    indicators: true
-})
 const $filter = document.querySelector('.request')
 if ($filter){
     $filter.addEventListener('click',event=>{
@@ -71,3 +67,20 @@ if ($filterComment){
         }
     })
 }
+const $typeProducts = document.querySelector('#typeProducts')
+if ($typeProducts){
+    $typeProducts.addEventListener('click',event=>{
+        if (event.target.classList.contains('js-typeProduct')){
+            const number = event.target.dataset.id
+            console.log(number)
+        }
+    })
+}
+$(document).ready(function () {
+    $('.carousel').carousel();
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+    $('.slide-prev').click(function(){
+        $('.carousel').carousel('prev')});
+    $('.slide-next').click(function(){
+        $('.carousel').carousel('next')});
+});

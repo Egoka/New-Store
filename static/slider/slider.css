@@ -1,0 +1,13 @@
+.slider{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    height: 300px;}
+.photoSlider{
+    height: 200px;
+    padding: 0 70px;}
+.photoSlider img{
+    max-height: 200px;
+    max-width: 12rem;
+    margin-top: 40px;}
+.slider .item {animation-duration: 2s;}

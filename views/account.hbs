@@ -1,0 +1,48 @@
+<div class="persanalInfo">
+    <div class="infoUser">
+        <div class="editAccount material-icons" onclick="editAccout(event)">edit</div>
+        <div>
+        <div class="photoAccount flexCenter">
+            <img src="{{account.photoUser}}" alt="">
+        </div>
+        </div>
+        <i class="material-icons" style="color: #29ad2e;user-select: none;" title="Проверенный покупатель">assignment_turned_in</i>
+        <div class="infoAccount" style="font-size: 25px">{{account.nameOne}} {{account.nameTwo}}</div>
+        <div class="infoAccount" style="font-size: 18px">{{account.emailUser}}</div>
+    </div>
+    <div class="exitAccount"><a href="/entry/logout" >Выход</a></div>
+    <hr>
+</div>
+<div class="listOrders">
+    {{>orders/orders}}
+</div>
+<script>
+    function editAccout(event){
+        let object = event.path[1].children
+        if(object[0].innerHTML !== "save"){
+            object[0].innerHTML = "save"
+            let inputElement = document.createElement('input')
+            inputElement.setAttribute("type", "url")
+            inputElement.setAttribute("onchange",
+                    "event.path[1].children[0].children[0].src = event.srcElement.value")
+            inputElement.style.fontSize = "18px"
+            inputElement.style.width = "max-content"
+            inputElement.value = object[1].children[0].children[0].src
+            object[1].append(inputElement);
+            function stylesElement(object,fontSize) {
+                let inputElement = document.createElement('input');
+                inputElement.setAttribute("class", "infoAccount")
+                inputElement.value = object.innerText
+                inputElement.style.fontSize = `${fontSize}px`
+                object.innerText = ""
+                object.append(inputElement);}
+            stylesElement(object[3],25)
+            stylesElement(object[4],18)
+        }else {
+            object[0].innerHTML = "edit"
+            object[1].children[1].remove()
+            object[3].innerHTML = object[3].children[0].value
+            object[4].innerHTML = object[4].children[0].value
+        }
+    }
+</script>
