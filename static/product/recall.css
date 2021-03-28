@@ -2,14 +2,14 @@
 .recall h3{margin: 0 0 20px 0;}
 .recall strong{
     font-size: 35px;
-    color:rgba(0,0,0,0.5);}
+    color:var(--truly-black);}
 .recallInf{
     width: 75%;
     padding: 20px;}
 .recallList{
     padding: 10px;
-    border-top: 1px solid rgba(100,100,100,0.2);
-    border-bottom: 1px solid rgba(100,100,100,0.2);}
+    border-top: 1px solid var(--charcoal);
+    border-bottom: 1px solid var(--charcoal);}
 .recallUser{
     display: flex;
     flex-wrap: wrap;}
@@ -31,25 +31,26 @@
     font-size: 18px;}
 .recallUser span{
     margin-left: 5px;
-    color: #29ad2e;
+    color: var(--green-medium);
     font-size: 15px;
     font-weight: 700;}
 .starsRecall{
-    min-width:140px;
-    margin-left: auto;
+    min-width:max-content;
     user-select: none;
-    text-align: center;}
+    text-align: center;
+    display: flex;
+    align-items: center;}
 .starsRecall span{
     margin: 0;
     font-size: 1.3rem;}
 .messageRecall{
     margin: 20px 0;
     padding-left: 1.5rem;
-    border-left: 5px solid #ee6e73;
-    border-bottom: 5px solid #ee6e73;
+    border-left: 5px solid var(--pink-medium);
+    border-bottom: 5px solid var(--pink-medium);
     transition: .4s linear}
 .messageRecall:hover{
-    border-color: #29ad2e;
+    border-color: var(--green-medium);
     transition: .2s linear}
 .messageRecall .photoRecall{
     width: 100%;
@@ -86,10 +87,10 @@
     font-size: 18px;
     font-weight: 700;}
 .messageRecall:hover i:first-child{
-    color:#29ad2e;
+    color:var(--green-medium);
     transition: .2s linear}
 .messageRecall:hover i:last-of-type{
-    color: #ee6e73;
+    color: var(--pink-medium);
     transition: .2s linear}
 .listStarsRecall{
     display: contents;

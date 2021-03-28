@@ -1,11 +1,12 @@
 .orders{
-    background: #dee7f8;
+    background: var(--indigo-light);
     display: grid;
     margin: 1rem auto;
     width: max-content;
     padding: 20px;
     border-radius: 10px;
     overflow: hidden;
+    transition: .4s linear;
 }
 .orders span{
     font-size: 21px;
@@ -14,4 +15,4 @@
     text-align: left;
 }
 .orders li {font-size:17px;margin-left: 20px;}
-.orders li::marker{color: #544d4d;}
+.orders li::marker{color: var(--quartz);}

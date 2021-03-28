@@ -8,9 +8,9 @@
     padding: 0;}
 .productFork i{
     font-size: 25px;
-    color: #929aab;}
+    color: var(--indigo-medium)}
 .productFork a:focus{
-    color: #1dac00;}
+    color: var(--green-medium);}
 .filteredProduct{
     position: static;
     width: 100%;
@@ -24,7 +24,7 @@
     display: flex;
     overflow: hidden;
     border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.2);}
+    border: 1px solid var(--transparent-black);}
 .filterImage{
     height: 100%;
     width: 25%;
@@ -55,11 +55,11 @@
 .description a{
     font-size: 22px;
     white-space: nowrap;
-    color: #000;
+    color: var(--truly-black);
     font-weight: 700;
     transition: .4s linear}
 .description a:hover{
-    color: #929aab;
+    color:var(--slateGray-light);
     transition: .4s linear}
 @media (max-width: 1300px) {
     .filteredProduct{
@@ -81,13 +81,13 @@
     cursor: pointer;
     transition: .2s linear}
 .purchase i:hover{
-    color: #f00;
+    color: var(--red-dark);
     transition: .2s linear}
 .priceFilter{
     display:flex;
     align-items: center;
     margin: 0 1rem;
-    color: #222;
+    color: var(--graphite);
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;}

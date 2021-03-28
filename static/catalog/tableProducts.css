@@ -8,13 +8,13 @@
     margin: 0 auto;
     user-select: none;
     border-radius: 10px;
-    background: #e9f0ff;
+    background: var(--zircon);
     overflow: hidden;}
 .typeTable .typeTytle{
     height: 50px;
-    background: #eaeaea;}
+    background: var(--zircon)}
 .typeTable .typeTytle:hover {
-    background-color: #8f8f8f;
+    background-color: var(--gainsboro);
     transition: .4s linear;}
 .typeTable .typeTytle b{
     font-size: 18px;}
@@ -32,10 +32,10 @@
     transition: .2s linear}
 .typeProduct i{margin: 0 5% 0 25%;}
 .typeProduct:hover{
-    background: #bfe5d2;
+    background: var(--aquamarine-light);
     transition: .3s linear}
-.typeProduct:hover b{color:#1dac00;}
-.typeProduct:hover i{color:#1dac00;}
+.typeProduct:hover b{color:var(--green-medium)}
+.typeProduct:hover i{color:var(--green-medium)}
 .typeTable .collapsible-body{
     display: none;
     transition: .4s linear;}

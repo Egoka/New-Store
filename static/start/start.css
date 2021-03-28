@@ -10,9 +10,9 @@
     border-bottom-left-radius: 20px;}
 .btnShift i{
     font-size: 35px;
-    color: #474747;}
+    color: var(--quartz);}
 .btnShift:hover{
-    background-color: rgba(192, 192, 192, .5);
+    background-color: var(--sandstone);
     transition: .4s linear;}
 .btnShift:first-child{left: 0;}
 .btnShift:last-child{right: 0;}
@@ -22,7 +22,7 @@
     margin: auto;
     transition: .4s linear;}
 .infCarousel:hover{
-    background-color: rgba(105, 105, 105, 0.15);
+    background-color: var(--charcoal);
     border-radius: 25px;
     backdrop-filter: blur(10px);
     transition: .4s linear;}
@@ -32,9 +32,9 @@
 .container h6{font-size:20px;}
 .infCarousel a{
     margin-top: 30px;
-    color: #2b2b2b;
+    color: var(--graphite);
     border-radius: 5px;}
-.infCarousel a:hover {background: #393e46;}
+.infCarousel a:hover {background:var(--slateGray-dark)}
 #cardMy{
     padding: 0 10px;
     border-radius: 30px;

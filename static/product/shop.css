@@ -3,8 +3,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 20px;
-    border-top: 1px solid #8f8f8f70;
-    border-bottom: 1px solid #8f8f8f70;}
+    border-top: 1px solid var(--slateGray-light);
+    border-bottom: 1px solid var(--slateGray-light);}
 @media (max-width: 600px) {.shop{justify-content: space-around;}}
 .shop i{user-select: none;}
 .logoStore{

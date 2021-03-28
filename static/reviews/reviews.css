@@ -1,10 +1,13 @@
 .reviews .collapsible-header{
-    padding: 1rem 1rem;}
+    padding: 1rem .5rem;
+    background: transparent;
+    display: flex;
+    justify-content: space-around;}
 .titleReviews{
-    width: 50%;
+    width: 65%;
     overflow: overlay;
     font-size: 1.5rem;
     font-weight: 600;}
-.starsRecall .material-icons{
-    font-size: 1.5rem;}
-.reviews a{color: #888888}
+.starsRecall .material-icons{font-size: 1.2rem;}
+.starsRecall .material-icons:last-child{margin: 0}
+.reviews a{color: var(--gainsboro)}
