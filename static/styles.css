@@ -1,6 +1,6 @@
 ::selection{
-    background: #929aab;
-    color: #f2f4c0;}
+    background: var(--slateGray-light);
+    color: var(--yellow-light)}
 @media (max-width: 1300px) {
     body .container{width: 100%;}
 }

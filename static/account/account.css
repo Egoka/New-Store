@@ -26,14 +26,14 @@
     margin: 20px auto 0;
     width: max-content;}
 .exitAccount a{
-    color: #393e46;
-    background: #dee7f8;
+    color: var(--slateGray-dark);
+    background: var(--indigo-light);
     font-size: 24px;
     font-weight: 100;
     border-radius: 10px;
     padding: 3px 8px;}
 .exitAccount a:hover, .editAccount:hover, .orders:hover{
-    background: #f2f4c0;
+    background: var(--yellow-light);
     transition: .4s linear;}
 .listOrders{
     display: flex;

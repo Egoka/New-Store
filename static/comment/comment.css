@@ -7,5 +7,5 @@
 .commentInput{
     margin:  30px 15% 20px 15%;
     text-align: center;
-    cursor: pointer;
     user-select: none;}
+.commentInput input, textarea{color:var(--crystalWhite)}
