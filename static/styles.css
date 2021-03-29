@@ -1,0 +1,17 @@
+::selection{
+    background: var(--slateGray-light);
+    color: var(--yellow-light)}
+@media (max-width: 1300px) {
+    body .container{width: 100%;}
+}
+body::-webkit-scrollbar {display:none}
+body h3{
+    font-size: 2rem;
+    user-select: none;
+    text-align: center;
+}
+.flexCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

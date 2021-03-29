@@ -1,0 +1,41 @@
+.typeTable{
+    position: absolute;
+    z-index: 100;
+    top: 6rem;
+    left: 0;
+    right: 0;
+    width: 250px;
+    margin: 0 auto;
+    user-select: none;
+    border-radius: 10px;
+    background: var(--zircon);
+    overflow: hidden;}
+.typeTable .typeTytle{
+    height: 50px;
+    background: var(--zircon)}
+.typeTable .typeTytle:hover {
+    background-color: var(--gainsboro);
+    transition: .4s linear;}
+.typeTable .typeTytle b{
+    font-size: 18px;}
+.typeTable .typeBody{
+    height: 0;
+    transition: .2s linear;}
+.typeTable:hover .typeBody{
+    height: 210px;
+    transition: .2s linear;}
+.typeProduct{
+    height: 35px;
+    padding: 5px 0;
+    display: flex;
+    cursor: pointer;
+    transition: .2s linear}
+.typeProduct i{margin: 0 5% 0 25%;}
+.typeProduct:hover{
+    background: var(--aquamarine-light);
+    transition: .3s linear}
+.typeProduct:hover b{color:var(--green-medium)}
+.typeProduct:hover i{color:var(--green-medium)}
+.typeTable .collapsible-body{
+    display: none;
+    transition: .4s linear;}

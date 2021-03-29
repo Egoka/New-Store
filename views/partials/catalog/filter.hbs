@@ -1,0 +1,23 @@
+<div id="filterMobile" onclick="openFilter()">
+    <i class="material-icons">tune</i>Фильтры
+</div>
+<div class="filter request">
+    <ul class="collapsible expandable z-depth-0">
+        {{#each filters}}
+            <li class="active options">
+                <div class="collapsible-header"><i class="material-icons">{{icon}}</i>{{name}}</div>
+                <div class="collapsible-body"><span>
+                    {{#each options}}
+                        <p>
+                            <label>
+                                <input class="js-filter"
+                                       data-id="{{id}}" type="checkbox"/>
+                                <span class="optionsText">{{name}}</span>
+                            </label>
+                        </p>
+                    {{/each}}
+                </span></div>
+            </li>
+        {{/each}}
+    </ul>
+</div>

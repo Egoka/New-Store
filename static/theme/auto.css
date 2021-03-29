@@ -1,0 +1,68 @@
+@media (prefers-color-scheme: light) {
+    :root{
+        --green-dark: #458e2f;
+        --green-light: #0cb84a;
+        --green-medium:#23ac17;
+        --pink-medium: #e9897b;
+        --red-medium: #f44336;
+        --red-dark:#ff0000;
+        --yellow-light: #f2f4c0;
+        --aquamarine-light:#bfe5d2;
+        --aquamarine-medium:#a9efcd;
+        --aquamarine-dark:#7bbfa2;
+        --indigo-light:#dee7f8;
+        --indigo-medium:#bbbfca;
+        --indigo-dark:#828491;
+        --slateGray-light:#929aab;
+        --slateGray-dark:#393e46;
+        --crystalWhite:#ffffff;
+        --zircon:#eaeaea;
+        --sandstone:rgba(192,192,192,0.5);
+        --charcoal: rgba(100, 100, 100, 0.2);
+        --gainsboro:#888888;
+        --quartz: #474747;
+        --graphite:#2b2b2b;
+        --truly-black:#000000;
+        --transparent-black:rgba(0,0,0,0.3);
+        transition: color 1s linear;
+    }
+    html body{
+        color: #000000;
+        background: #ffffff;
+        transition: background .4s linear;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root{
+        --pink-medium:            #6c0e01;
+        --red-medium:             #f44336;
+        --red-dark:               #ff0000;
+        --yellow-light: #8f9900;
+        --aquamarine-light: #2b4031;
+        --aquamarine-medium: #074027;
+        --aquamarine-dark: #0f5138;
+        --green-dark: #b5e3a8;
+        --green-light:            #0cb84a;
+        --green-medium:           #23ac17;
+        --indigo-light: #494c52;
+        --indigo-medium: #777777;
+        --indigo-dark: #6b6c77;
+        --slateGray-light: #31353d;
+        --slateGray-dark: #adb8cb;
+        --crystalWhite: #ffffff;
+        --zircon: #3b3b3b;
+        --sandstone: rgba(55,55, 55,.5);
+        --charcoal: #92929291;
+        --gainsboro: #888888;
+        --quartz: #afafaf;
+        --graphite: #cbcbcb;
+        --truly-black: #e0e0e0;
+        --transparent-black: #9a99997d;
+        transition: color 1s linear;
+    }
+    html body{
+        background: #1d1d1d;
+        color:#fff;
+        transition: background .4s linear;
+    }
+}

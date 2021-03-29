@@ -1,0 +1,62 @@
+.btnShift{
+    top: 0;
+    position: absolute;
+    height: 28rem;
+    width: 12vh;
+    user-select: none;
+    cursor: pointer;
+    transition: .4s linear;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;}
+.btnShift i{
+    font-size: 35px;
+    color: var(--quartz);}
+.btnShift:hover{
+    background-color: var(--sandstone);
+    transition: .4s linear;}
+.btnShift:first-child{left: 0;}
+.btnShift:last-child{right: 0;}
+.infCarousel {
+    width: max-content;
+    padding: 0 1rem;
+    margin: auto;
+    transition: .4s linear;}
+.infCarousel:hover{
+    background-color: var(--charcoal);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transition: .4s linear;}
+.infCarousel h4{
+    white-space: nowrap;
+    margin: 20px 0;}
+.container h6{font-size:20px;}
+.infCarousel a{
+    margin-top: 30px;
+    color: var(--graphite);
+    border-radius: 5px;}
+.infCarousel a:hover {background:var(--slateGray-dark)}
+#cardMy{
+    padding: 0 10px;
+    border-radius: 30px;
+    height: 200px;
+    overflow: hidden;
+    user-select: none;}
+#cardMy:hover img{
+    top:0;
+    transform: translateY(-80px) scale(.6, .6);
+    transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);}
+#cardMy h5{margin: 10px;}
+.imageTop{
+    display:flex;
+    justify-content: center;
+    align-items: center}
+#cardMy img{
+    width: 100%;
+    transition: .4s cubic-bezier(0.68, 0.29, 0.4, 0.86);}
+.row .card-panel{
+    padding: 20px 10px;
+    border-radius: 10px;
+    height: 100px;}
+.brandsMy img{
+    max-width: 100%;
+    max-height: 100%;}

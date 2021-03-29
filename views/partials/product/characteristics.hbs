@@ -1,0 +1,15 @@
+<h3>Характеристики</h3>
+<div class="characteristics">
+    {{#each product.description}}
+        <p>{{nameDescription}}</p>
+        {{#each parameter}}
+        <div class="parameter">
+            <p>{{name}}</p>
+            <div class="points"></div>
+            <div class="value">
+                <p>{{value}}</p>
+            </div>
+        </div>
+        {{/each}}
+    {{/each}}
+</div>

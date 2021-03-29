@@ -1,0 +1,20 @@
+<div class="persanalInfo">
+    <div class="infoUser">
+        <div class="editAccount material-icons" style="left: -40%;" onclick="editAccout(event)">edit</div>
+        <div class="editAccount material-icons" style="left:  40%;" onclick="editColorSchema(event)">brightness_auto</div>
+        <div>
+        <div class="photoAccount flexCenter">
+            <img src="{{account.photoUser}}" alt="">
+        </div>
+        </div>
+        <i class="material-icons" style="color: var(--green-medium);user-select: none;" title="Проверенный покупатель">assignment_turned_in</i>
+        <div class="infoAccount" style="font-size: 25px">{{account.nameOne}} {{account.nameTwo}}</div>
+        <div class="infoAccount" style="font-size: 18px">{{account.emailUser}}</div>
+    </div>
+    <div class="exitAccount"><a href="/entry/logout" >Выход</a></div>
+    <hr>
+</div>
+<div class="listOrders">
+    {{>orders/orders}}
+</div>
+<script src="/accountFunction.js"></script>

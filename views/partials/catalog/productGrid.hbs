@@ -1,0 +1,11 @@
+<div class="productGrid flexCenter">
+    {{#each products}}
+        <a href="/catalog/{{id}}" class="productObject">
+            <div class="productGrid flexCenter">
+                <img src="{{photoURL}}" alt="">
+            </div>
+            <p class="price">{{price}}</p>
+            <p style="font-size: 15px;">{{name}}</p>
+        </a>
+    {{/each}}
+</div>

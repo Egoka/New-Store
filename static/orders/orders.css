@@ -1,0 +1,18 @@
+.orders{
+    background: var(--indigo-light);
+    display: grid;
+    margin: 1rem auto;
+    width: max-content;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .4s linear;
+}
+.orders span{
+    font-size: 21px;
+    font-weight: 100;
+    margin: 20px 0 0;
+    text-align: left;
+}
+.orders li {font-size:17px;margin-left: 20px;}
+.orders li::marker{color: var(--quartz);}

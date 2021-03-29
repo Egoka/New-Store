@@ -1,0 +1,25 @@
+html body .navMy a{
+    text-transform: uppercase;
+    text-align: center;
+    color:var(--crystalWhite)}
+.navMy{background: var(--slateGray-light)}
+.navMy li:hover {background: var(--yellow-light)}
+.navMy li:hover a{color: var(--truly-black)}
+.navMy .user-view{margin: 0;}
+.navMy .brand-logo{font-size: 1.6rem;}
+.avatar{
+    width: 150px;
+    height: 150px;
+    margin: 30px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.avatar img{
+    width: 100%;
+    height: auto;}
+.activeMy {background-color: var(--indigo-medium)}
+.activeMy a{color: var(--yellow-light)}
+@media (min-width: 500px) {
+    .navbar-fixed .sidenav-trigger {
+        display: block;}
+}

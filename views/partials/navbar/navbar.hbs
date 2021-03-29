@@ -1,0 +1,18 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper navMy" >
+            <a href="/" class="brand-logo center">{{title}}</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</div>
+<ul class="sidenav navMy" id="mobile-demo" style="background:var(--slateGray-light)">
+    {{#if account}}
+        <li><a href="/account" class="user-view" style="height: min-content;background: var(--aquamarine-light)">
+            <span class="avatar flexCenter"><img src="{{account.photoUser}}" alt=""></span>
+            <span class="name">{{account.nameOne}} {{account.nameTwo}}</span>
+            <span class="email">{{account.emailUser}}</span>
+        </a></li>
+    {{/if}}
+    {{>navbar/navbar_logics}}
+</ul>

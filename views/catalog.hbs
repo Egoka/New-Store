@@ -1,0 +1,15 @@
+{{>catalog/filter}}
+<div class="productFork" style="padding: 0 30%">
+    <ul class="tabs" style="height: 100px; background: transparent">
+        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#lowercase" class="active">
+            <i class="material-icons">dns</i></a></li>
+        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#bloc">
+            <i class="material-icons">dashboard</i></a></li>
+    </ul>
+</div>
+<div id="lowercase">
+    {{>catalog/filteredProduct}}
+</div>
+<div id="bloc">
+    {{>catalog/productGrid}}
+</div>

@@ -1,0 +1,31 @@
+<div class="authorization">
+    {{#if login}}
+        <div id="login" style="display: block;">
+            <form action="/authorization/login" method="post">
+                {{>authorization/login}}
+            </form>
+        </div>
+    {{/if}}
+    {{#if registration}}
+        <div id="registration">
+            <form action="/authorization/registration" method="post">
+                {{>authorization/registration}}
+            </form>
+        </div>
+    {{/if}}
+    {{#if resetAccount}}
+        <div id="registration">
+            <form action="/authorization/resetAccount" method="post">
+                {{>authorization/resetAccount}}
+            </form>
+        </div>
+    {{/if}}
+    <script>
+        function authorizationErrorDisplayNone(event) {
+            if(document.querySelector('#authorizationError')!==null) {
+                document.querySelector('#authorizationError').style.display = 'none'
+                event.srcElement.style.color = '#458e2f'
+            }
+        }
+    </script>
+</div>

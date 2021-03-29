@@ -1,0 +1,48 @@
+.filter{
+    position: fixed;
+    overflow-y: scroll;
+    width: 18%;
+    min-width: 185px;
+    height: 93%;
+    right: 15%;
+    z-index: 100}
+#filterMobile{display: none}
+.filter::-webkit-scrollbar {display:none}
+.filter .collapsible{margin: 0; border: none}
+.options{
+    height: 100%;
+    background-color: var(--zircon);
+    transition: .4s linear}
+.options:hover{
+    background-color: var(--zircon);
+    transition: .4s linear }
+.options .collapsible-header{
+    background-color: var(--indigo-light);
+    border:transparent;
+    font-size: 18px;
+    white-space: normal;
+    position: sticky;
+    top: 0;
+    z-index: 100;}
+.options .collapsible-header:hover{color:var(--zircon)}
+.collapsible-header>span{background-color: var(--slateGray-light)}
+.collapsible-header:hover{
+    background-color: var(--gainsboro);
+    transition: .4s linear}
+.collapsible-header>i{
+    color: var(--gainsboro);
+    transition: .3s linear}
+.collapsible-header:hover i{
+    color: var(--crystalWhite);
+    transition: .2s linear}
+.options .collapsible-body{
+    padding: 0 2rem;
+    border-bottom-color: var(--indigo-light);
+    font-size: 15px;}
+.options .collapsible-body .optionsText{font-size: 15px;}
+.optionsText:hover{color:var(--green-medium)}
+@media (max-width: 1300px) {
+    .filter{
+        width: 25%;
+        right: 0;}
+}

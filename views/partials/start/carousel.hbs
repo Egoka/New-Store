@@ -1,0 +1,16 @@
+<div class="carousel carousel-slider center" >
+    <div class="carousel-fixed-item center">
+        <div class="flexCenter btnShift slide-prev" style="position:fixed"><i class="material-icons">chevron_left</i></div>
+        <div class="flexCenter btnShift slide-next" style="position:fixed"><i class="material-icons">chevron_right</i></div>
+    </div>
+    {{#each selection}}
+        <div class="carousel-item" href="#{{@index}}" style="background: radial-gradient(at top, {{colorBackground}} 0%, rgba(255,255,255,0) 73%)" >
+            <img src="{{photoURL}}" alt="" style="height: 400px;width: auto">
+            <div class="carousel-fixed-item center infCarousel" style="height: 50%">
+                <h4 style="color:{{titleColor}}">{{title}}</h4>
+                <h6 style="color:{{titleColor}}">{{text}}</h6>
+                <a class="btn" href="/catalog/{{id}}" style="background:{{titleColor}}">КУПИТЬ</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

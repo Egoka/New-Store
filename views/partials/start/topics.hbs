@@ -1,0 +1,17 @@
+<div class="center" style="margin: 10px 0">
+    <div class="row center">
+        {{#each topics}}
+            <a class="col s6 m6 l3" href="{{link}}">
+                <div class="card-panel hoverable" id="cardMy"
+                     style="background: {{backColor}}"
+                     onmouseover="this.style.backgroundColor='rgb(145,153,170)'"
+                     onmouseout="this.style.backgroundColor='{{backColor}}'">
+                    <h5 style=" color: {{titleColor}}">{{title}}</h5>
+                    <div class="imageTop">
+                        <img src="{{photoURL}}" alt="">
+                    </div>
+                </div>
+            </a>
+        {{/each}}
+    </div>
+</div>

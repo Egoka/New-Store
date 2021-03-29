@@ -1,0 +1,48 @@
+.tableBasket td{
+    color:var(--slateGray-dark);
+    font-size: 16px;
+    font-weight: 500;}
+.tableBasket td:first-child{text-align: center}
+.tableBasket a{color:var(--slateGray-dark)}
+.tableBasket .clear{
+    border-radius: 50%;
+    transition: .4s linear;}
+.tableBasket .clear:hover{
+    background: var(--red-medium);
+    transition: .4s linear;
+    cursor: pointer;}
+.quantity{
+    user-select: none;
+    font-size: 18px;
+    margin: auto;
+    width: max-content;
+    border: 1px solid var(--charcoal);
+    border-radius: 15px;}
+.tableBasket tr:hover .quantity{border: 1px solid var(--zircon);}
+.quantity span{
+    font-weight: 700;
+    margin: 10px;
+    border: 0;
+    background: none;
+    border-radius: 15px;}
+.basketPrice{
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 17px;
+    border:1px solid var(--sandstone);
+    width: max-content;
+    text-align: center;
+    font-size: 18px;
+    transition: .4s linear;}
+.tableBasket tr:hover td, .basketPrice:hover{
+    background: var(--zircon);
+    transition: .4s linear;}
+.basketPrice button{
+    margin-top: 10px;
+    background: var(--indigo-medium);
+    color: var(--truly-black);
+    border-radius: 10px;
+    user-select: none;}
+.basketPrice button:hover{
+    background: var(--indigo-dark);
+    color: var(--crystalWhite)}

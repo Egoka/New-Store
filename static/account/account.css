@@ -1,0 +1,42 @@
+.persanalInfo{text-align: center;}
+.persanalInfo .editAccount{
+    position: relative;
+    top: 20px;
+    left: 45%;
+    font-size: 30px;
+    border-radius: 5px;
+    cursor: default;}
+.photoAccount{
+    width: 150px;
+    height: 180px;
+    margin: -20px auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;}
+.photoAccount img{
+    width: 100%;
+    height: auto;}
+.infoAccount{
+    text-align: center;
+    font-weight: 100;
+    width: max-content;
+    margin: auto;
+    user-select: none;}
+.exitAccount{
+    margin: 20px auto 0;
+    width: max-content;}
+.exitAccount a{
+    color: var(--slateGray-dark);
+    background: var(--indigo-light);
+    font-size: 24px;
+    font-weight: 100;
+    border-radius: 10px;
+    padding: 3px 8px;}
+.exitAccount a:hover, .editAccount:hover, .orders:hover{
+    background: var(--yellow-light);
+    transition: .4s linear;}
+.listOrders{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
