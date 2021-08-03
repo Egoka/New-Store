@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const mongoose = require('mongoose')
 const router = Router()
 const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
@@ -14,15 +15,12 @@ router.get('/',(req, res) => {
     })
 })
 router.get('/:id', async (req, res)=>{
-    const id = Number(req.params.id)
+    const product = await Product
+        .findById(req.params.id)
+        .populate('listSeller.idSeller','_id photoUrl recallStar').lean()
     res.render('product',{
-        title:`${product.name}`,
+        title:`${product.nameProduct}`,
         productPage: true,
-        userStatus:true,
-        account,
-        product:products[id],
-        brands,
-        recall
     })
 })
 router.get('/:id/comment', async (req, res)=>{
