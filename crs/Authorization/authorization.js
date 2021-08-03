@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const Users = require('../../modelsDB/users')
 const router = Router()
 router.get('/login',(req, res) => {
     const password = req.flash('password')
