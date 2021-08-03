@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const Users = require('../../modelsDB/users')
 const router = Router()
 router.get('/login',(req, res) => {
     const password = req.flash('password')
@@ -13,14 +14,20 @@ router.get('/login',(req, res) => {
         resetPassword:req.flash('resetPassword'),
     })
 })
-router.post('/login',(req, res) => {
-    req.flash('email', req.body.login)
-    // req.flash('error', 'не верный логин')
-    req.flash('error', 'не верный пароль')
-    req.flash('password', req.body.password)
-    req.flash('resetPassword',true)
-    // req.flash('error', 'подтвердите аккаун в письме')
-    res.redirect('/authorization/login')
+router.get('/logout',(req,res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/authorization/login')
+    })
+})
+router.post('/login',async (req, res) => {
+    const {email,password} = req.body
+    req.session.user = await Users.findOne({email},
+        'fullName photoUrl email password theme verifiedUser').lean()
+    req.session.isAuthorization = true
+    req.session.save(err=>{
+        if(err){throw err}
+        res.redirect('/')
+    })
 })
 router.get('/registration',(req, res) => {
     res.render('authorization', {
