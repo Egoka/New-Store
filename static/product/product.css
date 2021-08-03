@@ -2,29 +2,32 @@ h4{
     text-align: center;
     font-size: 1.5rem;}
 .product{
-    display: flex;
-    justify-content: center;}
+    height: 80%;
+    margin-top: 5vh;}
 .photoProduct{
-    width: 45%;
+    width: 50%;
     display:flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
     user-select: none;}
 .photoProduct img{
-    max-height: 300px;
-    max-width: 400px;
-    animation-name: lineeLeft;
-    animation-duration:2s;
+    width: 80%;
+    animation-name: opacity;
+    animation-duration:4s;
     animation-fill-mode: forwards;}
 .descriptionProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 50%;
-    padding: 1rem;
-    animation-name: lineeRight;
-    animation-duration:2s;
+    height: max-content;
+    /*padding: 1rem;*/
+    animation-name: opacity;
+    animation-duration:3s;
     animation-fill-mode: forwards;}
 .descriptionProduct h4{font-weight: 700;}
-.descriptionProduct i{
+.descriptionProduct .centerMy i{
     margin: 20px;
     font-size: 25px;
     transition: .2s linear;
@@ -37,12 +40,23 @@ h4{
     text-align: center;}
 .descriptionProduct .centerMy{user-select: none;}
 .descriptionProduct .btnProduct{
+    display: flex;
     font-size: 16px;
-    font-weight: 700;}
-.product ul {overflow: hidden;}
+    font-weight: 700;
+    width: max-content;
+    margin: 1rem;
+    border-radius: 10px;
+    color:var(--white-black)}
+.descriptionProduct .btnProduct i{margin: 0;}
+.product ul {
+    overflow: hidden;
+    width: max-content;
+    max-width: 27rem;
+    margin: 0 auto;}
 .product li {
     list-style-type: initial;
     font-size: 18px;
     padding-bottom: 1rem;
-    font-weight: 500;}
+    font-weight: 500;
+    margin-left: 1.5rem;}
 .product li span{color: var(--truly-black);}
