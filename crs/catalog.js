@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const mongoose = require('mongoose')
 const router = Router()
+const Product = require('../modelsDB/product')
 const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
     const user = true
@@ -21,6 +22,7 @@ router.get('/:id', async (req, res)=>{
     res.render('product',{
         title:`${product.nameProduct}`,
         productPage: true,
+        product
     })
 })
 router.get('/:id/comment', async (req, res)=>{
