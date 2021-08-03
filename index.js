@@ -1,9 +1,14 @@
 const express = require('express')
 const exps = require('express-handlebars')
 const path = require('path')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const session = require('express-session')
+const MongoSession =  require('connect-mongodb-session')(session)
+/////////////////////////////////////////////////
+const {urlMongoDB:URL} = require('./keys/private')
+const varMiddleware = require('./utils/variables')
 /////////////////////////////////////////////////
 const start = require('./crs/start')
 const authorization = require('./crs/Authorization/authorization')
@@ -30,10 +35,15 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname,'static')))
 /////////////////////////////////////////////////
 app.use(flash())
-app.use(session({ cookie: { maxAge: 60000 },
+const storeSession = new MongoSession({
+    collation:'sessions',
+    uri: URL })
+app.use(session({
     secret: 'woot',
     resave: false,
-    saveUninitialized: false}));
+    saveUninitialized: false,
+    storeSession}));
+app.use(varMiddleware)
 // /////////////////////////////////////////////////
 app.use('/', start)
 app.use('/authorization', authorization)
@@ -47,6 +57,10 @@ app.use('/account', account)
 const PORT = process.env.PORT || 3000
 async function startProgram(){
     try {
+        await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false})
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`)
         })
