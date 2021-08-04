@@ -1,24 +1,23 @@
 module.exports = {
-    stars(rating){
+    stars(rating=0){
         const size = rating
         rating=rating.toFixed(0)
         const star = new Array(5).fill("#bcbcbc");
-        while(rating) {
-            rating -= 1
-            star[rating] = "#e7ad00"}
+        if(rating>0){
+            while(rating) {
+                rating -= 1
+                star[rating] = "#e7ad00"}}
         return (`<span data-id="${size}" class="material-icons recall-filter" style="color: ${star[0]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[1]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[2]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[3]}">star</span>
-                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</span>`)
-    },
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</span>`)},
     starRecall(number){
         if (number>0) {
             if (number === 1) return `${number} отзыв`
             if (number < 5) return `${number} отзыва`
             return `${number} отзывов`}
-        return `--`
-    },
+        return `--`},
     paymentFormat(format){
         if(format==='courier'){
             return`<i class="material-icons">payment</i>
@@ -37,8 +36,8 @@ module.exports = {
                 (((month < 8 && (month & 1) === 0) ||
                     (month > 7 && (month & 1) === 1)) ? 31 : 30));}
         function dateDiff(date1, date2) {
-            var years, months, days, hours, minutes, seconds;
-            var y1, m1, d1, d2, dd;
+            let years, months, days, hours, minutes, seconds;
+            let y1, m1, d1, d2, dd;
             years = date2.getUTCFullYear()-(y1 = date1.getUTCFullYear());
             months = date2.getUTCMonth()-(m1 = date1.getUTCMonth());
             days = (d2 = date2.getUTCDate())-(d1 = date1.getUTCDate());
@@ -75,20 +74,24 @@ module.exports = {
                 if(days<5)return `${days} дня назад`
                 return `${days} дней назад`}
             if (hours>0){
-                if(hours===1)return `${hours} час назад`
-                if(hours<5)return `${hours} часа назад`
+                if(hours%10===1)return `${hours} час назад`
+                if(hours%10<5)return `${hours} часа назад`
                 return `${hours} часов назад`}
             if (minutes>0) {
                 if(minutes===1)return `${minutes} минуту назад`
                 if(minutes<5)return `${minutes} минуты назад`
                 return `${minutes} минут назад`}
             if (seconds>0)return `${seconds} секунд назад`}
-        var d1 = new Date(date);
-        var d2 = new Date(+Date.now())
-        return dateDiff(d1, d2);
-    },
+        let d1 = new Date(date);
+        let d2 = new Date(+Date.now())
+        return dateDiff(d1, d2);},
     ifeq(a,b,options){
         if(a==b) return options.fn(this)
-        return options.inverse(this)
-    }
+        return options.inverse(this)},
+    ifne(a,b,options){
+        if(a!=b) return options.fn(this)
+        return options.inverse(this)},
+    ifgt(a,b,options){
+        if(a>b) return options.fn(this)
+        return options.inverse(this)},
 }
