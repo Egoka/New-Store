@@ -1,17 +1,19 @@
 <div class="persanalInfo">
     <div class="infoUser">
         <div class="editAccount material-icons" style="left: -40%;" onclick="editAccout(event)">edit</div>
-        <div class="editAccount material-icons" style="left:  40%;" onclick="editColorSchema(event)">brightness_auto</div>
+        <div class="editAccount material-icons" style="left:  40%;" onclick="editColorSchema(event, {{account.theme}})">
+            {{#ifeq theme 0}}brightness_auto{{/ifeq}}{{#ifeq theme 1}}brightness_2{{/ifeq}}{{#ifeq theme 2}}brightness_low{{/ifeq}}</div>
         <div>
         <div class="photoAccount flexCenter">
-            <img src="{{account.photoUser}}" alt="">
+            <img src="{{account.photoUrl}}" alt="">
         </div>
         </div>
-        <i class="material-icons" style="color: var(--green-medium);user-select: none;" title="Проверенный покупатель">assignment_turned_in</i>
-        <div class="infoAccount" style="font-size: 25px">{{account.nameOne}} {{account.nameTwo}}</div>
-        <div class="infoAccount" style="font-size: 18px">{{account.emailUser}}</div>
+        <i class="material-icons" style="color: {{#if account.verifiedUser}}var(--green-medium){{else}}var(--red-dark){{/if}};user-select: none;" title="Проверенный покупатель">
+            {{#if account.verifiedUser}}assignment_turned_in{{else}}assignment_late{{/if}}</i>
+        <div class="infoAccount" style="font-size: 25px">{{account.fullName}}</div>
+        <div class="infoAccount" style="font-size: 18px">{{account.email}}</div>
     </div>
-    <div class="exitAccount"><a href="/entry/logout" >Выход</a></div>
+    <div class="exitAccount"><a href="/authorization/logout" >Выход</a></div>
     <hr>
 </div>
 <div class="listOrders">
