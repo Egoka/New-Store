@@ -49,6 +49,29 @@ router.get('/:id', async (req, res)=>{
         product
     })
 })
+router.get('/:id/review/:star',async (req,res)=>{
+    const product = await Product.findById(req.params.id,
+        'nameProduct photoURL colorBackground').lean()
+    product.listStars = await Comments.aggregate([
+        { "$match": { "product":mongoose.Types.ObjectId(req.params.id)}},
+        { "$group": { "_id": "$rating", "numberStarRatings": { "$sum":1}}},
+        { "$sort" : { "_id" : -1} }]);
+    const filter = req.params.star>0?{product:req.params.id,rating:req.params.star}:{product:req.params.id}
+    product.listReviews = await Comments
+        .find(filter,"_id author photo rating date like dislike advantages limitations comment")
+        .sort({topicality:-1,date:-1})
+        .populate('author', '-_id fullName photoUrl verifiedUser').lean()
+    product.listReviews.forEach((review,key)=>{
+        product.listReviews[key].advantages = review.advantages.split("\r\n")
+        product.listReviews[key].limitations = review.limitations.split("\r\n")
+        product.listReviews[key].comment = review.comment.split("\r\n")})
+    res.render('reviewsProduct',{
+        title:"Отзывы",
+        productPage: true,
+        star:req.params.star,
+        product
+    })
+})
 router.get('/:id/comment', async (req, res)=>{
     const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
