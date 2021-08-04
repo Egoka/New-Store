@@ -21,6 +21,19 @@ router.get('/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)
         .populate('listSeller.idSeller','_id photoUrl recallStar').lean()
+    const countRecall = [...await Comments.aggregate([
+        { "$match": { "product":mongoose.Types.ObjectId(req.params.id)}},
+        { "$group": { "_id": null, "count": { "$sum":1}}} ])][0]
+    product.countRecall =countRecall?countRecall.count:0
+    product.listStars = await Comments.aggregate([
+        { "$match": { "product":mongoose.Types.ObjectId(req.params.id)}},
+        { "$group": { "_id": "$rating", "numberStarRatings": { "$sum":1}}},
+        { "$sort" : { "_id" : -1} }]);
+    product.listReviews = await Comments
+        .find({product:req.params.id},
+            "_id author photo rating date like dislike advantages limitations comment")
+        .sort({topicality:-1,date:-1}).limit(3)
+        .populate('author', '-_id fullName photoUrl verifiedUser').lean()
     if(req.session.isAuthorization) {
         let userNotes = await Users.aggregate([
             { "$match": { "_id": mongoose.Types.ObjectId(req.session.user._id) }},
@@ -43,6 +56,10 @@ router.get('/:id', async (req, res)=>{
                     "listLikeReviews":{"_id":1},
                     "favorites":1, "comparsion":1}} ])
         userNotes = userNotes[0]}
+    product.listReviews.forEach((review,key)=>{
+        product.listReviews[key].advantages = review.advantages.split("\r\n")
+        product.listReviews[key].limitations = review.limitations.split("\r\n")
+        product.listReviews[key].comment = review.comment.split("\r\n")})
     res.render('product',{
         title:`${product.nameProduct}`,
         productPage: true,
