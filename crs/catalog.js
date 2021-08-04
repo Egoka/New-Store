@@ -21,6 +21,24 @@ router.get('/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)
         .populate('listSeller.idSeller','_id photoUrl recallStar').lean()
+    const result = [...await Description.aggregate([
+        {"$match": {"product":mongoose.Types.ObjectId(req.params.id)}},
+        {"$lookup": {
+            from: "options", localField: "option", foreignField: "_id", as: "option"}},
+        {"$unwind": {path: "$option", preserveNullAndEmptyArrays: true}},
+        {"$sort": { "option.priority":1 } },
+        {"$group": {"_id": {"product": "$product", "type": "$option.type"},
+                "option":{$push: {name:"$option.name", priority: "$option.priority", value:"$option.value"}},
+                "type":{$first:"$option.type"} }},
+        {"$sort": { "type" : 1,"option.priority":1 } },
+        {"$lookup": {
+            from: "typedescriptions", localField: "type", foreignField: "_id", as: "type",}},
+        {"$group": {"_id" : "$_id.product",
+                "description":{$push: {"type":"$type", "option": "$option"}} }},
+        {"$project": {
+            "_id":0, "description":{
+                "type": {"typeName":1}, "option":{"name":1, "value":1}}}} ])][0]
+    product.description =result?result.description:0
     const countRecall = [...await Comments.aggregate([
         { "$match": { "product":mongoose.Types.ObjectId(req.params.id)}},
         { "$group": { "_id": null, "count": { "$sum":1}}} ])][0]
