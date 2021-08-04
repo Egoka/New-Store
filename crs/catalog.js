@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const router = Router()
 const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
+const Comments = require('../modelsDB/comments')
 const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
 router.get('/',(req, res) => {
     const user = true
