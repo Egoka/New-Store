@@ -55,7 +55,18 @@ router.get('/:id', async (req, res)=>{
                     "listDislikeReviews":{"_id":1},
                     "listLikeReviews":{"_id":1},
                     "favorites":1, "comparsion":1}} ])
-        userNotes = userNotes[0]}
+        userNotes = userNotes[0];product.like = userNotes.favorites;product.list = userNotes.comparsion
+        product.listSeller.forEach(( seller,key)=>{
+            product.listSeller[key].basket = userNotes.basket.some(userProduct=>
+                userProduct.idSeller.toString()==seller._id.toString())})
+        product.listReviews.forEach(( review,key)=>{
+            product.listReviews[key].likeStatus = userNotes.listLikeReviews.some(likeReviews=>
+                likeReviews._id.toString()==review._id.toString())
+            product.listReviews[key].dislikeStatus = userNotes.listDislikeReviews.some(dislikeReviews=>
+                dislikeReviews._id.toString()==review._id.toString())})
+        const maxPopularity = Math.max(...product.listSeller.map(seller=> {return seller.popularity}))
+        const favoriteProduct = product.listSeller.filter(seller=>seller.popularity==maxPopularity)[0]
+        product.basket = {idSeller:favoriteProduct._id,basket:favoriteProduct.basket}}
     product.listReviews.forEach((review,key)=>{
         product.listReviews[key].advantages = review.advantages.split("\r\n")
         product.listReviews[key].limitations = review.limitations.split("\r\n")
