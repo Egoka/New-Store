@@ -1,0 +1,13 @@
+.recallProduct{
+    display: flex;
+    flex-direction: column;}
+.shortProduct{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;}
+.shortProduct img{
+    max-height: 13rem;
+    height: 22vw;}
+.listStarsRecall p{
+    font-size:1.5rem;
+    margin: 1rem 0 .2rem 0;}
