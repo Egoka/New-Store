@@ -9,12 +9,15 @@
     --aquamarine-light:#bfe5d2;
     --aquamarine-medium:#a9efcd;
     --aquamarine-dark:#7bbfa2;
+    --indigo-full-light:#f0f8ff;
     --indigo-light:#dee7f8;
     --indigo-medium:#bbbfca;
     --indigo-dark:#828491;
     --slateGray-light:#929aab;
+    --navBar-color:#131f3a80;
     --slateGray-dark:#393e46;
     --crystalWhite:#ffffff;
+    --hoverTable: #f4f4f4;
     --zircon:#eaeaea;
     --sandstone:rgba(192,192,192,0.5);
     --charcoal: rgba(100, 100, 100, 0.2);
@@ -23,10 +26,14 @@
     --graphite:#2b2b2b;
     --truly-black:#000000;
     --transparent-black:rgba(0,0,0,0.3);
+    --black-white:#000;
+    --white-black:#fff;
+    --backgraund-color:#fff;
+    --backgraund-color-opacity: #FFFFFFd9;
     transition: color 1s linear;
 }
 html body{
-    color: #000000;
-    background: #ffffff;
+    background: var(--backgraund-color);
+    color:var(--black-white);
     transition: background .4s linear;
 }

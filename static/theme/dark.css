@@ -1,20 +1,23 @@
 :root{
-    --pink-medium:            #6c0e01;
-    --red-medium:             #f44336;
-    --red-dark:               #ff0000;
-    --yellow-light: #8f9900;
+    --pink-medium: #b71600;
+    --red-medium: #f44336;
+    --red-dark: #ff0000;
+    --yellow-light: #646b07;
     --aquamarine-light: #2b4031;
     --aquamarine-medium: #074027;
     --aquamarine-dark: #0f5138;
     --green-dark: #b5e3a8;
-    --green-light:            #0cb84a;
-    --green-medium:           #23ac17;
+    --green-light: #0cb84a;
+    --green-medium: #23ac17;
+    --indigo-full-light:#272727;
     --indigo-light: #494c52;
     --indigo-medium: #777777;
     --indigo-dark: #6b6c77;
     --slateGray-light: #31353d;
     --slateGray-dark: #adb8cb;
+    --navBar-color: #cecece7f;
     --crystalWhite: #ffffff;
+    --hoverTable:#333333;
     --zircon: #3b3b3b;
     --sandstone: rgba(55,55, 55,.5);
     --charcoal: #92929291;
@@ -23,10 +26,14 @@
     --graphite: #cbcbcb;
     --truly-black: #e0e0e0;
     --transparent-black: #9a99997d;
+    --black-white:#fff;
+    --white-black:#000;
+    --backgraund-color: #1d1d1d;
+    --backgraund-color-opacity: #1d1d1dd9;
     transition: color 1s linear;
 }
 html body{
-    background: #1d1d1d;
-    color:#fff;
+    background: var(--backgraund-color);
+    color:var(--black-white);
     transition: background .4s linear;
 }
