@@ -49,13 +49,17 @@ router.get('/:id', async (req, res)=>{
     })
 })
 router.get('/:id/comment', async (req, res)=>{
-    const id = Number(req.params.id)
+    const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
+    const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
+    if(userReviews!==null){
+        if(userReviews.rating){product.rating=userReviews.rating}
+        if(userReviews.advantages){product.advantages=userReviews.advantages.split("\r\n").join("\r")}
+        if(userReviews.limitations){product.limitations=userReviews.limitations.split("\r\n").join("\r")}
+        if(userReviews.comment){product.comment=userReviews.comment.split("\r\n").join("\r")}}
     res.render('comment',{
         title:"Отзыв",
         commentPage: true,
-        userStatus:true,
-        account,
-        product:products[id]
+        product
     })
 })
 router.post('/:id/comment', async (req, res) => {
