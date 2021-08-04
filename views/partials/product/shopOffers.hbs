@@ -1,18 +1,24 @@
 <h3>Предложения магазинов</h3>
 <div>{{getTime}}</div>
-{{#each brands}}
+{{#each product.listSeller}}
 <div class="shop">
     <div class="logoStore">
-        <a href="/catalog/{{id}}/brand">
-            <img src="{{photoURL}}" alt="">
-            <div>{{#stars rating}}{{body}}{{/stars}}</div>
+        <a href="/catalog/{{idSeller._id}}/brand">
+            <img src="{{idSeller.photoUrl}}" alt="">
+            <div>{{#stars idSeller.recallStar}}{{body}}{{/stars}}</div>
         </a>
     </div>
-    <div class="shopExtra" style="color: {{@root.product.colorBackground}}">
-        {{#paymentFormat format}}{{{body}}}{{/paymentFormat}}
-    </div>
     <div class="priceFilter">
-        <p class="price">{{price}}</p>
+        {{#if price}}<div class="price">{{price}}</div>{{/if}}
+        <div class="flexCenter">{{#paymentFormat paymentFormat}}{{{body}}}{{/paymentFormat}}</div>
     </div>
+    {{#if @root.isAuth}}
+        <div class="shopPrise flexCenter">
+            <button class="btn btnProduct" style="background:{{@root.product.colorBackground}}" data-busketId="{{_id}}"
+                    onclick="userBasket(event,'{{@root.product._id}}')">
+                <i class="material-icons">{{#if basket}}shopping_cart{{else}}add_shopping_cart{{/if}}</i>
+                <span>{{#if basket}}в корзине{{else}}в корзину{{/if}}</span></button>
+        </div>
+    {{/if}}
 </div>
 {{/each}}
