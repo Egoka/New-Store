@@ -64,10 +64,24 @@ router.get('/:id/comment', async (req, res)=>{
     })
 })
 router.post('/:id/comment', async (req, res) => {
-    const id = req.params.id
-    const {inputAdvantages,inputDisadvantages,textComment,stars}= req.body
-    console.log(stars)
-    res.redirect(`/catalog/${id}`)
+    let {photo,advantages,limitations,comment,rating}= req.body
+    const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"_id").lean()
+    if(userReviews!==null){
+        await Comments.findByIdAndUpdate(userReviews._id.toString(),{advantages,limitations,comment,rating})
+            .exec(err=>{
+                if(err){throw err}
+                res.redirect(`/catalog/${req.params.id}`)})
+    }else{
+        const topicality =
+            (advantages.length>25?1:0)+
+            (limitations.length>25?1:0)+
+            (comment.length>250?1:0)
+        let userComment = new Comments({
+            product:req.params.id.toString(),
+            author:req.session.user._id.toString(),
+            photo, rating,topicality, advantages, limitations, comment})
+        await userComment.save()
+        res.redirect(`/catalog/${req.params.id}`)}
 })
 router.get('/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
