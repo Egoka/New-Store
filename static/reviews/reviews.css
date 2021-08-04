@@ -1,8 +1,21 @@
+.reviews{
+    max-height: 75vh;
+    overflow: auto;}
+.reviews .collapsible{
+    max-width: 70rem;
+    margin: 0 auto;
+    border-top: 1px solid var(--zircon);
+    border-right: 1px solid var(--zircon);
+    border-left: 1px solid var(--zircon);}
 .reviews .collapsible-header{
     padding: 1rem .5rem;
     background: transparent;
     display: flex;
-    justify-content: space-around;}
+    justify-content: space-around;
+    border-bottom: 1px solid var(--zircon);}
+.reviews .collapsible-body{
+    border-bottom: 1px solid var(--zircon);
+}
 .titleReviews{
     width: 65%;
     overflow: overlay;
