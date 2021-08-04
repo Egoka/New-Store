@@ -1,0 +1,37 @@
+{{#if recall}}
+<h3 class="center-align">Ваши отзывы</h3>
+<div class="reviews">
+    <ul class="collapsible">
+        {{#each recall}}
+        <li>
+            <div class="collapsible-header">
+                <div class="titleReviews">{{product.nameProduct}}</div>
+                <div class="starsRecall">
+                    {{#stars rating}}{{body}}{{/stars}}
+                    <a href="/catalog/{{product._id}}/comment"><i class="material-icons edit">border_color</i></a></div>
+            </div>
+            <div class="collapsible-body">
+                <div class="messageRecall">
+                    {{#if photo}}<div class="photoRecall"><img class="materialboxed" src="{{photo}}" alt=""></div>{{/if}}
+                    {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{advantages}}</div>{{/if}}
+                    {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
+                    {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
+                    <div class="dateRecall" style="margin-bottom: 1rem;">
+                        <div class="commentWasWritten">Коментарий был написан <b class="date">{{toDate date}}</b></div>
+                        <div class="likeRecall">
+                            <i class="material-icons">{{#if likeStatus}}thumb_up{{else}}thumb_up_off_alt{{/if}}</i><span>{{like}}</span>
+                            <i class="material-icons">{{#if dislikeStatus}}thumb_down{{else}}thumb_down_off_alt{{/if}}</i><span>{{dislike}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Отзывов еще нету</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(14.5rem, -5.7rem);">rate_review</i>
+    </div>
+{{/if}}

@@ -4,15 +4,23 @@
     font-size: 35px;
     color:var(--truly-black);}
 .recallInf{
-    width: 75%;
-    padding: 20px;}
-.recallList{
-    padding: 10px;
+    width: 100%;
+    padding: 20px;
     border-top: 1px solid var(--charcoal);
     border-bottom: 1px solid var(--charcoal);}
+.recallList{
+    max-width: 60rem;
+    width: 95vw;
+    margin: 0 auto;
+    padding: 10px;}
 .recallUser{
     display: flex;
-    flex-wrap: wrap;}
+    flex-wrap: wrap;
+    justify-content: space-between}
+.author{
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;}
 .photoRecall{
     width: 50px;
     min-width: 50px;
@@ -27,7 +35,7 @@
 .recallUser img{width: inherit;}
 .recallUser strong{
     font-weight: 700;
-    width: 150px;
+    width: 180px;
     font-size: 18px;}
 .recallUser span{
     margin-left: 5px;
@@ -46,10 +54,12 @@
 .messageRecall{
     margin: 20px 0;
     padding-left: 1.5rem;
-    border-left: 5px solid var(--pink-medium);
-    border-bottom: 5px solid var(--pink-medium);
+    border-radius: 15px;
+    border-left: 5px solid var(--zircon);
+    border-bottom: 5px solid var(--zircon);
     transition: .4s linear}
 .messageRecall:hover{
+    border-radius: 5px;
     border-color: var(--green-medium);
     transition: .2s linear}
 .messageRecall .photoRecall{
@@ -60,49 +70,109 @@
     margin-right: 0;
     border-radius: 25px;}
 .infRecall{margin-top: 10px;}
+.infRecall b{
+    font-size: 1.1rem;
+    font-weight: bolder;}
 .infRecall p{white-space:normal}
 .dateRecall{
-    display: contents;
-    margin-bottom: 20px;}
-.dateRecall b{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;}
+.commentWasWritten{color: var(--indigo-dark)}
+.commentWasWritten b{
     margin: 0 5px;
-    display: inline-flex;}
+    display: inline-flex;
+    transition: .2s linear}
 .likeRecall{
-    text-align: right;
+    display: flex;
+    justify-content:flex-end;
+    align-items: flex-end;
     margin-left: auto;
+    margin-right: 1rem;
     cursor: pointer;
     user-select: none;}
 .likeRecall span{
-    margin-left:5px;
+    margin: 0 7px;
     font-size: 15px;}
 .filterRecall{
-    position: absolute;
+    position: initial;
+    display: grid;
+    justify-content: center;
+    width: 100%;
     right: 0;
     margin-right: auto;
-    width: 25%;
     padding: 15px;
     user-select: none;}
-.filterRecall .btn{margin: auto 0;}
+.filterRecall .btn, .listStarsRecall .btn{
+    font-size: 16px;
+    font-weight: 700;
+    margin: auto 0;
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--white-black);}
+.listStarsRecall .btn{
+    display: flex;
+    width: max-content;
+    color: var(--slateGray-dark);
+    margin: .2rem auto;}
+.recallProduct .listStarsRecall .btn:hover{
+    background-color: var(--aquamarine-medium);
+    color: var(--slateGray-dark);}
+.filterRecall .btn:hover{background-color: transparent;}
 .filterRecall p{
     font-size: 18px;
     font-weight: 700;}
-.messageRecall:hover i:first-child{
+.messageRecall:hover .commentWasWritten b{
+    transition: 1s linear;
+    color:var(--black-white)}
+.messageRecall:hover .appraisal:first-child i{
     color:var(--green-medium);
     transition: .2s linear}
-.messageRecall:hover i:last-of-type{
+.messageRecall:hover .appraisal:last-child i{
     color: var(--pink-medium);
     transition: .2s linear}
 .listStarsRecall{
-    display: contents;
+    display: flex;
+    flex-direction: column;
     min-width: 240px;
     cursor: pointer;}
 .listStarsRecall a{font-size: 20px;}
-@media (max-width: 1050px) {
-    .filterRecall{
-        position: initial;
-        display: grid;
-        justify-content: center;
-        width: 100%;
-    }
-    .recallInf{width: 100%;}
-}
+.messageRecall .bigLike{font-size:3rem}
+.messageRecall .littleLike{font-size:2rem}
+.appraisal{margin:.5rem;}
+.recallStar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: .1rem;
+    padding: 0 5px;
+    color: var(--black-white);
+    border-radius: 0.5rem;}
+.recallStar span{font-size: 1.6rem;}
+.recallStar span:last-child{margin-left: 1rem;}
+.userComment{
+    max-height: 130px;
+    overflow: hidden;}
+.warp{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: flex-end;}
+.curtain{
+    height: 8rem;
+    width: inherit;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    position: inherit;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: default;
+    background:
+            linear-gradient(180deg,
+            #ffffff00 0%,
+            var( --backgraund-color-opacity) 25%,
+            var(--backgraund-color) 75%);}
