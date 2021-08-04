@@ -19,15 +19,12 @@ module.exports = {
             return `${number} отзывов`}
         return `--`},
     paymentFormat(format){
-        if(format==='courier'){
+        if(format===1){
             return`<i class="material-icons">payment</i>
-                   <p>Оплата наличными курьеру</p>`
-        } else
-        if(format==='store'){
+                   <p>Оплата наличными курьеру</p>`}
+        if(format===2){
             return`<i class="material-icons">store</i>
-                   <p>Варианты оплаты уточняйте в магазине</p>`
-        }
-    },
+                   <p>Варианты оплаты уточняйте в магазине</p>`}},
     toDate(date){
         function monthDays(year, month) {
             return (month === 2 ?
