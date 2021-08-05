@@ -1,5 +1,5 @@
 .tableBasket td{
-    color:var(--slateGray-dark);
+    color:var(--black-white);
     font-size: 16px;
     font-weight: 500;}
 .tableBasket td:first-child{text-align: center}
@@ -15,18 +15,26 @@
     user-select: none;
     font-size: 18px;
     margin: auto;
-    width: max-content;
     border: 1px solid var(--charcoal);
-    border-radius: 15px;}
-.tableBasket tr:hover .quantity{border: 1px solid var(--zircon);}
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: max-content;}
+/*.tableBasket tr:hover .quantity{border: 1px solid var(--zircon);}*/
 .quantity span{
     font-weight: 700;
-    margin: 10px;
     border: 0;
     background: none;
-    border-radius: 15px;}
+    border-radius: 15px;
+    width: 2rem;
+    transition: .4s linear;}
+.quantity span:first-child:hover, .quantity span:last-child:hover{
+    transition: .4s linear;
+    color: var(--white-black);
+    background: var(--slateGray-dark);}
 .basketPrice{
-    margin: 30px auto;
+    margin: 1rem auto;
     padding: 15px;
     border-radius: 17px;
     border:1px solid var(--sandstone);
@@ -46,3 +54,59 @@
 .basketPrice button:hover{
     background: var(--indigo-dark);
     color: var(--crystalWhite)}
+.tableBasket{
+    display: flex;
+    flex-direction: column;
+    width: 100%;}
+.headBusket{
+    display: flex;
+    flex-direction: row;}
+.headBusket .collumnBusket{
+    font-size:1.2rem;
+    font-weight: 800;}
+.bodyBusket{
+    overflow: auto;
+    max-height: 60vh;}
+.rowBusket{
+    display: flex;
+    flex-direction: row;
+    width: 100%;}
+.infoModal{
+    display: flex;
+    flex-direction: column;
+    width: 70%;}
+.collumnBusket{
+    width: 100%;
+    flex: 1;
+    border-bottom: 1px solid var(--transparent-black);
+    padding: 15px 5px;
+    font-size: 1.2rem;}
+.infoModal .collumnBusket:nth-child(1){
+    min-width: 7rem;}
+.infoModal .collumnBusket:nth-child(1) div:first-child{
+    font-size:1.2rem;
+    font-weight: 700;}
+.rowModal{
+    display: flex;
+    flex-direction: row;
+    width: 100%;}
+.bodyBusket .infoModal .collumnBusket:nth-child(1) div:last-child{
+    font-size:1.2rem;
+    font-weight: 300;}
+.bodyBusket .collumnBusket:nth-child(1){
+    flex-direction: column;
+    width: 30%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;}
+.infoModal .collumnBusket:nth-child(2){
+    width: max-content;}
+.infoModal .collumnBusket:nth-child(3){
+    max-width: 4rem;
+    min-width: max-content;
+    justify-content: flex-start;}
+ .collumnBusket:hover .rowModal{
+    background: #383838;}
+.rowModal:hover  .collumnBusket{
+    background: var(--zircon);
+    transition: .4s linear;}
