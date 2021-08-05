@@ -1,14 +1,13 @@
 const {Router} = require('express')
+const mongoose = require('mongoose')
 const router = Router()
-const {basket,account} = require('../inf/filter.js')
-router.get('/',(req, res) => {
-    const sumPrise = 150000
-    const sizeBasket =10
+const Users = require('../../modelsDB/users')
+router.get('/',async (req, res) => {
+    const{basketList, sumPrise, sizeBasket} = await getAllProductsFromBusket(req.session.user._id)
     res.render('basket', {
         title: 'Корзина',
         basket:true,
-        account,
-        basketList:basket,
+        basketList,
         sumPrise,sizeBasket
     })
 })
