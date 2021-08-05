@@ -72,6 +72,24 @@ router.get('/:id',async (req, res) => {
                             in: {"idSection":{ $first: "$$sec.type._id" },
                                 "nameSection":{ $first: "$$sec.type.typeName" },
                                 "option":"$$sec.option"}}} }} ])
+        let parameters = new Map()
+        products.forEach(product=>{
+            product.description.forEach(section=>{let parameter;
+                if(parameters.has(section.idSection)){
+                    parameter = new Map(parameters.get(section.idSection).option)
+                }else{parameter = new Map()}
+                section.option.forEach(par=>{parameter.set(par.priority, par.name)})
+                parameter = [...parameter.entries()].sort((a, b)=>{
+                    if (a[0] > b[0]) {return 1;}
+                    if (a[0] < b[0]) {return -1;}
+                    return 0;})
+                parameters.set(section.idSection, {nameSection:section.nameSection, option:parameter})
+            })
+        })
+        parameters = [...parameters.entries()].sort((a, b)=>{
+            if (a[0] > b[0]) {return 1;}
+            if (a[0] < b[0]) {return -1;}
+            return 0;})
     }
     res.render('compare', {
         title: 'Сравнения',
