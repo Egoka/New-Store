@@ -108,4 +108,7 @@ module.exports = {
     ifgt(a,b,options){
         if(a>b) return options.fn(this)
         return options.inverse(this)},
+    ifgtd(a,b,c,options){
+        if(a>b&&b>c) return options.fn(this)
+        return options.inverse(this)}
 }

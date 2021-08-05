@@ -32,11 +32,11 @@
                 <div class="likeRecall">
                     <div class="appraisal">
                         <i class="material-icons"{{#if @root.isAuth}}
-                           onclick="addInListLikeReviews(event,'{{_id}}',0)"{{/if}}>{{#if likeStatus}}thumb_up{{else}}thumb_up_off_alt{{/if}}</i>
+                           onclick="addInListReviews(event,'{{_id}}',0)"{{/if}}>{{#if likeStatus}}thumb_up{{else}}thumb_up_off_alt{{/if}}</i>
                         <span>{{like}}</span></div>
                     <div class="appraisal">
                         <i class="material-icons"{{#if @root.isAuth}}
-                           onclick="addInListLikeReviews(event,'{{_id}}',1)"{{/if}}>{{#if dislikeStatus}}thumb_down{{else}}thumb_down_off_alt{{/if}}</i>
+                           onclick="addInListReviews(event,'{{_id}}',1)"{{/if}}>{{#if dislikeStatus}}thumb_down{{else}}thumb_down_off_alt{{/if}}</i>
                         <span>{{dislike}}</span></div>
                 </div>
             </div>

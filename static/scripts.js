@@ -1,15 +1,15 @@
 M.AutoInit();
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
+    let elems = document.querySelectorAll('.sidenav');
+    let instances = M.Sidenav.init(elems);
 });
-var elem = document.querySelector('.collapsible.expandable');
-var instance = M.Collapsible.init(elem, {
+let elem = document.querySelector('.collapsible.expandable');
+let instance = M.Collapsible.init(elem, {
     accordion: false
 });
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.materialboxed');
-    var instances = M.Materialbox.init(elems);
+    let elems = document.querySelectorAll('.materialboxed');
+    let instances = M.Materialbox.init(elems);
 });
 document.querySelectorAll('.price').forEach(node =>{
     if(node.textContent==="null")
@@ -49,7 +49,7 @@ if ($filterRecall){
 const $filterComment = document.querySelector('.commentInput')
 if ($filterComment){
     $filterComment.addEventListener('click',event=>{
-        if (event.target.classList.contains('comment-filter')){
+        if (event.target.classList.contains('comment-filter') || event.target.classList.contains('recall-filter')){
             let number = event.target.dataset.id
             console.log(number)
             const size = number
@@ -63,16 +63,7 @@ if ($filterComment){
                  <i data-id="3" class="material-icons comment-filter" style="color: ${star[2]}">star</i>
                  <i data-id="4" class="material-icons comment-filter" style="color: ${star[3]}">star</i>
                  <i data-id="5" class="material-icons comment-filter" style="color: ${star[4]}">star</i>
-                 <input name="stars" id="stars" class="commentStar" type="number" style="display: none" value="${size}" required>`
-        }
-    })
-}
-const $typeProducts = document.querySelector('#typeProducts')
-if ($typeProducts){
-    $typeProducts.addEventListener('click',event=>{
-        if (event.target.classList.contains('js-typeProduct')){
-            const number = event.target.dataset.id
-            console.log(number)
+                 <input name="rating" id="stars" class="commentStar" type="number" style="display: none" value="${size}" required>`
         }
     })
 }
