@@ -37,3 +37,29 @@
         <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(15rem, -5rem)rotate(45deg)">compare_arrows</i>
     </div>
 {{/if}}
+<script>
+    function calcRowCount() {
+        [...document.querySelectorAll('.contentParameter span')].map(content=>
+                content.clientHeight/15>2?
+                        content.setAttribute("class", "value"): false)}
+    function centerProperties() {
+        let propertyNames = document.querySelector('.propertyNames').children[0]
+        let comparisonTape = document.querySelector('.comparisonTape')
+        if(window.screen.width>1000){
+            window.screen.width
+            propertyNames.clientWidth
+            Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
+                return property.style.left = (comparisonTape.clientWidth - propertyNames.clientWidth) / 2 + "px"})
+        }else{
+            Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
+                return property.style.left = (window.screen.width- propertyNames.clientWidth) / 2 + "px"}) } }
+    window.onload = calcRowCount
+    window.onload = centerProperties
+    window.onresize = calcRowCount
+    window.onresize = centerProperties
+    function hoverEvent(event, number, direction=0){
+        const lengthParameters = document.querySelectorAll('.contentParameter').length/document.querySelectorAll('.model').length
+        for(let i=0;i<document.querySelectorAll('.model').length;i++){
+            if(direction==0) document.querySelectorAll('.contentParameter')[number+lengthParameters*i].style.setProperty('background','var(--hoverTable)')
+            if(direction==1) document.querySelectorAll('.contentParameter')[number+lengthParameters*i].style.background = "none"}}
+</script>

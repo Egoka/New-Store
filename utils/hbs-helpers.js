@@ -82,6 +82,23 @@ module.exports = {
         let d1 = new Date(date);
         let d2 = new Date(+Date.now())
         return dateDiff(d1, d2);},
+    listProperites(properties){
+        let result = ''
+        let marginRem=3
+        properties.forEach(value=>{
+            result +=`<div class="propertyNames" style="margin-top: ${18+marginRem}rem; font-size: 21px">
+               <div class="title"><b>${value.nameDescription}</b></div>
+            </div>`
+            value.parameter.forEach(parameter=>{
+                marginRem+=5
+                result +=`<div class="propertyNames" style="margin-top: ${17+marginRem}rem;">
+               <div class="title"
+               onmouseover="hoverEvent(event,${parameter.index})"
+               onmouseout="hoverEvent(event,${parameter.index}, 1)">
+               <span>${parameter.name}</span></div>
+               </div>` })
+            marginRem+=6 })
+        return result},
     ifeq(a,b,options){
         if(a==b) return options.fn(this)
         return options.inverse(this)},
