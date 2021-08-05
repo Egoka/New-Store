@@ -1,0 +1,39 @@
+{{#if products}}
+<div class="comparisonTape">
+    {{#each products}}{{#if @first}}
+        {{#listProperites parameters}}{{body}}{{/listProperites}}
+    {{/if}}{{/each}}
+    {{#each products}}
+        <div class="model">
+            <div class="track">
+                <div class="hatModel">
+                    <div class="flexCenter" style="height: 170px;">
+                        <img class="photoSlider" src="{{photoURL}}" alt="">
+                    </div>
+                    <h4 style="font-size: 1.3rem;text-align: center">{{nameProduct}}</h4>
+                    <i class="material-icons deleteProduct"
+                       onclick="userListDel(event,'{{_id}}')"
+                       {{#if list}}style="color:var(--red-dark)"{{/if}}>delete_forever</i>
+                    <div class="gradientTransition"></div>
+                </div>
+                {{#each parameters}}
+                    <div class="titleParameter"></div>
+                    {{#each parameter}}
+                        <div class="contentParameter"
+                             onmouseover="hoverEvent(event,{{index}})"
+                             onmouseout="hoverEvent(event,{{index}}, 1)">
+                            <span aria-label="{{value}}">{{value}}</span>
+                        </div>
+                    {{/each}}
+                {{/each}}
+                <div class="titleParameter"></div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+{{else}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Сравнивать нечего</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(15rem, -5rem)rotate(45deg)">compare_arrows</i>
+    </div>
+{{/if}}
