@@ -15,4 +15,17 @@ router.get('/like/:id',async (req, res) => {
         res.json(true)
     }
 })
+router.get('/list/:id',async (req, res) => {
+    const user = await Users.findById(req.session.user._id,
+        {comparsion: {$elemMatch: {_id: req.params.id}}}).lean()
+    if(user.comparsion){
+        await Users.findByIdAndUpdate(req.session.user._id,
+            {$pull:{comparsion: {_id:req.params.id}}})
+        res.json(false)
+    }else{
+        await Users.findByIdAndUpdate(req.session.user._id,
+            {$push: {comparsion: {_id:req.params.id}}})
+        res.json(true)
+    }
+})
 module.exports = router
