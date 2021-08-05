@@ -40,6 +40,8 @@ router.get('/:id',async (req, res) => {
         { $match: { "_id.classProduct": mongoose.Types.ObjectId(inferredClass) } },
         { $project:{ _id: { $first: "$_id._id" } }}
     ])].map(product => product._id.toString())
+    if(products.length!==0){
+    }
     res.render('compare', {
         title: 'Сравнения',
         compare: true,
