@@ -41,6 +41,37 @@ router.get('/:id',async (req, res) => {
         { $project:{ _id: { $first: "$_id._id" } }}
     ])].map(product => product._id.toString())
     if(products.length!==0){
+        products = await Description.aggregate([
+            {"$match": {"product":{ "$in":[...products.map(product=>mongoose.Types.ObjectId(product))]}}},
+            {"$lookup": {
+                    from: "options", localField: "option", foreignField: "_id", as: "option"}},
+            {"$unwind": {path: "$option", preserveNullAndEmptyArrays: true}},
+            {"$sort": { "option.priority":1 } },
+            {"$group": {"_id": {"product": "$product", "type": "$option.type"},
+                    "option":{$push: {_id:"$option._id", name:"$option.name",
+                            priority: "$option.priority", value:"$option.value"}},
+                    "type":{$first:"$option.type"} }},
+            {"$sort": { "type" : 1,"option.priority":1 } },
+            {"$lookup": {
+                    from: "typedescriptions", localField: "type", foreignField: "_id", as: "type",}},
+            {"$group": {"_id" : "$_id.product",
+                    "description":{$push: {"type":"$type", "option": "$option"}} }},
+            { "$lookup": {
+                    from: "products", let: { id: "$_id" },
+                    pipeline: [
+                        { "$match": { $expr: { $eq: ["$_id", "$$id"] }}},
+                        { "$project":{nameProduct :1,photoURL:1, price:1}}
+                    ], as: "product"}},
+            { "$project":{
+                    "_id": { $first: "$product._id" },
+                    "nameProduct":{ $first: "$product.nameProduct" },
+                    "photoURL":{ $first: "$product.photoURL" },
+                    "price":{ $first: "$product.price" },
+                    "description": {
+                        $map: {input: "$description", as: "sec",
+                            in: {"idSection":{ $first: "$$sec.type._id" },
+                                "nameSection":{ $first: "$$sec.type.typeName" },
+                                "option":"$$sec.option"}}} }} ])
     }
     res.render('compare', {
         title: 'Сравнения',
