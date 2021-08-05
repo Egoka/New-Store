@@ -56,4 +56,18 @@ router.get('/',async (req, res) => {
         sumPrise,sizeBasket
     })
 })
+router.get('/pay', async(req,res)=>{
+    const{basketList} =await getAllProductsFromBusket(req.session.user._id)
+    basketList.forEach((product,indexProduct)=>{
+        delete basketList[indexProduct]._id
+        product.listSeller.forEach((_,indexSeller)=> {
+            delete basketList[indexProduct].listSeller[indexSeller]._id})})
+    await Users.findByIdAndUpdate(req.session.user._id,
+        {$push:{orders:{order:basketList}}})
+        .exec(async err => {
+            if(err){throw err}
+            await Users.findByIdAndUpdate(req.session.user._id,{$set: {"basket": []}})
+            res.redirect('/account/')
+        })
+})
 module.exports = router
