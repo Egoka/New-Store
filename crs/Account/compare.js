@@ -90,6 +90,27 @@ router.get('/:id',async (req, res) => {
             if (a[0] > b[0]) {return 1;}
             if (a[0] < b[0]) {return -1;}
             return 0;})
+        for (product of products){
+            let iter=0; let index=-1
+            const notValue='---'
+            product['parameters']=[]
+            while (parameters.length!==iter){
+                const indexNumber = product.description.findIndex(desc =>parameters[iter][0]===desc.idSection)
+                let parameter;
+                if(indexNumber>=0){
+                    parameter = parameters[iter][1].option.map(param=>{index++
+                        let value = product.description[indexNumber].option.find(value => value.name===param[1])
+                        if(typeof(value)!="undefined"){value=value.value}else{value = notValue}
+                        return {name:param[1], value, index}})
+                }else{
+                    parameter = parameters[iter][1].option.map(param=>{index++
+                        return{name:param[1], value:notValue, index}})}
+                product.parameters.push({
+                    'nameDescription':parameters[iter][1].nameSection,
+                    'parameter':parameter})
+                iter++
+            }delete product.description
+        }
     }
     res.render('compare', {
         title: 'Сравнения',
