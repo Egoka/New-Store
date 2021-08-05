@@ -86,3 +86,36 @@ function userEditCountProduct(event, id, mode) {
             if(document.querySelector('.bodyBusket').children.length==0){
                 window.location.reload()}
         })}
+function addInListReviews(event,idReviews, mode) {
+    fetch('/request/reviews/',{
+        method: 'POST',
+        body:JSON.stringify({idReviews, mode}),
+        headers: {'Content-Type': 'application/json'} })
+        .then(res => res.json())
+        .then(callback =>{
+            let e = event.target
+            let rating = e.parentElement.parentElement
+            rating.style.transition = 'opacity .1s linear'
+            rating.style.opacity='0'
+            window.setTimeout(()=>{
+                switch (e.innerHTML) {
+                    case 'thumb_up':e.innerHTML = 'thumb_up_off_alt';break;
+                    case 'thumb_up_off_alt':e.innerHTML = 'thumb_up';break;
+                    case 'thumb_down':e.innerHTML = 'thumb_down_off_alt';break;
+                    case 'thumb_down_off_alt':e.innerHTML = 'thumb_down';break;}
+                rating.style.transition = 'opacity .5s linear'
+                rating.style.opacity='1'
+                let oppositeRating = rating.children[0**mode]
+                let oppositeElement = oppositeRating.children[0]
+                if(oppositeElement.innerHTML==='thumb_up'){
+                    oppositeRating.children[1].innerHTML =
+                        +oppositeRating.children[1].innerHTML-1
+                    oppositeElement.innerHTML = 'thumb_up_off_alt'}
+                else if(oppositeElement.innerHTML==='thumb_down'){
+                    oppositeRating.children[1].innerHTML =
+                        +oppositeRating.children[1].innerHTML-1
+                    oppositeElement.innerHTML = 'thumb_down_off_alt'}
+                e.parentElement.children[1].innerHTML =
+                    +e.parentElement.children[1].innerHTML+(callback?1:-1)
+            },300)
+        })}

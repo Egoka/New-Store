@@ -64,4 +64,48 @@ router.get('/basket/:id/:direction',async (req, res) => {
                         {$pull:{basket:{_id:req.params.id}}})}
                 res.json({count,direction:-1})})}
 })
+router.post('/reviews/',async (req, res) => {
+    async function addIdReviewsFromListUser(mode){
+        if(mode){await Users.findByIdAndUpdate(req.session.user._id,
+            {$push: {listLikeReviews: {_id: req.body.idReviews}}})
+        }else{await Users.findByIdAndUpdate(req.session.user._id,
+            {$push: {listDislikeReviews: {_id: req.body.idReviews}}})}}
+    async function deleteIdReviewsFromListUser(mode){
+        if(mode){await Users.findByIdAndUpdate(req.session.user._id,
+            {$pull: {listLikeReviews: {_id: req.body.idReviews}}})
+        }else{await Users.findByIdAndUpdate(req.session.user._id,
+            {$pull: {listDislikeReviews: {_id: req.body.idReviews}}})}}
+    async function editReview(value,mode) {
+        if(mode==0) {await Comments.findByIdAndUpdate(req.body.idReviews,
+            { $inc: {like : value, topicality:value}})}
+        if(mode==1) {await Comments.findByIdAndUpdate(req.body.idReviews,
+            { $inc: {dislike : value, topicality:value}})}}
+    const user = await Users.findById(req.session.user._id, {
+        listLikeReviews: {$elemMatch: {_id: req.body.idReviews}},
+        listDislikeReviews: {$elemMatch: {_id: req.body.idReviews}}}).lean()
+    if(req.body.mode==0){
+        if (user.listDislikeReviews) {
+            await deleteIdReviewsFromListUser(false)
+            await editReview(-1,1)}
+        if (user.listLikeReviews) {
+            await deleteIdReviewsFromListUser(true)
+            await editReview(-1,0)
+            res.json(false)
+        } else {
+            await addIdReviewsFromListUser(true)
+            await editReview(1,0)
+            res.json(true)}}
+    if(req.body.mode==1){
+        if (user.listLikeReviews) {
+            await deleteIdReviewsFromListUser(true)
+            await editReview(-1,0)}
+        if (user.listDislikeReviews) {
+            await deleteIdReviewsFromListUser(false)
+            await editReview(-1,1)
+            res.json(false)
+        } else {
+            await addIdReviewsFromListUser(false)
+            await editReview(1,1)
+            res.json(true)}}
+})
 module.exports = router
