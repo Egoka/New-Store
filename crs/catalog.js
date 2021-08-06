@@ -126,6 +126,13 @@ router.get('/',async (req, res) => {
         filters
     })
 })
+router.post('/filters', async (req, res)=>{
+    let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
+    const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
+    const {products, filters,prohibitedOption} = await filterProduct(req.session.filter, req.session.prohibitedOption,
+        req.session.isAuthorization, userId, typeId)
+    req.session.prohibitedOption = prohibitedOption
+    res.json({products,filters, isAuth: req.session.isAuthorization}) })
 router.get('/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)
