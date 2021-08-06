@@ -5,6 +5,112 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
+async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId){
+    let allSelectedOption = filter
+        .reduce((result, object)=> result.concat(object.listId),[])
+        .map(id=>mongoose.Types.ObjectId(id))
+    let fetchFromSelectedOrder,selectionOfPropertiesByCondition
+    if(filter.length===0){
+        fetchFromSelectedOrder = {$match: { _id : {$ne: ""} }}
+        selectionOfPropertiesByCondition = {$match: { _id : {$ne: ""} }}
+    }else{
+        fetchFromSelectedOrder = { $match: {option:{ $in: [...allSelectedOption] }}}
+        selectionOfPropertiesByCondition = { $match: { $and:[...filter.map(type=> {
+                    return {$or: [...type.listId.map(id => {
+                            return{"listOptions.option":{$eq:mongoose.Types.ObjectId(id)}}})]}
+                })]}} }
+    console.time('100-elements')
+    let products = await Description.aggregate([
+        {$match: { type: {$eq: mongoose.Types.ObjectId(typeId)} } },
+        fetchFromSelectedOrder,
+        { $group: { _id: "$product",
+                listOptions:{$push: {
+                        option:"$option"}}}},
+        selectionOfPropertiesByCondition,
+        { $lookup: {
+                from: "products",
+                let: { id: "$_id" },
+                pipeline: [
+                    { $match: { $expr: { $eq: ["$_id", "$$id"] }}},
+                    { $project:{_id:1,nameProduct:1,photoURL:1,colorBackground:1,price:1,depiction:1}}
+                ], as: "_id"}},
+        {$project:{_id:{$first:"$_id._id"},
+                colorBackground:{$first:"$_id.colorBackground"},
+                nameProduct:{$first:"$_id.nameProduct"},
+                photoURL:{$first:"$_id.photoURL"},
+                price:{$first:"$_id.price"},
+                depiction:{$first:"$_id.depiction"},
+                listOptions:1}} ])
+    let validOption
+    if(products.length>0) {
+        validOption = await Description.aggregate([
+            {$match: {product: {$in: [...products.map(product => mongoose.Types.ObjectId(product._id))]}}},
+            {$group: {_id: "$option"}},
+            {$lookup: {from: "options", localField: "_id", foreignField: "_id", as: "_id"}},
+            {$match: {"_id.important": {$eq: true}}},
+            {$project: {_id: {$first: "$_id._id"}}}])
+        validOption = validOption.map(id=>mongoose.Types.ObjectId(id._id))
+    }else{validOption = allSelectedOption}
+    const filters = await Description.aggregate([
+        {$match: { type : {$eq: mongoose.Types.ObjectId(typeId)} } },
+        { $group: { _id: "$option"}},
+        { $lookup: {from: "options", localField: "_id", foreignField: "_id", as: "_id"}},
+        { $project:{
+                _id: { $first: "$_id._id" },
+                type:{ $first: "$_id.type" },
+                name:{ $first: "$_id.name" },
+                priority:{ $first: "$_id.priority" },
+                value:{ $first: "$_id.value" },
+                important:{ $first: "$_id.important" } }},
+        { $match: {important:{ $eq:true}}},
+        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
+                state: {$cond: [{ $in: [ "$_id", [...allSelectedOption]
+                        ]}, 1, 0]} }},
+        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
+                state: {$cond: [{ $in: [ "$_id", [...validOption]
+                        ]}, "$state", -1]} }},
+        { $sort : {"_id":1 } },
+        { $group: { _id : "$name",
+                type:{$first:"$type"},
+                priority:{$first:"$priority"},
+                options:{$push: {_id:"$_id", value: "$value", state:"$state"}} }},
+        { $sort : { "type":1,"priority":1 } },
+        { $project: {_id: 1,options:1}}
+    ])
+    if(filter.length!==0){
+        if(prohibitedOption.length>0) {
+            const filterId = filters
+                .map(description => description.options
+                    .filter(oprion => oprion.state === -1))
+                .filter(object => object.length > 0)
+                .reduce((result, object) => result.concat(object), [])
+                .map(object => object._id.toString())
+            prohibitedOption = prohibitedOption.filter(idProhibit =>
+                filterId.findIndex(id => id === idProhibit) >= 0)}
+        filters.map(description =>{
+            if(description.options.findIndex(option=>option.state===1)>=0){
+                return description.options.map(option=> {
+                    if(option.state === -1) {
+                        if(prohibitedOption.length===0||
+                            prohibitedOption.findIndex(id=>
+                                option._id.toString()===id.toString())===-1){
+                            return option.state = 0
+                        }}}
+                )}
+        })}
+    console.timeEnd('100-elements')
+    if(isAuthorization) {
+        const user = await Users.findById(userId, 'favorites comparsion').lean()
+        if(user.favorites.length>0) {
+            products.map(async (product,kay)=>{
+                products[kay].like = user.favorites.filter(likeProduct =>
+                    likeProduct._id.toString() === product._id.toString()).length>0})}
+        if(user.comparsion.length>0) {
+            products.map(async (product,kay)=>{
+                products[kay].list = user.comparsion.filter(listProduct =>
+                    listProduct._id.toString() === product._id.toString()).length>0})}}
+    return{products,filters,prohibitedOption}
+}
 router.get('/',async (req, res) => {
     if(!req.session.filter){req.session.filter=Array()}
     if(!req.session.prohibitedOption){req.session.prohibitedOption=Array()}
