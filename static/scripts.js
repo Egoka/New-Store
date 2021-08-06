@@ -75,3 +75,11 @@ $(document).ready(function () {
     $('.slide-next').click(function(){
         $('.carousel').carousel('next')});
 });
+function animationGradient(number) {
+    if(number<0)return
+    if(number ===220) return number
+    return window.setTimeout( function () {
+        document.querySelector('.user-view').style.background = `repeating-radial-gradient(#26a69a42, #607d8b ${number}px) center -42px`
+        animationGradient(number+1)
+    }, 50-Number(number/4));
+}
