@@ -99,6 +99,16 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 )}
         })}
     console.timeEnd('100-elements')
+    if(isAuthorization) {
+        const user = await Users.findById(userId, 'favorites comparsion').lean()
+        if(user.favorites.length>0) {
+            products.map(async (product,kay)=>{
+                products[kay].like = user.favorites.filter(likeProduct =>
+                    likeProduct._id.toString() === product._id.toString()).length>0})}
+        if(user.comparsion.length>0) {
+            products.map(async (product,kay)=>{
+                products[kay].list = user.comparsion.filter(listProduct =>
+                    listProduct._id.toString() === product._id.toString()).length>0})}}
     return{products,filters,prohibitedOption}
 }
 router.get('/',async (req, res) => {
