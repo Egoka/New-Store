@@ -127,6 +127,24 @@ router.get('/',async (req, res) => {
     })
 })
 router.post('/filters', async (req, res)=>{
+    const index = req.session.filter.findIndex(index=>index.type===req.body.option)
+    if(index>=0){
+        const indexVal = req.session.filter[index].listId.findIndex(index=>index===req.body.id)
+        if(indexVal>=0){
+            req.session.filter[index].listId.splice(indexVal, 1)
+            if(req.session.filter[index].listId.length===0){
+                req.session.filter.splice(index, 1)}
+        }else{req.session.filter[index].listId.splice(index, 0, req.body.id)}
+    }else{req.session.filter.splice(index, 0, {type:req.body.option,listId:Array(req.body.id)})}
+    if(req.session.filter.length==1){req.session.prohibitedOption = Array()}
+    if(req.body.prohibitedOption.length>0){
+        req.body.prohibitedOption.map(option=> {
+            const prohibitIndex = req.session.prohibitedOption.findIndex(index => index === option.id)
+            if (option.status===true&&prohibitIndex == -1) {
+                req.session.prohibitedOption.splice(prohibitIndex, 0, option.id)}
+            if(option.status===false){
+                req.session.prohibitedOption.splice(prohibitIndex, -1)}
+        }) }
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
     const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
     const {products, filters,prohibitedOption} = await filterProduct(req.session.filter, req.session.prohibitedOption,
