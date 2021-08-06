@@ -5,6 +5,20 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
+async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId){
+    let fetchFromSelectedOrder,selectionOfPropertiesByCondition
+    if(filter.length===0){
+        fetchFromSelectedOrder = {$match: { _id : {$ne: ""} }}
+        selectionOfPropertiesByCondition = {$match: { _id : {$ne: ""} }}
+    }else{
+        fetchFromSelectedOrder = { $match: {option:{ $in: [...filter.reduce((result, object)=>
+                        result.concat(object.listId),[]).map(id=>mongoose.Types.ObjectId(id))] }}}
+        selectionOfPropertiesByCondition = { $match: { $and:[...filter.map(type=> {
+                    return {$or: [...type.listId.map(id => {
+                            return{"listOptions.option":{$eq:mongoose.Types.ObjectId(id)}}})]}
+                })]}} }
+    return{products,filters,prohibitedOption}
+}
 router.get('/',async (req, res) => {
     if(!req.session.filter){req.session.filter=Array()}
     if(!req.session.prohibitedOption){req.session.prohibitedOption=Array()}
