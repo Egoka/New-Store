@@ -1,11 +1,18 @@
 <div class="productGrid flexCenter">
+    {{#ifgt products.length 0}}
     {{#each products}}
-        <a href="/catalog/{{id}}" class="productObject">
+        <a href="/catalog/{{_id}}" class="productObject">
             <div class="productGrid flexCenter">
                 <img src="{{photoURL}}" alt="">
             </div>
             <p class="price">{{price}}</p>
-            <p style="font-size: 15px;">{{name}}</p>
+            <p>{{nameProduct}}</p>
         </a>
     {{/each}}
+    {{else}}
+        <div class="noDataBlock" style="width: 100%;position: initial;">
+            <div class="cartIsEmpty">Такого продукта не найдено</div>
+            <i class="material-icons cartIsEmpty" style="font-size: 3rem;text-align: center;">category</i>
+        </div>
+    {{/ifgt}}
 </div>

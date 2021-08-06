@@ -3,7 +3,7 @@
     overflow-y: scroll;
     width: 18%;
     min-width: 185px;
-    height: 93%;
+    height: 92vh;
     right: 15%;
     z-index: 100}
 #filterMobile{display: none}
@@ -21,6 +21,7 @@
     border:transparent;
     font-size: 18px;
     white-space: normal;
+    justify-content: center;
     position: sticky;
     top: 0;
     z-index: 100;}
@@ -29,7 +30,8 @@
 .collapsible-header:hover{
     background-color: var(--gainsboro);
     transition: .4s linear}
-.collapsible-header>i{
+.filter .collapsible-header>i{
+    width: 0;
     color: var(--gainsboro);
     transition: .3s linear}
 .collapsible-header:hover i{

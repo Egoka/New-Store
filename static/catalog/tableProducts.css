@@ -1,5 +1,5 @@
 .typeTable{
-    position: absolute;
+    position: fixed;
     z-index: 100;
     top: 6rem;
     left: 0;
@@ -12,21 +12,24 @@
     overflow: hidden;}
 .typeTable .typeTytle{
     height: 50px;
-    background: var(--zircon)}
+    background: var(--zircon);
+    border: 2px solid var(--gainsboro);
+    border-radius: 10px;}
 .typeTable .typeTytle:hover {
     background-color: var(--gainsboro);
     transition: .4s linear;}
 .typeTable .typeTytle b{
     font-size: 18px;}
 .typeTable .typeBody{
-    height: 0;
-    transition: .2s linear;}
+    max-height: 0;
+    transition: .5s linear;}
 .typeTable:hover .typeBody{
-    height: 210px;
-    transition: .2s linear;}
+    max-height: 1000px;
+    transition: .5s linear;}
 .typeProduct{
     height: 35px;
     padding: 5px 0;
+    color: var(--truly-black);
     display: flex;
     cursor: pointer;
     transition: .2s linear}
