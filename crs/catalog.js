@@ -5,17 +5,19 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
-const {filter, products, product, brands, recall,topics, account} = require('./inf/filter.js')
-router.get('/',(req, res) => {
-    const user = true
+router.get('/',async (req, res) => {
+    if(!req.session.filter){req.session.filter=Array()}
+    if(!req.session.prohibitedOption){req.session.prohibitedOption=Array()}
+    let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
+    const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
+    const {products, filters} = await filterProduct(req.session.filter, req.session.prohibitedOption,
+        req.session.isAuthorization, userId, typeId)
     res.render('catalog', {
         title: 'Каталог',
         catalog:true,
         catalogPage: true,
-        account,
-        user,
         products,
-        filters:filter
+        filters
     })
 })
 router.get('/:id', async (req, res)=>{
