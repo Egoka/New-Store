@@ -6,13 +6,15 @@ const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
 async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId){
+    let allSelectedOption = filter
+        .reduce((result, object)=> result.concat(object.listId),[])
+        .map(id=>mongoose.Types.ObjectId(id))
     let fetchFromSelectedOrder,selectionOfPropertiesByCondition
     if(filter.length===0){
         fetchFromSelectedOrder = {$match: { _id : {$ne: ""} }}
         selectionOfPropertiesByCondition = {$match: { _id : {$ne: ""} }}
     }else{
-        fetchFromSelectedOrder = { $match: {option:{ $in: [...filter.reduce((result, object)=>
-                        result.concat(object.listId),[]).map(id=>mongoose.Types.ObjectId(id))] }}}
+        fetchFromSelectedOrder = { $match: {option:{ $in: [...allSelectedOption] }}}
         selectionOfPropertiesByCondition = { $match: { $and:[...filter.map(type=> {
                     return {$or: [...type.listId.map(id => {
                             return{"listOptions.option":{$eq:mongoose.Types.ObjectId(id)}}})]}
@@ -38,6 +40,16 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 price:{$first:"$_id.price"},
                 depiction:{$first:"$_id.depiction"},
                 listOptions:1}} ])
+    let validOption
+    if(products.length>0) {
+        validOption = await Description.aggregate([
+            {$match: {product: {$in: [...products.map(product => mongoose.Types.ObjectId(product._id))]}}},
+            {$group: {_id: "$option"}},
+            {$lookup: {from: "options", localField: "_id", foreignField: "_id", as: "_id"}},
+            {$match: {"_id.important": {$eq: true}}},
+            {$project: {_id: {$first: "$_id._id"}}}])
+        validOption = validOption.map(id=>mongoose.Types.ObjectId(id._id))
+    }else{validOption = allSelectedOption}
     console.timeEnd('100-elements')
     return{products,filters,prohibitedOption}
 }
