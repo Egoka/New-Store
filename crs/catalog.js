@@ -21,6 +21,7 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 })]}} }
     console.time('100-elements')
     let products = await Description.aggregate([
+        {$match: { type: {$eq: mongoose.Types.ObjectId(typeId)} } },
         fetchFromSelectedOrder,
         { $group: { _id: "$product",
                 listOptions:{$push: {
@@ -50,6 +51,32 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
             {$project: {_id: {$first: "$_id._id"}}}])
         validOption = validOption.map(id=>mongoose.Types.ObjectId(id._id))
     }else{validOption = allSelectedOption}
+    const filters = await Description.aggregate([
+        {$match: { type : {$eq: mongoose.Types.ObjectId(typeId)} } },
+        { $group: { _id: "$option"}},
+        { $lookup: {from: "options", localField: "_id", foreignField: "_id", as: "_id"}},
+        { $project:{
+                _id: { $first: "$_id._id" },
+                type:{ $first: "$_id.type" },
+                name:{ $first: "$_id.name" },
+                priority:{ $first: "$_id.priority" },
+                value:{ $first: "$_id.value" },
+                important:{ $first: "$_id.important" } }},
+        { $match: {important:{ $eq:true}}},
+        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
+                state: {$cond: [{ $in: [ "$_id", [...allSelectedOption]
+                        ]}, 1, 0]} }},
+        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
+                state: {$cond: [{ $in: [ "$_id", [...validOption]
+                        ]}, "$state", -1]} }},
+        { $sort : {"_id":1 } },
+        { $group: { _id : "$name",
+                type:{$first:"$type"},
+                priority:{$first:"$priority"},
+                options:{$push: {_id:"$_id", value: "$value", state:"$state"}} }},
+        { $sort : { "type":1,"priority":1 } },
+        { $project: {_id: 1,options:1}}
+    ])
     console.timeEnd('100-elements')
     return{products,filters,prohibitedOption}
 }
