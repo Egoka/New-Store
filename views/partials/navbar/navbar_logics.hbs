@@ -1,8 +1,14 @@
-<li {{#if catalog}}class="activeMy"{{/if}}><a href="/catalog">каталог</a></li>
-<li {{#if favorites}}class="activeMy"{{/if}}><a href="/favorites">Избранные</a></li>
-<li {{#if comparison}}class="activeMy"{{/if}}><a href="/comparison">Сравнения</a></li>
-<li {{#if reviews}}class="activeMy"{{/if}}><a href="/reviews">Отзывы</a></li>
-<li {{#if basket}}class="activeMy"{{/if}}><a href="/basket">Корзина</a></li>
-<li {{#if privateOffice}}class="activeMy"{{/if}}><a href="/account">Профиль</a></li>
-<li {{#if authorization}}class="activeMy"{{/if}}><a href="/authorization/login">Вход</a></li>
-<li><a href="/entry/logout">Выход</a></li>
+{{#if isAuth}}{{else}}
+<li class="section {{#if authorization}}activeMy{{/if}}"
+{{#if isAuth}}{{else}}style="margin: 1rem"{{/if}}>
+    <a href="/authorization/login">Вход</a></li>
+{{/if}}
+<li class="section {{#if catalog}}activeMy{{/if}}"><a href="/catalog">каталог</a></li>
+{{#if isAuth}}
+    <li class="section {{#if favorites}}activeMy{{/if}}"><a href="/favorites/default">Избранные</a></li>
+    <li class="section {{#if compare}}activeMy{{/if}}"><a href="/compare/default">Сравнения</a></li>
+    <li class="section {{#if reviews}}activeMy{{/if}}"><a href="/reviews">Отзывы</a></li>
+    <li class="section {{#if basket}}activeMy{{/if}}"><a href="/basket">Корзина</a></li>
+    <li class="section {{#if privateOffice}}activeMy{{/if}}"><a href="/account">Профиль</a></li>
+    <li class="section"><a href="/authorization/logout">Выход</a></li>
+{{/if}}
