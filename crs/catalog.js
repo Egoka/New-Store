@@ -77,6 +77,27 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
         { $sort : { "type":1,"priority":1 } },
         { $project: {_id: 1,options:1}}
     ])
+    if(filter.length!==0){
+        if(prohibitedOption.length>0) {
+            const filterId = filters
+                .map(description => description.options
+                    .filter(oprion => oprion.state === -1))
+                .filter(object => object.length > 0)
+                .reduce((result, object) => result.concat(object), [])
+                .map(object => object._id.toString())
+            prohibitedOption = prohibitedOption.filter(idProhibit =>
+                filterId.findIndex(id => id === idProhibit) >= 0)}
+        filters.map(description =>{
+            if(description.options.findIndex(option=>option.state===1)>=0){
+                return description.options.map(option=> {
+                    if(option.state === -1) {
+                        if(prohibitedOption.length===0||
+                            prohibitedOption.findIndex(id=>
+                                option._id.toString()===id.toString())===-1){
+                            return option.state = 0
+                        }}}
+                )}
+        })}
     console.timeEnd('100-elements')
     return{products,filters,prohibitedOption}
 }
