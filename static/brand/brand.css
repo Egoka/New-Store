@@ -7,8 +7,10 @@
     animation-fill-mode: forwards;}
 .brandTypes h3{display: none}
 .productGrid{
-    width: 100%;
+    width: 92%;
     flex-wrap: wrap;}
+@media (max-width:1300px) {
+    .productGrid{width: 99%;}}
 .productGrid img{
     max-height: 100%;
     max-width: 100%;}
