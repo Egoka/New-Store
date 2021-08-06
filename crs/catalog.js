@@ -17,6 +17,28 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                     return {$or: [...type.listId.map(id => {
                             return{"listOptions.option":{$eq:mongoose.Types.ObjectId(id)}}})]}
                 })]}} }
+    console.time('100-elements')
+    let products = await Description.aggregate([
+        fetchFromSelectedOrder,
+        { $group: { _id: "$product",
+                listOptions:{$push: {
+                        option:"$option"}}}},
+        selectionOfPropertiesByCondition,
+        { $lookup: {
+                from: "products",
+                let: { id: "$_id" },
+                pipeline: [
+                    { $match: { $expr: { $eq: ["$_id", "$$id"] }}},
+                    { $project:{_id:1,nameProduct:1,photoURL:1,colorBackground:1,price:1,depiction:1}}
+                ], as: "_id"}},
+        {$project:{_id:{$first:"$_id._id"},
+                colorBackground:{$first:"$_id.colorBackground"},
+                nameProduct:{$first:"$_id.nameProduct"},
+                photoURL:{$first:"$_id.photoURL"},
+                price:{$first:"$_id.price"},
+                depiction:{$first:"$_id.depiction"},
+                listOptions:1}} ])
+    console.timeEnd('100-elements')
     return{products,filters,prohibitedOption}
 }
 router.get('/',async (req, res) => {
