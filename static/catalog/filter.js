@@ -7,23 +7,41 @@ function filter(event){
                 document.querySelector(".messege").style.transition='3s ease-out'
                 document.querySelector(".messege").style.opacity = "1"},1)}
     },1000)
+    let data
+    if(event.target.classList[0]==='js-filter'){
+        data = {
+            id:event.target.dataset.id,
+                prohibitedOption:Array.from(event.composedPath()[3].children)
+            .map(option=>{
+                option = option.children[0].children[0]
+                if(option.attributes["disabled"]){
+                    return {
+                        id:option.dataset.id,
+                        status:!event.target.attributes['checked']}
+                }else{return false}})
+            .filter(option=>option!==false),
+            option:event.composedPath()[5].children[0].innerText}}
+    if(event.target.classList[0]==='typeSort'){
+        data = {sort: event.target.dataset.sort}}
     fetch('/catalog/filters',{
         method: 'POST',
-        body:JSON.stringify({
-            id:event.target.dataset.id,
-            prohibitedOption:Array.from(event.composedPath()[3].children)
-                .map(option=>{
-                    option = option.children[0].children[0]
-                    if(option.attributes["disabled"]){
-                        return {
-                            id:option.dataset.id,
-                            status:!event.target.attributes['checked']}
-                    }else{return false}})
-                .filter(option=>option!==false),
-            option:event.composedPath()[5].children[0].innerText}),
+        body:JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}})
         .then(res => res.json())
         .then(callback =>{
+            let sort = '<div class="sortTytle flexCenter"><b>'
+            switch (callback.sort) {
+                case 'rating-1':sort+='Популярные';break
+                case 'date-1':sort+='Новинки';break
+                case 'price1':sort+='Сначала дешовые';break
+                case 'price-1':sort+='Сначала дорогие';break}
+            sort+='</b><i class="material-icons">arrow_drop_down</i></div><div class="sortBody">'
+            if(callback.sort !='rating-1'){sort+='<div class="typeSort" data-sort="1" onclick="filter(event)">Популярные</div>'}
+            if(callback.sort !='date-1'){sort+='<div class="typeSort" data-sort="2" onclick="filter(event)">Новинки</div>'}
+            if(callback.sort !='price1'){sort+='<div class="typeSort" data-sort="3" onclick="filter(event)">Сначала дешовые</div>'}
+            if(callback.sort !='price-1'){sort+='<div class="typeSort" data-sort="4" onclick="filter(event)">Сначала дорогие</div>'}
+            sort+='</div>'
+            document.querySelector(".sortList").innerHTML = sort
             document.querySelector(".messege").style.transition='.5s ease-out'
             document.querySelector(".messege").style.opacity = ".1"
             window.setTimeout(()=>{
