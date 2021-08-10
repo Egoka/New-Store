@@ -14,7 +14,7 @@
     color: var(--green-medium);}
 .filteredProduct{
     position: static;
-    width: 93%;
+    width: 100%;
     min-width: 185px;
     padding: 0 2%}
 .device{
@@ -77,6 +77,9 @@
 @media (max-width:650px) {
     #catalog .filteredProduct{width: 100%;}  }
 @media (max-width: 900px) {  .device .material-placeholder{margin-right: 0}  }
+.starProduct{
+    width: 100%;
+    margin:.5rem;}
 .purchase{
     position: relative;
     left: -20%;

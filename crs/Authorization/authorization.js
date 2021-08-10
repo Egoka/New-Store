@@ -2,6 +2,11 @@ const {Router} = require('express')
 const Users = require('../../modelsDB/users')
 const router = Router()
 router.get('/login',(req, res) => {
+    let lastURL;
+    if(typeof(req.headers.referer)!="undefined") {
+        lastURL = req.headers.referer.split(req.headers.host)[1]}else{lastURL = "/"}
+    if(lastURL!=="/authorization"){
+        req.session.lastURL = lastURL}
     const password = req.flash('password')
     res.render('authorization', {
         title: 'Авторизация',
@@ -26,7 +31,7 @@ router.post('/login',async (req, res) => {
     req.session.isAuthorization = true
     req.session.save(err=>{
         if(err){throw err}
-        res.redirect('/')
+        res.redirect(req.session.lastURL)
     })
 })
 router.get('/registration',(req, res) => {

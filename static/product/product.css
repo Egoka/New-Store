@@ -13,6 +13,7 @@ h4{
     user-select: none;}
 .photoProduct img{
     width: 100%;
+    height: 70vh;
     object-fit: contain;
     animation-name: opacity;
     animation-duration:4s;

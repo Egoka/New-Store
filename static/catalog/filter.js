@@ -49,17 +49,25 @@ function filter(event){
                 document.querySelector(".messege").style.display = "none"},300)
             document.querySelector('.filteredProduct').innerHTML =callback.products.length>0?
                 callback.products.map(product=>
-                    `<div class="device">
-                        <div class="filterImage">
+                    '<div class="device">'+
+                    (product.daysCount?'<div class="tagNEW">new</div>':'')+
+                        `<div class="filterImage">
                             <img class="materialboxed" src="${product.photoURL}" alt="">
                         </div>
                     <div class="description">
-                        <a href="/catalog/${product._id}" title="${product.nameProduct}">
+                        <a href="/catalog/${product._id}" title="${product.nameProduct}" class="nameProduct>
                             <span class="">${product.nameProduct}</span>
                         </a>
                         <ul class="depiction">` +
                     product.depiction.map(index=>`<li>${index.items}</li>`).join("") +
                         `</ul>
+                        <div class="starProduct">
+                            <span class="material-icons" style="color: ${product.stars>0?'#e7ad00':'#bcbcbc'}">star</span>
+                            <span class="material-icons" style="color: ${product.stars>1?'#e7ad00':'#bcbcbc'}">star</span>
+                            <span class="material-icons" style="color: ${product.stars>2?'#e7ad00':'#bcbcbc'}">star</span>
+                            <span class="material-icons" style="color: ${product.stars>3?'#e7ad00':'#bcbcbc'}">star</span>
+                            <span class="material-icons" style="color: ${product.stars>4?'#e7ad00':'#bcbcbc'}">star</span>
+                        </div>
                         <div class="purchase flexCenter">` +
                     (callback.isAuth?(
                             `<i class="material-icons"

@@ -5,6 +5,7 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
+require('../modelsDB/seller')
 async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId, sort){
     let allSelectedOption = filter
         .reduce((result, object)=> result.concat(object.listId),[])
@@ -35,7 +36,7 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                     { $match: { $expr: { $eq: ["$_id", "$$id"] }}},
                     { $project:{_id:1,nameProduct:1,photoURL:1,
                             colorBackground:1,stars:1,rating:1,
-                            new:1,price:1,depiction:1}}
+                            date:1,price:1,depiction:1}}
                 ], as: "_id"}},
         { $sort : sort },
         {$project:{_id:{$first:"$_id._id"},
@@ -43,14 +44,21 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 nameProduct:{$first:"$_id.nameProduct"},
                 photoURL:{$first:"$_id.photoURL"},
                 stars:{$first:"$_id.stars"},
-                new:{$first:"$_id.new"},
+                date:{$first:"$_id.date"},
                 price:{$first:"$_id.price"},
                 depiction:{$first:"$_id.depiction"},
-                listOptions:1}} ])
+                listOptions:1}},
+        { $addFields: {
+            daysCount: { $cond: [
+                { $lte: [
+                    {$round: {$divide: [
+                        {$subtract: [ new Date(), "$date"]}, 86400000] }},
+                        30 ] }, true, false ] } } }])//30 days
     let validOption
     if(products.length>0) {
         validOption = await Description.aggregate([
-            {$match: {product: {$in: [...products.map(product => mongoose.Types.ObjectId(product._id))]}}},
+            {$match: {product: {$in: [...products.map(product =>
+                            mongoose.Types.ObjectId(product._id))]}}},
             {$group: {_id: "$option"}},
             {$lookup: {from: "options", localField: "_id", foreignField: "_id", as: "_id"}},
             {$match: {"_id.important": {$eq: true}}},
@@ -69,12 +77,10 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 value:{ $first: "$_id.value" },
                 important:{ $first: "$_id.important" } }},
         { $match: {important:{ $eq:true}}},
-        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
-                state: {$cond: [{ $in: [ "$_id", [...allSelectedOption]
-                        ]}, 1, 0]} }},
-        { $project: {_id: 1,name:1,priority:1,type:1,value:1,
-                state: {$cond: [{ $in: [ "$_id", [...validOption]
-                        ]}, "$state", -1]} }},
+        { $addFields: { state: {$cond:
+                        [{ $in: [ "$_id", [...allSelectedOption]]}, 1, 0]} }},
+        { $addFields: { state: {$cond:
+                        [{ $in: [ "$_id", [...validOption]]}, "$state", -1]} }},
         { $sort : {"_id":1 } },
         { $group: { _id : "$name",
                 type:{$first:"$type"},
@@ -162,8 +168,10 @@ router.post('/filters', async (req, res)=>{
             case 4:req.session.sortCatalog={"_id.price":-1 };break; }}
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
     const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
-    const {products, filters,prohibitedOption} = await filterProduct(req.session.filter, req.session.prohibitedOption,
-        req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
+    const {products, filters,prohibitedOption} = await filterProduct(
+        req.session.filter, req.session.prohibitedOption,
+        req.session.isAuthorization, userId, typeId,
+        req.session.sortCatalog)
     req.session.prohibitedOption = prohibitedOption
     res.json({products,filters,
         isAuth: req.session.isAuthorization,

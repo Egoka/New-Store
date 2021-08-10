@@ -2,11 +2,12 @@
     {{#ifgt products.length 0}}
     {{#each products}}
         <div class="device">
+            {{#if daysCount}}<div class="tagNEW">new</div>{{/if}}
             <div class="filterImage">
                 <img class="materialboxed" src="{{photoURL}}" alt="">
             </div>
             <div class="description">
-                <a href="/catalog/{{_id}}" title="{{nameProduct}}">
+                <a href="/catalog/{{_id}}" title="{{nameProduct}}" class="nameProduct">
                     <span class="">{{nameProduct}}</span>
                 </a>
                 <ul class="depiction">
@@ -14,6 +15,9 @@
                         <li>{{items}}</li>
                     {{/each}}
                 </ul>
+                <div class="starProduct">
+                {{#stars stars}}{{body}}{{/stars}}
+                </div>
                 <div class="purchase flexCenter">
                     {{#if @root.isAuth}}
                         {{#if @root.catalogPage}}

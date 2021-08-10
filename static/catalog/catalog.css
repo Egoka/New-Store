@@ -65,11 +65,12 @@
     background: var(--zircon);
     border: 2px solid var(--gainsboro);
     border-radius: 10px;
-    justify-content: space-evenly;}
+    justify-content: space-between;}
 .sortList .sortTytle:hover{
     background-color: var(--gainsboro);
     transition: .4s linear;}
 .sortList .sortTytle b{
+    margin:0 auto;
     color: var(--graphite);
     font-size: 18px;}
 .sortList .sortTytle i{
