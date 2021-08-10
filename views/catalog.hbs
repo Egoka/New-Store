@@ -1,10 +1,25 @@
 <div class="messege"><img style="object-fit: cover;" src="https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/what-the-fog_inline_02.gif" alt=""></div>
 {{>catalog/filter}}
-<div class="productFork" style="padding: 0 30%">
-    <ul class="tabs" style="height: 90px; background: transparent">
-        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#lowercase" class="active">
+<div class="productFork">
+    <div class="sortList">
+        <div class="sortTytle flexCenter">
+            {{#ifeq sort 'rating-1'}}<b>Популярные</b>{{/ifeq}}
+            {{#ifeq sort 'date-1'}}<b>Новинки</b>{{/ifeq}}
+            {{#ifeq sort 'price1'}}<b>Сначала дешовые</b>{{/ifeq}}
+            {{#ifeq sort 'price-1'}}<b>Сначала дорогие</b>{{/ifeq}}
+            <i class="material-icons">arrow_drop_down</i>
+        </div>
+        <div class="sortBody">
+            {{#ifne sort 'rating-1'}}<div class="typeSort" data-sort="1" onclick="filter(event)">Популярные</div>{{/ifne}}
+            {{#ifne sort 'date-1'}}<div class="typeSort" data-sort="2" onclick="filter(event)">Новинки</div>{{/ifne}}
+            {{#ifne sort 'price1'}}<div class="typeSort" data-sort="3" onclick="filter(event)">Сначала дешовые</div>{{/ifne}}
+            {{#ifne sort 'price-1'}}<div class="typeSort" data-sort="4" onclick="filter(event)">Сначала дорогие</div>{{/ifne}}
+        </div>
+    </div>
+    <ul class="tabs">
+        <li class="tab"><a href="#lowercase" class="active">
             <i class="material-icons">dns</i></a></li>
-        <li style="margin-top: 40px;" class="tab"><a style="padding:0" href="#bloc">
+        <li class="tab"><a href="#bloc">
             <i class="material-icons">dashboard</i></a></li>
     </ul>
 </div>

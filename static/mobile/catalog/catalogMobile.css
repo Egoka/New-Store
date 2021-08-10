@@ -29,3 +29,12 @@
     background: var(--indigo-light);
     z-index: 997;
     transition: .4s cubic-bezier(0, 0.82, 0.84, 0.99);}
+.container .tagNEW{transform: translateY(-8rem);}
+.container .description .nameProduct{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -2rem);}
+.container .productFork{width: 100%;}
+.container .productFork .tabs{
+    position:relative;
+    width: 10rem;}

@@ -5,7 +5,7 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
-async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId){
+async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId, sort){
     let allSelectedOption = filter
         .reduce((result, object)=> result.concat(object.listId),[])
         .map(id=>mongoose.Types.ObjectId(id))
@@ -27,17 +27,23 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 listOptions:{$push: {
                         option:"$option"}}}},
         selectionOfPropertiesByCondition,
+        {$project:{_id:1}},
         { $lookup: {
                 from: "products",
                 let: { id: "$_id" },
                 pipeline: [
                     { $match: { $expr: { $eq: ["$_id", "$$id"] }}},
-                    { $project:{_id:1,nameProduct:1,photoURL:1,colorBackground:1,price:1,depiction:1}}
+                    { $project:{_id:1,nameProduct:1,photoURL:1,
+                            colorBackground:1,stars:1,rating:1,
+                            new:1,price:1,depiction:1}}
                 ], as: "_id"}},
+        { $sort : sort },
         {$project:{_id:{$first:"$_id._id"},
                 colorBackground:{$first:"$_id.colorBackground"},
                 nameProduct:{$first:"$_id.nameProduct"},
                 photoURL:{$first:"$_id.photoURL"},
+                stars:{$first:"$_id.stars"},
+                new:{$first:"$_id.new"},
                 price:{$first:"$_id.price"},
                 depiction:{$first:"$_id.depiction"},
                 listOptions:1}} ])
@@ -109,48 +115,61 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
             products.map(async (product,kay)=>{
                 products[kay].list = user.comparsion.filter(listProduct =>
                     listProduct._id.toString() === product._id.toString()).length>0})}}
-    return{products,filters,prohibitedOption}
-}
+    return{products,filters,prohibitedOption} }
 router.get('/',async (req, res) => {
     if(!req.session.filter){req.session.filter=Array()}
     if(!req.session.prohibitedOption){req.session.prohibitedOption=Array()}
+    if(!req.session.sortCatalog){req.session.sortCatalog={"_id.rating":-1 }}
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
     const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
     const {products, filters} = await filterProduct(req.session.filter, req.session.prohibitedOption,
-        req.session.isAuthorization, userId, typeId)
+        req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
     res.render('catalog', {
         title: 'Каталог',
         catalog:true,
         catalogPage: true,
         products,
-        filters
+        filters,
+        sort:Object.keys(req.session.sortCatalog)[0].split('.')[1]
+            +Object.values(req.session.sortCatalog)[0]
     })
 })
 router.post('/filters', async (req, res)=>{
-    const index = req.session.filter.findIndex(index=>index.type===req.body.option)
-    if(index>=0){
-        const indexVal = req.session.filter[index].listId.findIndex(index=>index===req.body.id)
-        if(indexVal>=0){
-            req.session.filter[index].listId.splice(indexVal, 1)
-            if(req.session.filter[index].listId.length===0){
-                req.session.filter.splice(index, 1)}
-        }else{req.session.filter[index].listId.splice(index, 0, req.body.id)}
-    }else{req.session.filter.splice(index, 0, {type:req.body.option,listId:Array(req.body.id)})}
-    if(req.session.filter.length==1){req.session.prohibitedOption = Array()}
-    if(req.body.prohibitedOption.length>0){
-        req.body.prohibitedOption.map(option=> {
-            const prohibitIndex = req.session.prohibitedOption.findIndex(index => index === option.id)
-            if (option.status===true&&prohibitIndex == -1) {
-                req.session.prohibitedOption.splice(prohibitIndex, 0, option.id)}
-            if(option.status===false){
-                req.session.prohibitedOption.splice(prohibitIndex, -1)}
-        }) }
+    if(req.body.option){
+        const index = req.session.filter.findIndex(index=>index.type===req.body.option)
+        if(index>=0){
+            const indexVal = req.session.filter[index].listId.findIndex(index=>index===req.body.id)
+            if(indexVal>=0){
+                req.session.filter[index].listId.splice(indexVal, 1)
+                if(req.session.filter[index].listId.length===0){
+                    req.session.filter.splice(index, 1)}
+            }else{req.session.filter[index].listId.splice(index, 0, req.body.id)}
+        }else{req.session.filter.splice(index, 0, {type:req.body.option,listId:Array(req.body.id)})}
+        if(req.session.filter.length==1){req.session.prohibitedOption = Array()}
+        if(req.body.prohibitedOption.length>0){
+            req.body.prohibitedOption.map(option=> {
+                const prohibitIndex = req.session.prohibitedOption.findIndex(index => index === option.id)
+                if (option.status===true&&prohibitIndex == -1) {
+                    req.session.prohibitedOption.splice(prohibitIndex, 0, option.id)}
+                if(option.status===false){
+                    req.session.prohibitedOption.splice(prohibitIndex, -1)}
+            }) }}
+    if(req.body.sort){
+        switch (+req.body.sort) {
+            case 1:req.session.sortCatalog={"_id.rating":-1 };break;
+            case 2:req.session.sortCatalog={"_id.date":-1 };break;
+            case 3:req.session.sortCatalog={"_id.price":1 };break;
+            case 4:req.session.sortCatalog={"_id.price":-1 };break; }}
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
     const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
     const {products, filters,prohibitedOption} = await filterProduct(req.session.filter, req.session.prohibitedOption,
-        req.session.isAuthorization, userId, typeId)
+        req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
     req.session.prohibitedOption = prohibitedOption
-    res.json({products,filters, isAuth: req.session.isAuthorization}) })
+    res.json({products,filters,
+        isAuth: req.session.isAuthorization,
+        sort:Object.keys(req.session.sortCatalog)[0].split('.')[1]
+            +Object.values(req.session.sortCatalog)[0]
+    }) })
 router.get('/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)

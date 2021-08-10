@@ -1,13 +1,14 @@
 #catalog #lowercase, #catalog #bloc{width: 76%}
 .productFork{
-    width: 100%;
-    padding: 6rem 30% 0}
+    display: flex;
+    justify-content: space-between;
+    width: 75%;}
 .productFork li{
     width: 45%}
 .productFork a{
     padding: 0;}
 .productFork i{
-    font-size: 25px;
+    font-size: 30px;
     color: var(--indigo-medium)}
 .productFork a:focus{
     color: var(--green-medium);}
@@ -17,6 +18,7 @@
     min-width: 185px;
     padding: 0 2%}
 .device{
+    height: 25rem;
     margin: 10px auto;
     padding: 1.1rem;
     max-width: 60rem;
@@ -56,7 +58,7 @@
     height: max-content;
     width: 22rem;
     margin: 0 auto;
-    padding: 1.1rem;
+    padding:0 1.1rem;
     z-index: 10;}
 @media (max-width: 550px){.description{width: 75%;}}
 .description a{
@@ -112,5 +114,18 @@
     position: fixed;
     overflow: hidden;
     z-index: 900;
-    opacity: 0;
-}
+    opacity: 0;}
+.productFork .tabs .indicator{background-color: var(--indigo-dark);}
+.productFork .tabs{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    width: 25rem;
+    height: 5rem;
+    background: transparent;}
+@media (max-width: 750px) {
+    .productFork .tabs{width: 12rem;}}
+.productFork .tabs .tab{margin-top:2rem;}
+.productFork .tabs .tab a{padding:0;}
