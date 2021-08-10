@@ -2,7 +2,8 @@ const {Router} = require('express')
 const router = Router()
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
-router.get('/like/:id',async (req, res) => {
+const closedPage = require('../middleware/auth')
+router.get('/like/:id', closedPage, async (req, res) => {
     const user = await Users.findById(req.session.user._id,
         {favorites: {$elemMatch: {_id: req.params.id}}}).lean()
     if(user.favorites){
@@ -15,7 +16,7 @@ router.get('/like/:id',async (req, res) => {
         res.json(true)
     }
 })
-router.get('/list/:id',async (req, res) => {
+router.get('/list/:id', closedPage, async (req, res) => {
     const user = await Users.findById(req.session.user._id,
         {comparsion: {$elemMatch: {_id: req.params.id}}}).lean()
     if(user.comparsion){
@@ -28,7 +29,7 @@ router.get('/list/:id',async (req, res) => {
         res.json(true)
     }
 })
-router.get('/replenishBasket/:id/:ids',async (req, res) => {
+router.get('/replenishBasket/:id/:ids', closedPage, async (req, res) => {
     const user = await Users.findById(req.session.user._id,
         {basket:{$elemMatch:{productId: req.params.id,idSeller: req.params.ids}}}).lean()
     if(user.basket){
@@ -38,7 +39,7 @@ router.get('/replenishBasket/:id/:ids',async (req, res) => {
         await Users.findByIdAndUpdate(req.session.user._id,
             {$push:{basket:{productId:req.params.id,idSeller: req.params.ids}}}).then(res.json(true))}
 })
-router.get('/basket/:id/:direction',async (req, res) => {
+router.get('/basket/:id/:direction', closedPage, async (req, res) => {
     if(req.params.direction==0){
         await Users.findByIdAndUpdate(req.session.user._id,
             {$pull:{basket:{_id:req.params.id}}})
@@ -64,7 +65,7 @@ router.get('/basket/:id/:direction',async (req, res) => {
                         {$pull:{basket:{_id:req.params.id}}})}
                 res.json({count,direction:-1})})}
 })
-router.post('/reviews/',async (req, res) => {
+router.post('/reviews/', closedPage, async (req, res) => {
     async function addIdReviewsFromListUser(mode){
         if(mode){await Users.findByIdAndUpdate(req.session.user._id,
             {$push: {listLikeReviews: {_id: req.body.idReviews}}})

@@ -5,6 +5,7 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
+const closedPage = require('../middleware/auth')
 require('../modelsDB/seller')
 async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId, sort){
     let allSelectedOption = filter
@@ -279,7 +280,7 @@ router.get('/:id/review/:star',async (req,res)=>{
         product
     })
 })
-router.get('/:id/comment', async (req, res)=>{
+router.get('/:id/comment', closedPage,async (req, res)=>{
     const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
     if(userReviews!==null){
@@ -293,7 +294,7 @@ router.get('/:id/comment', async (req, res)=>{
         product
     })
 })
-router.post('/:id/comment', async (req, res) => {
+router.post('/:id/comment', closedPage, async (req, res) => {
     let {photo,advantages,limitations,comment,rating}= req.body
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"_id").lean()
     if(userReviews!==null){

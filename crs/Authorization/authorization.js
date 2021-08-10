@@ -1,7 +1,10 @@
 const {Router} = require('express')
 const Users = require('../../modelsDB/users')
 const router = Router()
+const closedPage = require('../../middleware/auth')
 router.get('/login',(req, res) => {
+    if(req.session.isAuthorization){
+        res.redirect(req.session.lastURL)}
     let lastURL;
     if(typeof(req.headers.referer)!="undefined") {
         lastURL = req.headers.referer.split(req.headers.host)[1]}else{lastURL = "/"}
@@ -19,7 +22,7 @@ router.get('/login',(req, res) => {
         resetPassword:req.flash('resetPassword'),
     })
 })
-router.get('/logout',(req,res)=>{
+router.get('/logout', closedPage, (req,res)=>{
     req.session.destroy(()=>{
         res.redirect('/authorization/login')
     })

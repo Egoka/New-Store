@@ -2,6 +2,7 @@ const {Router} = require('express')
 const mongoose = require('mongoose')
 const router = Router()
 const Users = require('../../modelsDB/users')
+const closedPage = require('../../middleware/auth')
 async function getAllProductsFromBusket(userID) {
     const products = await Users.aggregate([
         { "$match": { "_id": mongoose.Types.ObjectId(userID) } },
@@ -47,7 +48,7 @@ async function getAllProductsFromBusket(userID) {
             delete product.idSeller})
         delete object.idSeller})
     return {basketList,sumPrise,sizeBasket}}
-router.get('/',async (req, res) => {
+router.get('/', closedPage, async (req, res) => {
     const{basketList, sumPrise, sizeBasket} = await getAllProductsFromBusket(req.session.user._id)
     res.render('basket', {
         title: 'Корзина',
@@ -56,7 +57,7 @@ router.get('/',async (req, res) => {
         sumPrise,sizeBasket
     })
 })
-router.get('/pay', async(req,res)=>{
+router.get('/pay', closedPage, async(req,res)=>{
     const{basketList} =await getAllProductsFromBusket(req.session.user._id)
     basketList.forEach((product,indexProduct)=>{
         delete basketList[indexProduct]._id

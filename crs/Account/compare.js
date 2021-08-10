@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const router = Router()
 const Users = require('../../modelsDB/users')
 const Description = require('../../modelsDB/description')
-router.get('/:id',async (req, res) => {
+const closedPage = require('../../middleware/auth')
+router.get('/:id', closedPage, async (req, res) => {
     let options = await Users.aggregate([
         { $match: { _id : mongoose.Types.ObjectId(req.session.user._id)} },
         { $group: { _id: "$comparsion._id"}},

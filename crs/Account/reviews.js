@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const router = Router()
 const Comments = require('../../modelsDB/comments')
 const Users = require('../../modelsDB/users')
-router.get('/',async(req, res) => {
+const closedPage = require('../../middleware/auth')
+router.get('/', closedPage, async(req, res) => {
     const recall = await Comments
         .find({author:req.session.user._id},
             "_id product photo rating date like dislike advantages limitations comment")
