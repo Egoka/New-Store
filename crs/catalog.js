@@ -293,6 +293,7 @@ router.get('/:id/comment', closedPage,async (req, res)=>{
     const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
     if(userReviews!==null){
+        if(userReviews.rating){product.photoComment=userReviews.photo}
         if(userReviews.rating){product.rating=userReviews.rating}
         if(userReviews.advantages){product.advantages=userReviews.advantages.split("\r\n").join("\r")}
         if(userReviews.limitations){product.limitations=userReviews.limitations.split("\r\n").join("\r")}
@@ -307,10 +308,8 @@ router.post('/:id/comment', closedPage, async (req, res) => {
     let {photo,advantages,limitations,comment,rating}= req.body
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"_id").lean()
     if(userReviews!==null){
-        await Comments.findByIdAndUpdate(userReviews._id.toString(),{advantages,limitations,comment,rating})
-            .exec(err=>{
-                if(err){throw err}
-                res.redirect(`/catalog/${req.params.id}`)})
+        await Comments.findByIdAndUpdate(userReviews._id.toString(),
+            {advantages,limitations,comment,rating,photo})
     }else{
         const topicality =
             (advantages.length>25?1:0)+
@@ -320,8 +319,15 @@ router.post('/:id/comment', closedPage, async (req, res) => {
             product:req.params.id.toString(),
             author:req.session.user._id.toString(),
             photo, rating,topicality, advantages, limitations, comment})
-        await userComment.save()
-        res.redirect(`/catalog/${req.params.id}`)}
+        await userComment.save()}
+    const result = await Comments.aggregate([
+        { $match: { product: mongoose.Types.ObjectId(req.params.id)} },
+        { $project:{_id:0, rating:1}},
+        { $group: {_id: null, mySum: {$sum: '$rating'}, myCount: {$sum: 1}}},
+        { $project: { _id:0, result: {$round: {$divide: [ "$mySum", "$myCount" ] } } }} ])
+    await Product.findByIdAndUpdate(req.params.id,
+        {$set: { stars: result[0].result }, $inc: { rating: 10 }})
+    res.redirect(`/catalog/product/${req.params.id}`)
 })
 router.get('/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
