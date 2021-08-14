@@ -173,6 +173,6 @@
     cursor: default;
     background:
             linear-gradient(180deg,
-            #ffffff00 0%,
+            var(--backgraund-color-opacity-full) 0%,
             var( --backgraund-color-opacity) 25%,
             var(--backgraund-color) 75%);}

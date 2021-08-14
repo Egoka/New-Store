@@ -6,11 +6,29 @@
     {{#each products}}
         <div class="model">
             <div class="track">
-                <div class="hatModel">
-                    <div class="flexCenter" style="height: 170px;">
+                <div class="hatSmall">
+                    <div class="hat">
+                        <div class="flexCenter">
+                            <img class="photoSlider" style="height: 85px;" src="{{photoURL}}" alt="">
+                        </div>
+                        <div class="flexCenter" style="flex-direction: column">
+                            <h4 style="max-width: 14rem;">{{nameProduct}}</h4>
+                            <div class="flexCenter" style="justify-content: space-evenly;width: 100%;">
+                                <p class="price">{{price}}</p>
+                                <i class="material-icons deleteProduct"
+                                   onclick="userListDel(event,'{{_id}}')"
+                                   {{#if list}}style="color:var(--red-dark)"{{/if}}>delete_forever</i>
+                            </div>
+                        </div>
+                        <div class="gradientTransition"></div>
+                    </div>
+                </div>
+                <div class="hatBig">
+                    <div class="flexCenter" style="height: 14rem;">
                         <img class="photoSlider" src="{{photoURL}}" alt="">
                     </div>
-                    <h4 style="font-size: 1.3rem;text-align: center">{{nameProduct}}</h4>
+                    <h4>{{nameProduct}}</h4>
+                    <p class="price">{{price}}</p>
                     <i class="material-icons deleteProduct"
                        onclick="userListDel(event,'{{_id}}')"
                        {{#if list}}style="color:var(--red-dark)"{{/if}}>delete_forever</i>
@@ -49,14 +67,16 @@
             window.screen.width
             propertyNames.clientWidth
             Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
-                return property.style.left = (comparisonTape.clientWidth - propertyNames.clientWidth) / 2 + "px"})
+                return property.style.transform = 'translateX('+(comparisonTape.clientWidth - propertyNames.clientWidth) / 2 + "px)"})
         }else{
             Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
-                return property.style.left = (window.screen.width- propertyNames.clientWidth) / 2 + "px"}) } }
-    window.onload = calcRowCount
-    window.onload = centerProperties
-    window.onresize = calcRowCount
-    window.onresize = centerProperties
+                return property.style.transform = 'translateX('+(window.screen.width - propertyNames.clientWidth) /2 + "px)"}) } }
+    window.onload = function() {
+        calcRowCount()
+        centerProperties()}
+    window.onresize = function() {
+        calcRowCount()
+        centerProperties()}
     function hoverEvent(event, number, direction=0){
         const lengthParameters = document.querySelectorAll('.contentParameter').length/document.querySelectorAll('.model').length
         for(let i=0;i<document.querySelectorAll('.model').length;i++){
