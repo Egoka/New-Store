@@ -6,6 +6,16 @@ const users = new Schema({
     password:{type: String, required:true},
     theme:{type:Number, default:0, enum:[0,1,2]},
     verifiedUser: {type:Boolean, default: false},
+    viewedProducts:[{
+        _id:{
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+            required: true},
+        date:{
+            type: Date,
+            default: Date.now,
+            required:true},
+    }],
     favorites:[{
         _id:{
             type: Schema.Types.ObjectId,

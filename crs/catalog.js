@@ -246,7 +246,16 @@ router.get('/:id', async (req, res)=>{
                 dislikeReviews._id.toString()==review._id.toString())})
         const maxPopularity = Math.max(...product.listSeller.map(seller=> {return seller.popularity}))
         const favoriteProduct = product.listSeller.filter(seller=>seller.popularity==maxPopularity)[0]
-        product.basket = {idSeller:favoriteProduct._id,basket:favoriteProduct.basket}}
+        product.basket = {idSeller:favoriteProduct._id,basket:favoriteProduct.basket}
+        const user = await Users.findById(req.session.user._id,
+            {viewedProducts: {$elemMatch: {_id: req.params.id}}}).lean()
+        if(!user.viewedProducts){
+            await Users.findByIdAndUpdate(req.session.user._id,
+                {$push: {viewedProducts: {_id:req.params.id}}})
+            await Product.findByIdAndUpdate(req.params.id,
+                {$inc: { rating: 1 }})
+        }
+    }
     product.listReviews.forEach((review,key)=>{
         product.listReviews[key].advantages = review.advantages.split("\r\n")
         product.listReviews[key].limitations = review.limitations.split("\r\n")
