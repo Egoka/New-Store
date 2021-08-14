@@ -7,7 +7,7 @@
                 <img class="materialboxed" src="{{photoURL}}" alt="">
             </div>
             <div class="description">
-                <a href="/catalog/{{_id}}" title="{{nameProduct}}" class="nameProduct">
+                <a href="/catalog/product/{{_id}}" title="{{nameProduct}}" class="nameProduct">
                     <span class="">{{nameProduct}}</span>
                 </a>
                 <ul class="depiction">
@@ -36,7 +36,7 @@
                             {{#if like}}favorite{{else}}favorite_border{{/if}}</i>
                     {{/if}}
                     <div class="priceFilter">
-                        {{#if price}}<a href="/catalog/{{_id}}" class="price">{{price}}</a>{{/if}}
+                        {{#if price}}<a href="/catalog/product/{{_id}}" class="price">{{price}}</a>{{/if}}
                     </div>
                 </div>
             </div>

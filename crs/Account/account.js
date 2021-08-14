@@ -12,6 +12,7 @@ router.get('/', closedPage, async (req, res) => {
         { $sort: { 'orders.date': -1 }},
         { $group: { _id: '$_id', orders: { $push: '$orders'}}}])
     res.render('account', {
+        link:'/account/',
         title: 'Профиль',
         privateOffice:true,
         account,

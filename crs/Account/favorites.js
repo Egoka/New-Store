@@ -49,6 +49,7 @@ router.get('/:id', closedPage, async (req, res) => {
             }}
     ])
     res.render('favorites', {
+        link:'/favorites/default',
         title: 'Избранное',
         favorites: true,
         products,

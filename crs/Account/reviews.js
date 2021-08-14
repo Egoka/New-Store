@@ -27,6 +27,7 @@ router.get('/', closedPage, async(req, res) => {
         recall[key].dislikeStatus = userNotes.listDislikeReviews.some(dislikeReviews=>
             dislikeReviews._id.toString()==review._id.toString())})
     res.render('reviewsUser', {
+        link:'/reviews/',
         title: 'Отзывы',
         reviews: true,
         recall

@@ -114,6 +114,7 @@ router.get('/:id', closedPage, async (req, res) => {
         }
     }
     res.render('compare', {
+        link:'/compare/default',
         title: 'Сравнения',
         compare: true,
         products,

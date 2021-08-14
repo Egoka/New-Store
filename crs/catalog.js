@@ -132,6 +132,7 @@ router.get('/',async (req, res) => {
     const {products, filters} = await filterProduct(req.session.filter, req.session.prohibitedOption,
         req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
     res.render('catalog', {
+        link:'/catalog/',
         title: 'Каталог',
         catalog:true,
         catalogPage: true,
@@ -179,7 +180,7 @@ router.post('/filters', async (req, res)=>{
         sort:Object.keys(req.session.sortCatalog)[0].split('.')[1]
             +Object.values(req.session.sortCatalog)[0]
     }) })
-router.get('/:id', async (req, res)=>{
+router.get('/product/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)
         .populate('listSeller.idSeller','_id photoUrl recallStar').lean()
@@ -261,12 +262,13 @@ router.get('/:id', async (req, res)=>{
         product.listReviews[key].limitations = review.limitations.split("\r\n")
         product.listReviews[key].comment = review.comment.split("\r\n")})
     res.render('product',{
+        link:'/catalog/',
         title:`${product.nameProduct}`,
         productPage: true,
         product
     })
 })
-router.get('/:id/review/:star',async (req,res)=>{
+router.get('/product/:id/review/:star',async (req,res)=>{
     const product = await Product.findById(req.params.id,
         'nameProduct photoURL colorBackground').lean()
     product.listStars = await Comments.aggregate([
@@ -283,13 +285,14 @@ router.get('/:id/review/:star',async (req,res)=>{
         product.listReviews[key].limitations = review.limitations.split("\r\n")
         product.listReviews[key].comment = review.comment.split("\r\n")})
     res.render('reviewsProduct',{
+        link:'/catalog/product/'+req.params.id.toString(),
         title:"Отзывы",
         productPage: true,
         star:req.params.star,
         product
     })
 })
-router.get('/:id/comment', closedPage,async (req, res)=>{
+router.get('/product/:id/comment', closedPage,async (req, res)=>{
     const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
     if(userReviews!==null){
@@ -299,12 +302,13 @@ router.get('/:id/comment', closedPage,async (req, res)=>{
         if(userReviews.limitations){product.limitations=userReviews.limitations.split("\r\n").join("\r")}
         if(userReviews.comment){product.comment=userReviews.comment.split("\r\n").join("\r")}}
     res.render('comment',{
+        link:'/catalog/product/'+req.params.id.toString(),
         title:"Отзыв",
         commentPage: true,
         product
     })
 })
-router.post('/:id/comment', closedPage, async (req, res) => {
+router.post('/product/:id/comment', closedPage, async (req, res) => {
     let {photo,advantages,limitations,comment,rating}= req.body
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"_id").lean()
     if(userReviews!==null){
@@ -329,7 +333,7 @@ router.post('/:id/comment', closedPage, async (req, res) => {
         {$set: { stars: result[0].result }, $inc: { rating: 10 }})
     res.redirect(`/catalog/product/${req.params.id}`)
 })
-router.get('/:id/brand',async (req, res)=>{
+router.get('seller/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
     res.render('brand',{
         title:`${product.name}`,

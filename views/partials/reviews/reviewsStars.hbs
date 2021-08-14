@@ -1,7 +1,7 @@
 <div class="listStarsRecall">
     {{#ifne product.countRecall 0}}<p style="text-align: center;">Отзывы с оценкой</p>{{/ifne}}
     {{#each product.listStars}}
-        <a href="/catalog/{{@root.product._id}}/review/{{_id}}"
+        <a href="/catalog/product/{{@root.product._id}}/review/{{_id}}"
            class="recall-filter recallStar"
         {{#ifeq @root.star _id}}style="background: var(--zircon);border: 3px solid {{@root.product.colorBackground}}"{{/ifeq}}>
             {{#stars _id}}{{body}}{{/stars}}
@@ -10,6 +10,6 @@
         </a>
     {{/each}}
     <a class="btn flexCenter"
-       href="/catalog/{{product._id}}/review/0"
-       style="border: 2px solid {{product.colorBackground}};{{#ifeq @root.star 0}}background: var(--zircon);{{/ifeq}}">Все отзовы</a>
+       href="/catalog/product/{{product._id}}/review/0"
+       style="border: 2px solid {{product.colorBackground}};color:{{product.colorBackground}};{{#ifeq @root.star 0}}background: var(--zircon);{{/ifeq}}">Все отзовы</a>
 </div>

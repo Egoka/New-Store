@@ -52,13 +52,14 @@ async function getAllProductsFromBusket(userID) {
 router.get('/', closedPage, async (req, res) => {
     const{basketList, sumPrise, sizeBasket} = await getAllProductsFromBusket(req.session.user._id)
     res.render('basket', {
+        link:'/basket/',
         title: 'Корзина',
         basket:true,
         basketList,
         sumPrise,sizeBasket
     })
 })
-router.get('/pay', closedPage, async(req,res)=>{
+router.post('/pay', closedPage, async(req,res)=>{
     const{basketList} =await getAllProductsFromBusket(req.session.user._id)
     await Users.findByIdAndUpdate(req.session.user._id,
         {$push:{orders:{order:basketList}}})
