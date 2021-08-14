@@ -5,10 +5,10 @@
             <span class="dateOrders">{{date}}</span>
             <ul>{{#each order}}
                 <li style="list-style-type: initial;">
-                    <div class="nameProduct">{{nameProduct}}</div>
+                    <a href="/catalog/product/{{_id}}" class="nameProduct">{{nameProduct}}</a>
                     <div class="listSeller">
                     {{#each listSeller}}<p class="ordersProduct">
-                        <strong>{{nameSeller}}</strong>
+                        <a href="/catalog/seller/{{_id}}" class="nameSeller">{{nameSeller}}</a>
                         <strong class="price priceProduct">{{price}}</strong>
                         <i>{{count}}шт.</i>
                     </p>{{/each}}

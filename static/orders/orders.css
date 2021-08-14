@@ -6,6 +6,7 @@
     width: 100%;
     height: max-content;
     min-width: 25rem;
+    max-width: 30rem;
     padding: 20px;
     border-radius: 10px;
     overflow: hidden;
