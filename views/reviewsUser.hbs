@@ -8,14 +8,14 @@
                 <div class="titleReviews">{{product.nameProduct}}</div>
                 <div class="starsRecall">
                     {{#stars rating}}{{body}}{{/stars}}
-                    <a href="/catalog/{{product._id}}/comment"><i class="material-icons edit">border_color</i></a></div>
+                    <a href="/catalog/product/{{product._id}}/comment"><i class="material-icons edit">border_color</i></a></div>
             </div>
             <div class="collapsible-body">
                 <div class="messageRecall">
-                    {{#if photo}}<div class="photoRecall"><img class="materialboxed" src="{{photo}}" alt=""></div>{{/if}}
                     {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{advantages}}</div>{{/if}}
                     {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
                     {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
+                    {{#if photo}}<div class="photoRecall"><img class="materialboxed reviewsImage" src="{{photo}}" alt=""></div>{{/if}}
                     <div class="dateRecall" style="margin-bottom: 1rem;">
                         <div class="commentWasWritten">Коментарий был написан <b class="date">{{toDate date}}</b></div>
                         <div class="likeRecall">

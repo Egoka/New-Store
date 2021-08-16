@@ -12,6 +12,7 @@ router.get('/login',(req, res) => {
         req.session.lastURL = lastURL}
     const password = req.flash('password')
     res.render('authorization', {
+        link:'/',
         title: 'Авторизация',
         authorization:true,
         login:true,

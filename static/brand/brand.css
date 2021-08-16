@@ -14,6 +14,10 @@
 .productGrid img{
     max-height: 100%;
     max-width: 100%;}
+.likeProduct{
+    position: relative;
+    color: var(--black-white);
+    transform: translateY(-2.5rem);}
 .productObject{
     display: block;
     text-align: center;

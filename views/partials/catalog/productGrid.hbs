@@ -1,12 +1,12 @@
 <div class="productGrid flexCenter">
     {{#ifgt products.length 0}}
     {{#each products}}
-        <a href="/catalog/{{_id}}" class="productObject">
+        <a href="/catalog/product/{{_id}}" class="productObject">
             <div class="productGrid flexCenter">
                 <img src="{{photoURL}}" alt="">
             </div>
+            <p style="font-weight: 400;">{{nameProduct}}</p>
             <p class="price">{{price}}</p>
-            <p>{{nameProduct}}</p>
         </a>
     {{/each}}
     {{else}}

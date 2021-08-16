@@ -15,3 +15,16 @@
     border-radius: 1rem;
     padding: 2rem 1rem 1rem;
     text-align: left;}
+.commentImage{
+    object-fit: contain;
+    width: 100%;
+    max-width: 100%;
+    min-width: 10rem;
+    max-height: 25rem;
+    min-height: 0;
+    border-radius: 1rem;
+    border: 2px solid var(--hoverTable);}
+.container .commentInput .inputImage{
+    font-size: 18px;
+    width: 20rem;
+    color: var(--truly-black);}

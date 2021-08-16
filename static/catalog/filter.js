@@ -54,21 +54,21 @@ function filter(event){
                         `<div class="filterImage">
                             <img class="materialboxed" src="${product.photoURL}" alt="">
                         </div>
-                    <div class="description">
-                        <a href="/catalog/${product._id}" title="${product.nameProduct}" class="nameProduct>
-                            <span class="">${product.nameProduct}</span>
-                        </a>
-                        <ul class="depiction">` +
+                        <div class="description">
+                            <a href="/catalog/product/${product._id}" title="${product.nameProduct}" class="nameProduct>
+                                <span class="">${product.nameProduct}</span>
+                            </a>
+                            <ul class="depiction">` +
                     product.depiction.map(index=>`<li>${index.items}</li>`).join("") +
-                        `</ul>
-                        <div class="starProduct">
-                            <span class="material-icons" style="color: ${product.stars>0?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>1?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>2?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>3?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>4?'#e7ad00':'#bcbcbc'}">star</span>
-                        </div>
-                        <div class="purchase flexCenter">` +
+                            `</ul>
+                            <div class="starProduct">
+                                <span class="material-icons" style="color: ${product.stars>0?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>1?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>2?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>3?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>4?'#e7ad00':'#bcbcbc'}">star</span>
+                            </div>
+                            <div class="purchase flexCenter">` +
                     (callback.isAuth?(
                             `<i class="material-icons"
                                 onclick="userList(event,'${product._id}')"`+
@@ -84,7 +84,7 @@ function filter(event){
                             `</i>`)
                     :'') +
                         `<div class="priceFilter">` +
-                    (product.price?`<a href="/catalog/${product._id}" class="price">
+                    (product.price?`<a href="/catalog/product/${product._id}" class="price">
                     ${new Intl.NumberFormat('ru-RU',{currency:'rub', style:'currency'}).format(product.price)}
                         </a>`:'') +
                             `</div>
@@ -95,9 +95,10 @@ function filter(event){
                     <div class="cartIsEmpty">Такого продукта не найдено</div>
                     <i class="material-icons cartIsEmpty" style="font-size: 3rem;text-align: center;">category</i>
                 </div>`
+            M.Materialbox.init(document.querySelectorAll('.materialboxed'));
             document.querySelector('.productGrid').innerHTML = callback.products.length>0?
                 callback.products.map(product=>
-                    `<a href="/catalog/${product._id}" class="productObject">
+                    `<a href="/catalog/product/${product._id}" class="productObject">
                         <div class="productGrid flexCenter">
                             <img src="${product.photoURL}" alt="">
                         </div>

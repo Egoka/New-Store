@@ -1,7 +1,7 @@
 <div class="carousel carousel-slider center" style="top:-5rem;min-height: 92vh;">
-    <div class="carousel-fixed-item center">
-        <div class="flexCenter btnShift slide-prev" style="position:fixed"><i class="material-icons">chevron_left</i></div>
-        <div class="flexCenter btnShift slide-next" style="position:fixed"><i class="material-icons">chevron_right</i></div>
+    <div class="carousel-fixed-item center arrowSlider">
+        <div class="flexCenter btnShift slide-prev"><i class="material-icons">chevron_left</i></div>
+        <div class="flexCenter btnShift slide-next"><i class="material-icons">chevron_right</i></div>
     </div>
     {{#each selection}}
         <div class="carousel-item" href="#{{@index}}" style="background: radial-gradient(at top, {{colorBackground}} 0%, rgba(255,255,255,0) 70%)" >
@@ -9,7 +9,7 @@
             <div class="carousel-fixed-item center infCarousel" style="height: max-content;margin-bottom: 15vh;padding: 1rem;">
                 <h4 style="color:{{titleColor}}">{{title}}</h4>
                 <h6 style="color:{{titleColor}}">{{text}}</h6>
-                <a class="btn" href="/catalog/{{id}}" style="background:{{titleColor}}">КУПИТЬ</a>
+                <a class="btn" href="/catalog/product/{{id}}" style="background:{{titleColor}}">КУПИТЬ</a>
             </div>
         </div>
     {{/each}}

@@ -49,6 +49,7 @@ h4{
     border-radius: 10px;
     color:var(--white-black)}
 .descriptionProduct .btnProduct i{margin: 0;}
+.descriptionProduct .starProduct{text-align: center;}
 .product ul {
     overflow: hidden;
     width: max-content;

@@ -63,12 +63,19 @@
     border-color: var(--green-medium);
     transition: .2s linear}
 .messageRecall .photoRecall{
-    width: 100%;
+    width: 95%;
     min-width: 150px;
-    height: 400px;
+    max-height: 400px;
+    height: max-content;
     min-height: 100px;
-    margin-right: 0;
-    border-radius: 25px;}
+    margin: 1rem auto;
+    border-radius:0;}
+.messageRecall .photoRecall .reviewsImage{
+    object-fit: contain;
+    max-height: 400px;
+    width: 100%;
+    border-radius: 1rem;
+    border: 2px solid var(--hoverTable);}
 .infRecall{margin-top: 10px;}
 .infRecall b{
     font-size: 1.1rem;
@@ -117,6 +124,11 @@
     width: max-content;
     color: var(--slateGray-dark);
     margin: .2rem auto;}
+.listStarsRecall .btn:focus,
+.listStarsRecall .btn-large:focus,
+.listStarsRecall .btn-small:focus,
+.listStarsRecall .btn-floating:focus{
+    background-color: var(--aquamarine-light);}
 .recallProduct .listStarsRecall .btn:hover{
     background-color: var(--aquamarine-medium);
     color: var(--slateGray-dark);}
@@ -173,6 +185,6 @@
     cursor: default;
     background:
             linear-gradient(180deg,
-            #ffffff00 0%,
+            var(--backgraund-color-opacity-full) 0%,
             var( --backgraund-color-opacity) 25%,
             var(--backgraund-color) 75%);}

@@ -132,6 +132,7 @@ router.get('/',async (req, res) => {
     const {products, filters} = await filterProduct(req.session.filter, req.session.prohibitedOption,
         req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
     res.render('catalog', {
+        link:'/catalog/',
         title: 'Каталог',
         catalog:true,
         catalogPage: true,
@@ -179,7 +180,7 @@ router.post('/filters', async (req, res)=>{
         sort:Object.keys(req.session.sortCatalog)[0].split('.')[1]
             +Object.values(req.session.sortCatalog)[0]
     }) })
-router.get('/:id', async (req, res)=>{
+router.get('/product/:id', async (req, res)=>{
     const product = await Product
         .findById(req.params.id)
         .populate('listSeller.idSeller','_id photoUrl recallStar').lean()
@@ -246,18 +247,28 @@ router.get('/:id', async (req, res)=>{
                 dislikeReviews._id.toString()==review._id.toString())})
         const maxPopularity = Math.max(...product.listSeller.map(seller=> {return seller.popularity}))
         const favoriteProduct = product.listSeller.filter(seller=>seller.popularity==maxPopularity)[0]
-        product.basket = {idSeller:favoriteProduct._id,basket:favoriteProduct.basket}}
+        product.basket = {idSeller:favoriteProduct._id,basket:favoriteProduct.basket}
+        const user = await Users.findById(req.session.user._id,
+            {viewedProducts: {$elemMatch: {_id: req.params.id}}}).lean()
+        if(!user.viewedProducts){
+            await Users.findByIdAndUpdate(req.session.user._id,
+                {$push: {viewedProducts: {_id:req.params.id}}})
+            await Product.findByIdAndUpdate(req.params.id,
+                {$inc: { rating: 1 }})
+        }
+    }
     product.listReviews.forEach((review,key)=>{
         product.listReviews[key].advantages = review.advantages.split("\r\n")
         product.listReviews[key].limitations = review.limitations.split("\r\n")
         product.listReviews[key].comment = review.comment.split("\r\n")})
     res.render('product',{
+        link:'/catalog/',
         title:`${product.nameProduct}`,
         productPage: true,
         product
     })
 })
-router.get('/:id/review/:star',async (req,res)=>{
+router.get('/product/:id/review/:star',async (req,res)=>{
     const product = await Product.findById(req.params.id,
         'nameProduct photoURL colorBackground').lean()
     product.listStars = await Comments.aggregate([
@@ -269,39 +280,57 @@ router.get('/:id/review/:star',async (req,res)=>{
         .find(filter,"_id author photo rating date like dislike advantages limitations comment")
         .sort({topicality:-1,date:-1})
         .populate('author', '-_id fullName photoUrl verifiedUser').lean()
+    if(req.session.isAuthorization) {
+        let userNotes = await Users.aggregate([
+            { "$match": { "_id": mongoose.Types.ObjectId(req.session.user._id) }},
+            { "$project": {"_id":0,
+                    "listLikeReviews": {"$filter": {input: "$listLikeReviews", as: "item",
+                            cond: { $in: [ "$$item._id",
+                                    [...product.listReviews.map(review=>
+                                        mongoose.Types.ObjectId(review._id.toString()))] ]} }},
+                    "listDislikeReviews": {"$filter": {input: "$listDislikeReviews", as: "item",
+                            cond: { $in: [ "$$item._id",
+                                    [...product.listReviews.map(review=>
+                                        mongoose.Types.ObjectId(review._id.toString()))] ]} }} }} ])
+        product.listReviews.forEach(( review,key)=>{
+            product.listReviews[key].likeStatus = userNotes[0].listLikeReviews.some(likeReviews=>
+                likeReviews._id.toString()==review._id.toString())
+            product.listReviews[key].dislikeStatus = userNotes[0].listDislikeReviews.some(dislikeReviews=>
+                dislikeReviews._id.toString()==review._id.toString())}) }
     product.listReviews.forEach((review,key)=>{
         product.listReviews[key].advantages = review.advantages.split("\r\n")
         product.listReviews[key].limitations = review.limitations.split("\r\n")
         product.listReviews[key].comment = review.comment.split("\r\n")})
     res.render('reviewsProduct',{
+        link:'/catalog/product/'+req.params.id.toString(),
         title:"Отзывы",
         productPage: true,
         star:req.params.star,
         product
     })
 })
-router.get('/:id/comment', closedPage,async (req, res)=>{
+router.get('/product/:id/comment', closedPage,async (req, res)=>{
     const product = await Product.findById(req.params.id,'nameProduct photoURL colorBackground price').lean()
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"").lean()
     if(userReviews!==null){
+        if(userReviews.rating){product.photoComment=userReviews.photo}
         if(userReviews.rating){product.rating=userReviews.rating}
         if(userReviews.advantages){product.advantages=userReviews.advantages.split("\r\n").join("\r")}
         if(userReviews.limitations){product.limitations=userReviews.limitations.split("\r\n").join("\r")}
         if(userReviews.comment){product.comment=userReviews.comment.split("\r\n").join("\r")}}
     res.render('comment',{
+        link:'/catalog/product/'+req.params.id.toString(),
         title:"Отзыв",
         commentPage: true,
         product
     })
 })
-router.post('/:id/comment', closedPage, async (req, res) => {
+router.post('/product/:id/comment', closedPage, async (req, res) => {
     let {photo,advantages,limitations,comment,rating}= req.body
     const userReviews = await Comments.findOne({product:req.params.id,author:req.session.user._id},"_id").lean()
     if(userReviews!==null){
-        await Comments.findByIdAndUpdate(userReviews._id.toString(),{advantages,limitations,comment,rating})
-            .exec(err=>{
-                if(err){throw err}
-                res.redirect(`/catalog/${req.params.id}`)})
+        await Comments.findByIdAndUpdate(userReviews._id.toString(),
+            {advantages,limitations,comment,rating,photo})
     }else{
         const topicality =
             (advantages.length>25?1:0)+
@@ -311,10 +340,17 @@ router.post('/:id/comment', closedPage, async (req, res) => {
             product:req.params.id.toString(),
             author:req.session.user._id.toString(),
             photo, rating,topicality, advantages, limitations, comment})
-        await userComment.save()
-        res.redirect(`/catalog/${req.params.id}`)}
+        await userComment.save()}
+    const result = await Comments.aggregate([
+        { $match: { product: mongoose.Types.ObjectId(req.params.id)} },
+        { $project:{_id:0, rating:1}},
+        { $group: {_id: null, mySum: {$sum: '$rating'}, myCount: {$sum: 1}}},
+        { $project: { _id:0, result: {$round: {$divide: [ "$mySum", "$myCount" ] } } }} ])
+    await Product.findByIdAndUpdate(req.params.id,
+        {$set: { stars: result[0].result }, $inc: { rating: 10 }})
+    res.redirect(`/catalog/product/${req.params.id}`)
 })
-router.get('/:id/brand',async (req, res)=>{
+router.get('seller/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
     res.render('brand',{
         title:`${product.name}`,

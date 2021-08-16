@@ -86,12 +86,12 @@ module.exports = {
         let result = ''
         let marginRem=3
         properties.forEach(value=>{
-            result +=`<div class="propertyNames" style="margin-top: ${18+marginRem}rem; font-size: 21px">
+            result +=`<div class="propertyNames" style="margin-top: ${20+marginRem}rem; font-size: 21px">
                <div class="title"><b>${value.nameDescription}</b></div>
             </div>`
             value.parameter.forEach(parameter=>{
                 marginRem+=5
-                result +=`<div class="propertyNames" style="margin-top: ${17+marginRem}rem;">
+                result +=`<div class="propertyNames" style="margin-top: ${19+marginRem}rem;">
                <div class="title"
                onmouseover="hoverEvent(event,${parameter.index})"
                onmouseout="hoverEvent(event,${parameter.index}, 1)">

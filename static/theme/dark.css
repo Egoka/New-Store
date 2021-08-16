@@ -30,6 +30,7 @@
     --white-black:#000;
     --backgraund-color: #1d1d1d;
     --backgraund-color-opacity: #1d1d1dd9;
+    --backgraund-color-opacity-full: #1d1d1d00;
     transition: color 1s linear;
 }
 html body{

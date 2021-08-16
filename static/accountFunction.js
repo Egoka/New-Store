@@ -5,7 +5,7 @@ function editAccout(event){
         let inputElement = document.createElement('input')
         inputElement.setAttribute("type", "url")
         inputElement.setAttribute("onchange",
-            "event.path[1].children[0].children[0].src = event.srcElement.value")
+            "event.target.parentElement.children[0].children[0].src = event.srcElement.value")
         inputElement.style.fontSize = "18px"
         inputElement.style.width = "max-content"
         inputElement.value = document.querySelector('.photoAccount').children[0].src
