@@ -3,9 +3,14 @@
         {{#ifne product.countRecall 0}}<h3>Отзовы <strong>{{product.countRecall}}</strong></h3>
         {{else}}<h3>Отзывов еще никто не оставил</h3>{{/ifne}}
         <div class="filterRecall">
-            {{#if isAuth}}<a class="btn" href="/catalog/product/{{product._id}}/comment" style="background:{{product.colorBackground}}">
-                               Оставить{{#ifeq product.listReviews.length 0}} первый{{/ifeq}} отзыв</a>{{/if}}
-            {{#ifne product.countRecall 0}}{{>reviews/reviewsStars}}{{/ifne}}
+            {{#ifne product.countRecall 0}}
+                {{>reviews/reviewsStars}}
+            {{else}}
+                {{#if isAuth}}
+                    <a class="btn" href="/catalog/product/{{product._id}}/comment"
+                       style="background:{{product.colorBackground}}">Оставить первый отзыв</a>
+                {{/if}}
+            {{/ifne}}
         </div>
         {{>reviews/listReviews}}
     </div>

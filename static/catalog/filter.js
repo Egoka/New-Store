@@ -54,21 +54,21 @@ function filter(event){
                         `<div class="filterImage">
                             <img class="materialboxed" src="${product.photoURL}" alt="">
                         </div>
-                    <div class="description">
-                        <a href="/catalog/${product._id}" title="${product.nameProduct}" class="nameProduct>
-                            <span class="">${product.nameProduct}</span>
-                        </a>
-                        <ul class="depiction">` +
+                        <div class="description">
+                            <a href="/catalog/product/${product._id}" title="${product.nameProduct}" class="nameProduct>
+                                <span class="">${product.nameProduct}</span>
+                            </a>
+                            <ul class="depiction">` +
                     product.depiction.map(index=>`<li>${index.items}</li>`).join("") +
-                        `</ul>
-                        <div class="starProduct">
-                            <span class="material-icons" style="color: ${product.stars>0?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>1?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>2?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>3?'#e7ad00':'#bcbcbc'}">star</span>
-                            <span class="material-icons" style="color: ${product.stars>4?'#e7ad00':'#bcbcbc'}">star</span>
-                        </div>
-                        <div class="purchase flexCenter">` +
+                            `</ul>
+                            <div class="starProduct">
+                                <span class="material-icons" style="color: ${product.stars>0?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>1?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>2?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>3?'#e7ad00':'#bcbcbc'}">star</span>
+                                <span class="material-icons" style="color: ${product.stars>4?'#e7ad00':'#bcbcbc'}">star</span>
+                            </div>
+                            <div class="purchase flexCenter">` +
                     (callback.isAuth?(
                             `<i class="material-icons"
                                 onclick="userList(event,'${product._id}')"`+

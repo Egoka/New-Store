@@ -1,4 +1,7 @@
 <div class="listStarsRecall">
+    {{#if isAuth}}<a class="btn" href="/catalog/product/{{product._id}}/comment"
+                     style="background:{{product.colorBackground}};color: var(--white-black);">
+        Оставить{{#ifeq product.listReviews.length 0}} первый{{/ifeq}} отзыв</a>{{/if}}
     {{#ifne product.countRecall 0}}<p style="text-align: center;">Отзывы с оценкой</p>{{/ifne}}
     {{#each product.listStars}}
         <a href="/catalog/product/{{@root.product._id}}/review/{{_id}}"

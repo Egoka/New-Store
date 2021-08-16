@@ -280,6 +280,23 @@ router.get('/product/:id/review/:star',async (req,res)=>{
         .find(filter,"_id author photo rating date like dislike advantages limitations comment")
         .sort({topicality:-1,date:-1})
         .populate('author', '-_id fullName photoUrl verifiedUser').lean()
+    if(req.session.isAuthorization) {
+        let userNotes = await Users.aggregate([
+            { "$match": { "_id": mongoose.Types.ObjectId(req.session.user._id) }},
+            { "$project": {"_id":0,
+                    "listLikeReviews": {"$filter": {input: "$listLikeReviews", as: "item",
+                            cond: { $in: [ "$$item._id",
+                                    [...product.listReviews.map(review=>
+                                        mongoose.Types.ObjectId(review._id.toString()))] ]} }},
+                    "listDislikeReviews": {"$filter": {input: "$listDislikeReviews", as: "item",
+                            cond: { $in: [ "$$item._id",
+                                    [...product.listReviews.map(review=>
+                                        mongoose.Types.ObjectId(review._id.toString()))] ]} }} }} ])
+        product.listReviews.forEach(( review,key)=>{
+            product.listReviews[key].likeStatus = userNotes[0].listLikeReviews.some(likeReviews=>
+                likeReviews._id.toString()==review._id.toString())
+            product.listReviews[key].dislikeStatus = userNotes[0].listDislikeReviews.some(dislikeReviews=>
+                dislikeReviews._id.toString()==review._id.toString())}) }
     product.listReviews.forEach((review,key)=>{
         product.listReviews[key].advantages = review.advantages.split("\r\n")
         product.listReviews[key].limitations = review.limitations.split("\r\n")
