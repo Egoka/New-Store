@@ -14,6 +14,11 @@ html body nav{
 .navMy li:hover a{color: var(--truly-black)}
 .navMy .user-view{margin: 0;}
 .navMy .brand-logo{font-size: 1.6rem;}
+.navMy .listNavBar{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;}
 .avatar{
     width: 150px;
     height: 150px;
@@ -39,13 +44,14 @@ body .navMy{
     border-bottom-right-radius: 1rem;}
 body .section{
     border-radius: 1rem;
-    margin: 0 1rem;
+    margin: .5rem 1rem;
     padding: 0;
     border: 2px solid var(--transparent-black);}
 body .navMy .personalInformation{
     display: flex;
     flex-direction: column;
-    aspect-ratio: 1 / 1;
+    /*aspect-ratio: 1 / 1;*/
     height: min-content;
     border-radius: 1.8rem;
+    padding: 12px 32px 0;
     margin: 0;}
