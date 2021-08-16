@@ -15,9 +15,11 @@
                         <li>{{items}}</li>
                     {{/each}}
                 </ul>
-                <div class="starProduct">
-                {{#stars stars}}{{body}}{{/stars}}
-                </div>
+                {{#ifgt stars 0}}
+                    <div class="starProduct">
+                        {{#stars stars}}{{body}}{{/stars}}
+                    </div>
+                {{/ifgt}}
                 <div class="purchase flexCenter">
                     {{#if @root.isAuth}}
                         {{#if @root.catalogPage}}
@@ -33,7 +35,9 @@
                            onclick="userLike(event,'{{_id}}')"
                             {{/if}}
                            {{#if like}}style="color:var(--red-dark)"{{/if}}>
-                            {{#if like}}favorite{{else}}favorite_border{{/if}}</i>
+                            {{#if @root.favorites}}delete_forever{{else}}
+                                {{#if like}}favorite{{else}}favorite_border{{/if}}
+                            {{/if}}</i>
                     {{/if}}
                     <div class="priceFilter">
                         {{#if price}}<a href="/catalog/product/{{_id}}" class="price">{{price}}</a>{{/if}}

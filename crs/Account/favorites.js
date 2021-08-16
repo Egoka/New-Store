@@ -37,17 +37,27 @@ router.get('/:id', closedPage, async (req, res) => {
                 let: { id: "$_id" },
                 pipeline: [
                     { $match: { $expr: { $eq: ["$_id", "$$id"] }}},
-                    { $project:{_id:1, nameProduct:1, photoURL:1, price:1, depiction:1,classProduct:1}}
+                    { $project:{_id:1,nameProduct:1,photoURL:1,
+                            classProduct:1,stars:1,
+                            date:1,price:1,depiction:1}}
                 ], as: "_id"}},
         { $match: { "_id.classProduct": mongoose.Types.ObjectId(inferredClass) } },
         { $project:{
                 _id: { $first: "$_id._id" },
                 nameProduct: { $first: "$_id.nameProduct" },
                 photoURL: { $first: "$_id.photoURL" },
+                colorBackground: { $first: "$_id.colorBackground" },
+                stars: { $first: "$_id.stars" },
+                rating: { $first: "$_id.rating" },
+                date: { $first: "$_id.date" },
                 price:{ $first: "$_id.price" },
-                depiction:{ $first: "$_id.depiction" },
-            }}
-    ])
+                depiction:{ $first: "$_id.depiction" } }},
+        { $addFields: {
+                daysCount: { $cond: [
+                        { $lte: [
+                                {$round: {$divide: [
+                                            {$subtract: [ new Date(), "$date"]}, 86400000] }},
+                                30 ] }, true, false ] } } }]) //30 days
     res.render('favorites', {
         link:'/favorites/default',
         title: 'Избранное',

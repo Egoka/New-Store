@@ -19,8 +19,10 @@ function userLikeDel(event, id) {
             product.style.maxHeight = '0'
             product.style.padding = '0'
             product.style.opacity = '0'
-            window.setTimeout(()=>{product.innerHTML = ''},4000)
-            window.location.reload()
+            window.setTimeout(()=>{
+                product.innerHTML = ''
+                window.location.reload()
+            },1100)
         })}
 function userList(event, id) {
     fetch('/request/list/' + id,{method: 'get'})
@@ -72,15 +74,15 @@ function userEditCountProduct(event, id, mode) {
             basketPrice.children[0].children[0].innerHTML=Number(basketPrice.children[0].children[0].innerHTML)+callback.direction
             let sum=+document.querySelector('#sum').innerHTML
                 .split(',')[0].split("&nbsp;").join('')
-            let price = +event.composedPath()[3].children[0].children[0].innerHTML
+            let price = +event.target.parentElement.parentElement.parentElement.children[0].children[0].innerHTML
                 .split(',')[0].split("&nbsp;").join('')
             document.querySelector('#sum').innerHTML = new Intl.NumberFormat('ru-RU',{
                 currency:'rub', style:'currency'
             }).format(sum+price*callback.direction)
             if(callback.count===0){
-                if(event.composedPath()[4].children[1].children.length==1){
-                    event.target.parentElement.parentElement.parentElement.parentElement.remove()
-                }else{event.target.parentElement.parentElement.remove()}}
+                if(event.target.parentElement.parentElement.parentElement.parentElement.children.length==1){
+                    event.target.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
+                }else{event.target.parentElement.parentElement.parentElement.remove()}}
             if(callback.count>0){
                 event.target.parentElement.children[1].innerHTML=callback.count}
             if(document.querySelector('.bodyBusket').children.length==0){

@@ -28,6 +28,7 @@
     background: none;
     border-radius: 15px;
     width: 2rem;
+    cursor: default;
     transition: .4s linear;}
 .quantity span:first-child:hover, .quantity span:last-child:hover{
     transition: .4s linear;

@@ -14,8 +14,9 @@
     transition: all 1s linear;}
 .title{
     color: var(--gainsboro);
-    width: 90vw;
+    width: 70vw;
     text-align: center;}
+@media (max-width: 700px){  .title{width: 100vw;}}
 .model {
     display: flex;
     flex-wrap: nowrap;

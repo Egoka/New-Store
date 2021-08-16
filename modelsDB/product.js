@@ -8,7 +8,7 @@ const product = new Schema({
     photoURL:String,
     colorBackground:{type:String,default:'#8c8c8c'},
     stars:{type:Number,enum:[0,1,2,3,4,5]},
-    date:Date,
+    date:{type: Date, default: Date.now},
     rating:{type:Number,default:0},
     price:Number,
     depiction:[{items: String}],

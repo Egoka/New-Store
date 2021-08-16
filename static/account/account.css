@@ -34,13 +34,15 @@
     padding: 3px 8px;}
 .exitAccount a:hover, .editAccount:hover, .orders:hover{
     background: var(--yellow-light);
-    box-shadow: 0 1rem 3rem var(--yellow-light);
+    box-shadow: 0 0 3rem var(--yellow-light);
     transition: .4s linear;}
 .listOrders{
     display: flex;
     justify-content: flex-start;
     scroll-snap-type: x mandatory;
     scroll-padding-left: 1.5rem;
+    margin: 0 auto;
+    padding-top: 2rem;
     overflow: auto;}
 .ordersProduct{
     display: flex;
@@ -49,4 +51,11 @@
     border-color: var(--charcoal);
     color: var(--quartz);}
 .nameProduct{
-   font-weight: 700;}
+    color: var(--black-white);
+    font-weight: 700;}
+.nameSeller{
+    color: var(--quartz);
+    transition: .5s linear;}
+.nameSeller:hover{
+    color: var(--black-white);
+    transition: .5s linear;}

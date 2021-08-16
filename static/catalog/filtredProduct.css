@@ -1,4 +1,4 @@
-#catalog #lowercase, #catalog #bloc{width: 76%}
+#catalog #lowercase, #catalog #bloc{width: 70%}
 .productFork{
     display: flex;
     justify-content: space-between;
@@ -77,7 +77,7 @@
 @media (max-width:650px) {
     #catalog .filteredProduct{width: 100%;}  }
 @media (max-width: 900px) {  .device .material-placeholder{margin-right: 0}  }
-.starProduct{
+.description .starProduct{
     width: 100%;
     margin:.5rem;}
 .purchase{
@@ -132,3 +132,20 @@
     .productFork .tabs{width: 12rem;}}
 .productFork .tabs .tab{margin-top:2rem;}
 .productFork .tabs .tab a{padding:0;}
+.tagNEW{
+    position: absolute;
+    width: 5rem;
+    height: 2rem;
+    background: var(--indigo-light);
+    transform: translateY(10.5rem);
+    border-radius: 30px;
+    border: 1px solid var(--transparent-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: var(--slateGray-dark);
+    text-transform: capitalize;
+    padding-bottom: 2px;
+    z-index: 100;
+}

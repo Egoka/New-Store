@@ -3,8 +3,8 @@
         <img class="materialboxed" src="{{product.photoURL}}" alt="" >
     </div>
     <div class="descriptionProduct request">
-        <div class="centerMy flexCenter">
-            {{#if isAuth}}
+        {{#if isAuth}}
+            <div class="centerMy flexCenter">
                 <i class="material-icons"
                    onclick="userList(event,'{{product._id}}')"
                    {{#if product.list}}style="color:var(--red-dark)"{{/if}}>
@@ -13,8 +13,13 @@
                    onclick="userLike(event,'{{product._id}}')"
                    {{#if product.like}}style="color:var(--red-dark)"{{/if}}>
                     {{#if product.like}}favorite{{else}}favorite_border{{/if}}</i>
-            {{/if}}
-        </div>
+            </div>
+        {{/if}}
+        {{#ifgt product.stars 0}}
+            <div class="starProduct">
+                {{#stars product.stars}}{{body}}{{/stars}}
+            </div>
+        {{/ifgt}}
         {{#if isAuth}}
             <div class="centerMy flexCenter" style="flex-direction: column">
                 <h5 class="price">{{product.price}}</h5>
