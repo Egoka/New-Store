@@ -6,7 +6,19 @@ const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
 const closedPage = require('../middleware/auth')
+const menu = require('../resources/menu.json')
 require('../modelsDB/seller')
+router.get('/',async (req, res) => {
+    if(req.session.filter){req.session.filter=Array()}
+    if(req.session.prohibitedOption){req.session.prohibitedOption=Array()}
+    res.render('menu', {
+        link:'/catalog/',
+        title: 'Каталог',
+        productPage: true,
+        menuPage:true,
+        menu
+    })
+})
 async function filterProduct(filter, prohibitedOption,isAuthorization, userId, typeId, sort){
     let allSelectedOption = filter
         .reduce((result, object)=> result.concat(object.listId),[])
