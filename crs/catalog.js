@@ -135,12 +135,22 @@ async function filterProduct(filter, prohibitedOption,isAuthorization, userId, t
                 products[kay].list = user.comparsion.filter(listProduct =>
                     listProduct._id.toString() === product._id.toString()).length>0})}}
     return{products,filters,prohibitedOption} }
-router.get('/',async (req, res) => {
+router.get('/section/:id',async (req, res) => {
     if(!req.session.filter){req.session.filter=Array()}
     if(!req.session.prohibitedOption){req.session.prohibitedOption=Array()}
     if(!req.session.sortCatalog){req.session.sortCatalog={"_id.rating":-1 }}
+    if(req.originalUrl.split('?').length>1) {
+        req.session.filter=Array()
+        req.session.prohibitedOption=Array()
+        Object.entries(req.query).map(query => { let index = -1
+            if (req.session.filter.length > 0) {
+                index = req.session.filter.findIndex(filter=>filter.type == query[0])}
+            if (index > 0) {
+                req.session.filter[index].listId.push(query[1])
+            } else {req.session.filter.splice(-1, 0, {type: query[0], listId: Array(query[1])}) } })
+        return res.redirect(`/catalog/section/${req.params.id}`) }
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
-    const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
+    const typeId = req.params.id
     const {products, filters} = await filterProduct(req.session.filter, req.session.prohibitedOption,
         req.session.isAuthorization, userId, typeId, req.session.sortCatalog)
     res.render('catalog', {
@@ -154,7 +164,7 @@ router.get('/',async (req, res) => {
             +Object.values(req.session.sortCatalog)[0]
     })
 })
-router.post('/filters', async (req, res)=>{
+router.post('/section/filters/:id', async (req, res)=>{
     if(req.body.option){
         const index = req.session.filter.findIndex(index=>index.type===req.body.option)
         if(index>=0){
@@ -181,7 +191,7 @@ router.post('/filters', async (req, res)=>{
             case 3:req.session.sortCatalog={"_id.price":1 };break;
             case 4:req.session.sortCatalog={"_id.price":-1 };break; }}
     let userId; if(req.session.isAuthorization) { userId = req.session.user._id }else{ userId = "" }
-    const typeId = "607c1ab83de7e20a834ff0f6"/*TODO временная перменная*/
+    const typeId = req.params.id
     const {products, filters,prohibitedOption} = await filterProduct(
         req.session.filter, req.session.prohibitedOption,
         req.session.isAuthorization, userId, typeId,

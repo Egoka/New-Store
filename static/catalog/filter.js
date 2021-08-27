@@ -23,7 +23,8 @@ function filter(event){
             option:event.composedPath()[5].children[0].innerText}}
     if(event.target.classList[0]==='typeSort'){
         data = {sort: event.target.dataset.sort}}
-    fetch('/catalog/filters',{
+    const type = window.location.pathname.split('/')[3]
+    fetch('/catalog/section/filters/'+type,{
         method: 'POST',
         body:JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}})
