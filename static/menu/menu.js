@@ -11,6 +11,9 @@ function hoverCategory(event) {
             Array.from(document.querySelectorAll(
                 '.listCategory .roundingArrow[style]'
             )).map(list=>{list.removeAttribute('style')})
+            Array.from(document.querySelectorAll(
+                '.listType .roundingArrow[style]'
+            )).map(list=>{list.removeAttribute('style')})
             /*Вывод поля на дисплей*/
             document.querySelectorAll(
                 `.listType .absolutePositionCategory[data-index='${
@@ -47,3 +50,7 @@ function hoverCategory(event) {
             break}
     }
 }
+let feield = document.querySelector('.menu')
+if(feield){feield.addEventListener('mouseover',event=>{
+    if (event.target.classList.contains('backgroundCategory')){
+        hoverCategory(event)}})}

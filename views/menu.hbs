@@ -2,14 +2,14 @@
     <div class="positionCategory listCategory">{{#each menu}}
         <div class="linkCategory category" data-index="{{@index}}">
             <div class="contentCategory">
-                <div class="nameCategory">{{nameCategory}}</div>
-                <i class="material-icons">{{iconCategory}}</i></div>
+                <i class="material-icons">{{iconCategory}}</i>
+                <div class="nameCategory">{{nameCategory}}</div></div>
             <div class="roundingArrow" {{#if @first}}style="display:block;"{{/if}}>
                 <div class="rounding roundingTop"></div>
                 <div class="rounding roundingCentre"></div>
                 <div class="rounding roundingBottom"></div>
                 <div class="material-icons arrow"></div></div>
-            <div style="width: 0;"><div class="backgroundCategory" onmouseover="hoverCategory(event)"></div></div>
+            <div style="width: 0;"><div class="backgroundCategory"></div></div>
         </div>{{/each}}
     </div>
     <div class="positionCategory listType">{{#each menu}}
@@ -27,7 +27,7 @@
                             <div class="rounding roundingCentre"></div>
                             <div class="rounding roundingBottom"></div>
                             <div class="material-icons arrow"></div></div>
-                        <div style="width: 0;"><div class="backgroundCategory" onmouseover="hoverCategory(event)"></div></div></a>
+                        <div style="width: 0;"><div class="backgroundCategory"></div></div></a>
                 {{/each}}
             {{else}}<div class="noneContent flexCenter">Нет раздела</div>
             {{/ifgt}}
@@ -42,16 +42,17 @@
                 {{#ifgt listSearch.length 0}}
                     {{#each listSearch}}
                         <a href="/catalog/section/{{../this.idClass}}?{{#each search}}{{nameOption}}={{idOption}}&{{/each}}"
-                            class="linkCategory search" onmouseover="hoverCategory(event)">
+                            class="linkCategory search">
                             <div class="contentCategory">
                                 <div class="nameCategory">{{nameSearch}}</div>
                                 {{#if photoURL}}<div class="photoCategory flexCenter"><img src="{{photoURL}}" alt=""></div>{{/if}}
                             </div></a>
                     {{/each}}
-                {{else}}<div class="noneContent flexCenter">Нет раздела</div>
+                {{else}}<div class="noneContent flexCenter">Раздел пуст</div>
                 {{/ifgt}}
             </div>{{/each}}
         </div>{{/each}}
     </div>
 </div>
 <script src="/menu/menu.js"></script>
+<script src="/mobile/menu/menuMobile.js"></script>
