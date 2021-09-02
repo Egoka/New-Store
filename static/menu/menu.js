@@ -47,3 +47,7 @@ function hoverCategory(event) {
             break}
     }
 }
+let feield = document.querySelector('.menu')
+if(feield){feield.addEventListener('mouseover',event=>{
+    if (event.target.classList.contains('backgroundCategory')){
+        hoverCategory(event)}})}

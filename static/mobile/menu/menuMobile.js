@@ -11,5 +11,6 @@ if (/Android|iPhone/i.test(navigator.userAgent)) {
     let menu =document.querySelector('.menu')
     if(menu){menu.addEventListener('touchend',event=>{
         if (event.target.classList.contains('backgroundCategory')){
+            hoverCategory(event)
         } })}
 }
