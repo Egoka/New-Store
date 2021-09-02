@@ -1,0 +1,183 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 60rem;
+    margin: 0 auto;}
+.positionCategory{width: 100%;}
+/*----*/
+.listCategory{
+    max-width: 100%;
+    min-width:6rem;
+    background:var(--indigo-full-light);
+    border-radius: 1rem;}
+.listType .absolutePositionCategory{
+    background:var(--indigo-light);}
+.listSearch .titleListType{
+    background: linear-gradient(0deg,
+    var(--indigo-full-light-full) 0%,
+    var(--indigo-full-light)50%);}
+/*-------*/
+.absolutePositionCategory{
+    display: none;
+    width: 100%;
+    height: 90vh;
+    overflow: auto;
+    border-radius: 1rem;
+    background: var(--indigo-full-light)}
+.titleListType{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 8rem;
+    padding: 1rem;
+    font-size: 2rem;
+    z-index: 130;
+    border-radius: 1rem;
+    overflow: hidden;}
+.titleListType div{
+    width: 5rem;
+    white-space: nowrap;}
+.listType .titleListType{
+    background: linear-gradient(0deg,
+    var(--indigo-light-full) 0%,
+    var(--indigo-light)50%);}
+@media (max-width: 450px) {
+    .titleListType{
+        height: 5rem;
+        font-size: 1.5rem;}
+    .listType .titleListType {
+        background: linear-gradient(0deg, var(--indigo-light-full) 0%, var(--indigo-light)35%);}
+}
+/*------*/
+.linkCategory{
+    width: 94%;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--indigo-light);
+    border-radius: 1rem;
+    color: var(--black-white);
+    margin: 1rem  auto;}
+.linkCategory:last-child{margin-bottom:3rem;}
+.category:first-child{margin-top:3rem;}
+.linkCategory.type{background:var(--indigo-full-light);}
+/*------*/
+.contentCategory{
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    z-index: 100;}
+.nameCategory{
+    width: 65%;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10;}
+.listCategory .contentCategory {
+    flex-direction: row;
+    min-width: 5rem;
+    padding: 0 2rem;}
+.listCategory i.material-icons {
+    margin: 3rem 0;
+    width: 2rem;
+    text-align: center;}
+.listCategory .nameCategory {width: 70%;}
+.photoCategory{
+    text-align: end;
+    top: 10%;
+    width: 30%;
+    height: 4rem;
+    max-height: inherit;
+    margin: 5px;}
+.photoCategory img{
+    max-height: 7rem;
+    width: 7rem;
+    object-fit: contain;}
+.search .photoCategory img{
+    max-height: 5rem;
+    width: 5rem;}
+/*------*/
+.roundingArrow{
+    width: 0;
+    display:none;}
+@media (max-width: 450px) {
+    .nameCategory{font-size:1.2rem;}
+    .roundingArrow{
+        position: relative;
+        right: 5px;}}
+.rounding{
+    position: relative;
+    width: 2rem;
+    height: 2rem;}
+.listCategory .rounding{
+    background: linear-gradient(90deg, var(--indigo-light-full) 0%, var(--indigo-light)50%);
+    z-index: 100;}
+.listType .rounding{background: var(--indigo-full-light);}
+.roundingTop{transform: translate(-1.3rem, 7px);}
+.listCategory .roundingTop{
+    background: radial-gradient(2.8rem at top left,
+    var(--indigo-light-full) 71%,
+    var(--indigo-light) 0%);}
+.listType .roundingTop{
+    background: radial-gradient(2.8rem at top left,
+    var(--indigo-full-light-full) 71%,
+    var(--indigo-full-light) 0%);}
+.roundingTop .neckline{border-bottom-right-radius: 3rem;}
+.roundingCentre{
+    width: 3rem;
+    height: 7rem;
+    transform: translate(-2.3rem, 7px);}
+.roundingBottom{
+    transform: translate(-1.3rem, 7px);}
+.listCategory .roundingBottom{
+    background: radial-gradient(2.8rem at bottom left,
+    var(--indigo-light-full) 71%,
+    var(--indigo-light) 0%);}
+.listType .roundingBottom{
+    background: radial-gradient(2.8rem at bottom left,
+    var(--indigo-full-light-full) 71%,
+    var(--indigo-full-light) 0%);}
+.roundingBottom .neckline{border-top-right-radius: 3rem;}
+.material-icons.arrow {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 1rem;
+    transform: translateY(-5.5rem);
+    z-index: 110;}
+.arrow:before{
+    content: "arrow_forward_ios";
+    font-size: 1rem;
+    color: var(--black-white);
+    animation: 1s trembling;}
+.arrow:before:hover{animation: 1s trembling;}
+/*-----*/
+.cartain{
+    height: 4rem;
+    left: 0;
+    right: 0;
+    position: absolute;
+    cursor: default;}
+.backgroundCategory{
+    width: 100vw;
+    height: 7rem;
+    position: relative;
+    z-index: 100;
+    transform: translateX(-100%);}
+/*----*/
+.noneContent{
+    width: 100%;
+    white-space: break-spaces;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--navBar-color);
+    height: 50%;}
