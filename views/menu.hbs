@@ -2,8 +2,8 @@
     <div class="positionCategory listCategory">{{#each menu}}
         <div class="linkCategory category" data-index="{{@index}}">
             <div class="contentCategory">
-                <div class="nameCategory">{{nameCategory}}</div>
-                <i class="material-icons">{{iconCategory}}</i></div>
+                <i class="material-icons">{{iconCategory}}</i>
+                <div class="nameCategory">{{nameCategory}}</div></div>
             <div class="roundingArrow" {{#if @first}}style="display:block;"{{/if}}>
                 <div class="rounding roundingTop"></div>
                 <div class="rounding roundingCentre"></div>
@@ -48,7 +48,7 @@
                                 {{#if photoURL}}<div class="photoCategory flexCenter"><img src="{{photoURL}}" alt=""></div>{{/if}}
                             </div></a>
                     {{/each}}
-                {{else}}<div class="noneContent flexCenter">Нет раздела</div>
+                {{else}}<div class="noneContent flexCenter">Раздел пуст</div>
                 {{/ifgt}}
             </div>{{/each}}
         </div>{{/each}}

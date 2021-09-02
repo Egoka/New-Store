@@ -44,6 +44,13 @@
     background: linear-gradient(0deg,
     var(--indigo-light-full) 0%,
     var(--indigo-light)50%);}
+@media (max-width: 450px) {
+    .titleListType{
+        height: 5rem;
+        font-size: 1.5rem;}
+    .listType .titleListType {
+        background: linear-gradient(0deg, var(--indigo-light-full) 0%, var(--indigo-light)35%);}
+}
 /*------*/
 .linkCategory{
     width: 94%;
@@ -70,11 +77,20 @@
     overflow: hidden;
     z-index: 100;}
 .nameCategory{
+    width: 65%;
     font-size: 1.3rem;
     font-weight: 600;
-    margin-right: 1rem;
     text-align: center;
     z-index: 10;}
+.listCategory .contentCategory {
+    flex-direction: row;
+    min-width: 5rem;
+    padding: 0 2rem;}
+.listCategory i.material-icons {
+    margin: 3rem 0;
+    width: 2rem;
+    text-align: center;}
+.listCategory .nameCategory {width: 70%;}
 .photoCategory{
     text-align: end;
     top: 10%;
@@ -93,11 +109,18 @@
 .roundingArrow{
     width: 0;
     display:none;}
+@media (max-width: 450px) {
+    .nameCategory{font-size:1.2rem;}
+    .roundingArrow{
+        position: relative;
+        right: 5px;}}
 .rounding{
     position: relative;
     width: 2rem;
     height: 2rem;}
-.listCategory .rounding{background: var(--indigo-light);}
+.listCategory .rounding{
+    background: linear-gradient(90deg, var(--indigo-light-full) 0%, var(--indigo-light)50%);
+    z-index: 100;}
 .listType .rounding{background: var(--indigo-full-light);}
 .roundingTop{transform: translate(-1.3rem, 7px);}
 .listCategory .roundingTop{
@@ -110,8 +133,9 @@
     var(--indigo-full-light) 0%);}
 .roundingTop .neckline{border-bottom-right-radius: 3rem;}
 .roundingCentre{
+    width: 3rem;
     height: 7rem;
-    transform: translate(-1.3rem, 7px);}
+    transform: translate(-2.3rem, 7px);}
 .roundingBottom{
     transform: translate(-1.3rem, 7px);}
 .listCategory .roundingBottom{
@@ -128,7 +152,8 @@
     align-items: center;
     position: relative;
     right: 1rem;
-    transform: translateY(-5.5rem);}
+    transform: translateY(-5.5rem);
+    z-index: 110;}
 .arrow:before{
     content: "arrow_forward_ios";
     font-size: 1rem;
@@ -143,7 +168,7 @@
     position: absolute;
     cursor: default;}
 .backgroundCategory{
-    width: 19rem;
+    width: 100vw;
     height: 7rem;
     position: relative;
     z-index: 100;
