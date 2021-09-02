@@ -9,6 +9,8 @@
 .positionCategory{width: 100%;}
 /*----*/
 .listCategory{
+    max-width: 100%;
+    min-width:6rem;
     background:var(--indigo-full-light);
     border-radius: 1rem;}
 .listType .absolutePositionCategory{
