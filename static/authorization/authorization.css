@@ -23,12 +23,15 @@
     transition: .4s linear;}
 .authorization input:-webkit-autofill {
     -webkit-box-shadow: inset 0 0 0 50px var(--aquamarine-medium) !important;}
+.authorization input:-webkit-autofill {
+    -webkit-text-fill-color: var(--green-dark);}
 .authorization button{
     margin: auto;
-    background-color: var(--green-light);
+    color: var(--black-white);
+    background-color: var(--green-swampy);
     user-select:none;}
 .authorization button:hover, button:focus{
-    background-color: var(--green-dark);}
+    background-color: var(--aquamarine-light);}
 .authorization input::placeholder{
     text-align: center;
     font-weight: 600;
@@ -62,17 +65,37 @@
     user-select:none;}
 #authorizationError{
     position: absolute;
-    top: -34px;
+    top: -5rem;
     right: 0;
     left: 0;
     margin: auto;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+    padding: .5rem;
+    border-radius: 1rem;
     font-size: 19px;
     width: max-content;
     min-width: 17rem;
     background: var(--pink-medium);
-    padding: 3px 8px;
-    animation: .3s opacity;
+    animation-name: opacity;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
     user-select: none;}
 .authorization .invalid{color:var(--red-medium)}
+.authorization .prompt{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-10rem);
+    width: max-content;
+    max-width: 20rem;
+    background: var(--aquamarine-dark-glass);
+    color: var(--green-dark);
+    font-size:1.1rem;
+    padding: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 1rem;
+    user-select: none;}
+@media not all and (min-resolution:.001dpcm) { @media {
+    .authorization .prompt{background: var(--aquamarine-light);}
+}}
+@-moz-document url-prefix() {
+    .authorization .prompt{background: var(--aquamarine-light);}}

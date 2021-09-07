@@ -2,27 +2,27 @@
 {{#if error}}
     <div id="authorizationError">{{error}}</div>
 {{/if}}
-<input placeholder="Логин"
+<div><input placeholder="Логин"
        name="email"
        type="text"
-       class="validate{{#if emailStatus}} invalid{{/if}}"
+       class="{{#if emailStatus}} invalid{{/if}}"
        value="{{email}}"
-       required
        autocomplete="on"
        style="font-size: 20px; margin-bottom: 30px;"
        onclick="authorizationErrorDisplayNone()">
-<input placeholder="Пароль"
+    <div class="prompt"></div></div>
+<div><input placeholder="Пароль"
        name="password"
        type="password"
-       class="validate{{#if resetPassword}} invalid{{/if}}"
+       class="{{#if resetPassword}} invalid{{/if}}"
        value="{{password}}"
-       required
        autocomplete="on"
        style="font-size: 20px;margin-bottom: 30px"
        onclick="authorizationErrorDisplayNone(event)">
+<div class="prompt"></div></div>
 <button type="submit" class="btn">войти</button>
 {{#if resetPassword}}
-    <div><a id="resetPassword" href="/authorization/resetAccount">
+    <div><a id="resetPassword" href="/authorization/resetAccount?email={{email}}">
             Восстановть пароль</a></div>
 {{/if}}
 
