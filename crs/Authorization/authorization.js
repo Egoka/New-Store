@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {user, pass} })
 const regEmail = require('../../email/registrationEmail')
+const resetPas = require('../../email/resetPassword')
 router.get('/login',(req, res) => {
     if(req.session.isAuthorization){res.redirect(req.session.lastURL)}
     if(!req.session.lastURL){req.session.lastURL = '/'}
@@ -126,9 +127,69 @@ router.get('/resetAccount',(req, res) => {
         error:req.flash('error')
     })
 })
-router.post('/resetAccount',(req,res)=>{
-    req.flash('error', 'не существующий email')
-    req.flash('email', req.body.email)
-    res.redirect('/authorization/resetAccount')
+router.post('/resetAccount',async (req,res)=>{
+    const candidate = await Users.findOne({email:req.body.email}, "fullName email")
+    if (candidate){
+        let randStr = function(){return Math.random().toString(36).substr(2)}
+        const token = randStr()+randStr()
+        candidate.resetToken = token
+        candidate.resetDate = new Date(+new Date().setHours(new Date().getHours()+3))
+        await candidate.save()
+        await transporter.sendMail(resetPas(candidate.fullName,candidate.email,token))
+        res.redirect('/authorization/login')
+    }else{
+        req.flash('error', 'Такого email нет. Зарегестрируйтесь.')
+        req.flash('email', req.body.email)
+        res.redirect('/authorization/resetAccount')}
+})
+router.get('/password/:token',async(req,res) =>{
+    if(!req.params.token) res.redirect('/entry/login')
+    const user = await Users.findOne({
+        resetToken: req.params.token,
+        resetDate: {$gt:Date.now()}})
+    if(!user) {
+        req.flash('registerEmailError', 'Время действия ссылки истекло')
+        res.redirect('/authorization/resetAccount')
+    }else{
+        res.render('authorization',{
+            title: 'Восстановить доступ',
+            authorization:true,
+            newPassword:true,
+            error: req.flash('error'),
+            userId: user._id.toString(),
+            token: req.params.token,
+            email:user.email,
+            registrationPassword:req.flash('registrationPassword'),
+            registrationPasswordDup:req.flash('registrationPasswordDup')
+        })}
+})
+router.post('/password', async(req,res)=>{
+    let {email, userId, token, registrationPassword:password,
+        registrationPasswordDup:passwordDup} = req.body
+    const user = await Users.findOne({
+        _id: userId,
+        resetToken: token,
+        resetDate: {$gt: Date.now()}})
+    if(user){
+        if(!await bcrypt.compare(password,user.password)) {
+            if (password === passwordDup) {
+                user.password = await bcrypt.hash(password, 10)
+                user.resetToken = undefined
+                user.resetDate = undefined
+                user.verifiedUser = true
+                await user.save()
+                res.redirect('/authorization/login')
+            }else{
+                req.flash('registrationPassword', password)
+                req.flash('registrationPasswordDup', passwordDup)
+                req.flash('error', 'Пароль не совпадает')
+                res.redirect(`/authorization/password/${token}`)}
+        }else{
+            req.flash('error', 'Пароль не должен совпадать со старым')
+            res.redirect(`/authorization/password/${token}`)}
+    }else{
+        req.flash('email', email)
+        req.flash('error', 'Время действия ссылки истекло')
+        res.redirect('/authorization/resetAccount')}
 })
 module.exports = router
