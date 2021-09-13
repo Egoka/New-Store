@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {user, pass} })
 const regEmail = require('../../email/registrationEmail')
+const resetPas = require('../../email/resetPassword')
 router.get('/login',(req, res) => {
     if(req.session.isAuthorization){res.redirect(req.session.lastURL)}
     if(!req.session.lastURL){req.session.lastURL = '/'}
@@ -126,9 +127,20 @@ router.get('/resetAccount',(req, res) => {
         error:req.flash('error')
     })
 })
-router.post('/resetAccount',(req,res)=>{
-    req.flash('error', 'не существующий email')
-    req.flash('email', req.body.email)
-    res.redirect('/authorization/resetAccount')
+router.post('/resetAccount',async (req,res)=>{
+    const candidate = await Users.findOne({email:req.body.email}, "fullName email")
+    if (candidate){
+        let randStr = function(){return Math.random().toString(36).substr(2)}
+        const token = randStr()+randStr()
+        candidate.resetToken = token
+        candidate.resetDate = new Date(+new Date().setHours(new Date().getHours()+3))
+        await candidate.save()
+        await transporter.sendMail(resetPas(candidate.fullName,candidate.email,token))
+        res.redirect('/authorization/login')
+    }else{
+        req.flash('error', 'Такого email нет. Зарегестрируйтесь.')
+        req.flash('email', req.body.email)
+        res.redirect('/authorization/resetAccount')}
+})
 })
 module.exports = router
