@@ -163,5 +163,33 @@ router.get('/password/:token',async(req,res) =>{
             registrationPasswordDup:req.flash('registrationPasswordDup')
         })}
 })
+router.post('/password', async(req,res)=>{
+    let {email, userId, token, registrationPassword:password,
+        registrationPasswordDup:passwordDup} = req.body
+    const user = await Users.findOne({
+        _id: userId,
+        resetToken: token,
+        resetDate: {$gt: Date.now()}})
+    if(user){
+        if(!await bcrypt.compare(password,user.password)) {
+            if (password === passwordDup) {
+                user.password = await bcrypt.hash(password, 10)
+                user.resetToken = undefined
+                user.resetDate = undefined
+                user.verifiedUser = true
+                await user.save()
+                res.redirect('/authorization/login')
+            }else{
+                req.flash('registrationPassword', password)
+                req.flash('registrationPasswordDup', passwordDup)
+                req.flash('error', 'Пароль не совпадает')
+                res.redirect(`/authorization/password/${token}`)}
+        }else{
+            req.flash('error', 'Пароль не должен совпадать со старым')
+            res.redirect(`/authorization/password/${token}`)}
+    }else{
+        req.flash('email', email)
+        req.flash('error', 'Время действия ссылки истекло')
+        res.redirect('/authorization/resetAccount')}
 })
 module.exports = router
