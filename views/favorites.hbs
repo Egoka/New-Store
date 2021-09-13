@@ -1,15 +1,27 @@
-{{>catalog/productType}}
-<div class="productFork">
+{{#ifne options.length 1}}
+    {{>catalog/productType}}
+{{/ifne}}
+{{#if products}}
+<div class="productFork" style="margin-top: 4rem;height: 5rem;">
     <ul class="tabs" style="background: transparent">
         <li class="tab"><a style="padding:0" href="#lowercase" class="active">
             <i class="material-icons">dns</i></a></li>
         <li class="tab"><a style="padding:0" href="#bloc">
-            <i class="material-icons">dashboard</i></a></li>
+            <i class="material-icons">dashboard</i></a>
+        </li>
     </ul>
 </div>
-<div id="lowercase" style="width: 100%">
-    {{>catalog/filteredProduct}}
+<div id="favorites">
+    <div id="lowercase">
+        {{>catalog/filteredProduct}}
+    </div>
+    <div id="bloc">
+        {{>catalog/productGrid}}
+    </div>
 </div>
-<div id="bloc" style="width: 100%">
-    {{>catalog/productGrid}}
-</div>
+{{else}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Избранных еще нету</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(17rem, -3.5rem);">loyalty</i>
+    </div>
+{{/if}}

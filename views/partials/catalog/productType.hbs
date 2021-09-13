@@ -1,11 +1,13 @@
-<div id="typeProducts" class="typeTable">
-    <div class="typeTytle flexCenter"><b>Тип</b></div>
-    <div class="typeBody">
-    {{#each options}}
-        <div class="typeProduct js-typeProduct" data-id="{{id}}">
-            <i class="material-icons js-typeProduct" data-id="{{id}}">{{icon}}</i>
-            <b class="optionsText js-typeProduct" data-id="{{id}}">{{name}}</b>
+{{#if options}}
+    <div id="typeProducts" class="typeTable">
+        <div class="typeTytle flexCenter"><b>Тип</b></div>
+        <div class="typeBody">
+            {{#each options}}
+                <a href="/{{#if @root.favorites}}favorites{{/if}}{{#if @root.compare}}compare{{/if}}/{{_id}}" class="typeProduct js-typeProduct" data-id="{{_id}}">
+                    <i class="material-icons">{{classIco}}</i>
+                    <b class="optionsText">{{className}}</b>
+                </a>
+            {{/each}}
         </div>
-    {{/each}}
     </div>
-</div>
+{{/if}}

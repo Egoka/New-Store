@@ -1,17 +1,37 @@
-<table class="centered tableBasket">
-    <thead><tr><th>Название</th><th>Цена</th><th>Колличество</th><th></th></tr></thead>
-    <tbody>
-    {{#each basketList}}
-        <tr>
-            <td><a href="/catalog/{{idProduct}}">{{productName}}</a></td>
-            <td class="price">{{price}}</td>
-            <td><div class="quantity">
-                <span>&minus;</span>
-                <span>{{quantity}}</span>
-                <span>&plus;</span>
-            </div></td>
-            <td style="width:10%"><i class="material-icons clear">clear</i></td>
-        </tr>
-    {{/each}}
-    </tbody>
-</table>
+<div class="tableBasket">
+    <div class="headBusket">
+        <div class="rowBusket">
+            <div class="collumnBusket flexCenter">Название</div>
+            <div class="infoModal">
+                <div class="rowBusket">
+                    <div class="collumnBusket flexCenter">Цена</div>
+                    <div class="collumnBusket flexCenter">Колличество</div>
+                    <div class="collumnBusket flexCenter"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bodyBusket">
+        {{#each basketList}}
+        <div class="rowBusket">
+            <a href="/catalog/product/{{_id}}" class="collumnBusket flexCenter">{{nameProduct}}</a>
+            <div class="infoModal">
+                {{#each listSeller}}
+                    <div class="rowModal">
+                        <div class="collumnBusket flexCenter">
+                            <div class="price">{{price}}</div><div>{{nameSeller}}</div></div>
+                        <div class="collumnBusket flexCenter">
+                            <div class="quantity">
+                                <span class="flexCenter" onclick="userEditCountProduct(event,'{{_id}}',-1)">&minus;</span>
+                                <span class="flexCenter">{{count}}</span>
+                                <span class="flexCenter" onclick="userEditCountProduct(event,'{{_id}}',1)">&plus;</span>
+                            </div></div>
+                        <div class="collumnBusket flexCenter">
+                            <i class="material-icons clear"
+                               onclick="userEditCountProduct(event,'{{_id}}',0)">clear</i></div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>{{/each}}
+    </div>
+</div>

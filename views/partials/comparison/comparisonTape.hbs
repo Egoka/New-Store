@@ -1,0 +1,85 @@
+{{#if products}}
+<div class="comparisonTape">
+    {{#each products}}{{#if @first}}
+        {{#listProperites parameters}}{{body}}{{/listProperites}}
+    {{/if}}{{/each}}
+    {{#each products}}
+        <div class="model">
+            <div class="track">
+                <div class="hatSmall">
+                    <div class="hat">
+                        <div class="flexCenter">
+                            <img class="photoSlider" style="height: 85px;" src="{{photoURL}}" alt="">
+                        </div>
+                        <div class="flexCenter" style="flex-direction: column">
+                            <h4 style="max-width: 14rem;">{{nameProduct}}</h4>
+                            <div class="flexCenter" style="justify-content: space-evenly;width: 100%;">
+                                <p class="price">{{price}}</p>
+                                <i class="material-icons deleteProduct"
+                                   onclick="userListDel(event,'{{_id}}')"
+                                   {{#if list}}style="color:var(--red-dark)"{{/if}}>delete_forever</i>
+                            </div>
+                        </div>
+                        <div class="gradientTransition"></div>
+                    </div>
+                </div>
+                <div class="hatBig">
+                    <div class="flexCenter" style="height: 14rem;">
+                        <img class="photoSlider" src="{{photoURL}}" alt="">
+                    </div>
+                    <h4>{{nameProduct}}</h4>
+                    <p class="price">{{price}}</p>
+                    <i class="material-icons deleteProduct"
+                       onclick="userListDel(event,'{{_id}}')"
+                       {{#if list}}style="color:var(--red-dark)"{{/if}}>delete_forever</i>
+                    <div class="gradientTransition"></div>
+                </div>
+                {{#each parameters}}
+                    <div class="titleParameter"></div>
+                    {{#each parameter}}
+                        <div class="contentParameter"
+                             onmouseover="hoverEvent(event,{{index}})"
+                             onmouseout="hoverEvent(event,{{index}}, 1)">
+                            <span aria-label="{{value}}">{{value}}</span>
+                        </div>
+                    {{/each}}
+                {{/each}}
+                <div class="titleParameter"></div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+{{else}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Сравнивать нечего</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(15rem, -5rem)rotate(45deg)">compare_arrows</i>
+    </div>
+{{/if}}
+<script>
+    function calcRowCount() {
+        [...document.querySelectorAll('.contentParameter span')].map(content=>
+                content.clientHeight/15>2?
+                        content.setAttribute("class", "value"): false)}
+    function centerProperties() {
+        let propertyNames = document.querySelector('.propertyNames').children[0]
+        let comparisonTape = document.querySelector('.comparisonTape')
+        if(window.screen.width>1000){
+            window.screen.width
+            propertyNames.clientWidth
+            Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
+                return property.style.transform = 'translateX('+(comparisonTape.clientWidth - propertyNames.clientWidth) / 2 + "px)"})
+        }else{
+            Array.from(document.querySelectorAll('.propertyNames')).map(property=> {
+                return property.style.transform = 'translateX('+(window.screen.width - propertyNames.clientWidth) /2 + "px)"}) } }
+    window.onload = function() {
+        calcRowCount()
+        centerProperties()}
+    window.onresize = function() {
+        calcRowCount()
+        centerProperties()}
+    function hoverEvent(event, number, direction=0){
+        const lengthParameters = document.querySelectorAll('.contentParameter').length/document.querySelectorAll('.model').length
+        for(let i=0;i<document.querySelectorAll('.model').length;i++){
+            if(direction==0) document.querySelectorAll('.contentParameter')[number+lengthParameters*i].style.setProperty('background','var(--hoverTable)')
+            if(direction==1) document.querySelectorAll('.contentParameter')[number+lengthParameters*i].style.background = "none"}}
+</script>

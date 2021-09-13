@@ -1,11 +1,29 @@
 .commentProduct .photoProduct{padding: 0;justify-content: center;}
 .commentProduct .price{text-align: center;margin-top: 30px}
 .commentProduct h5{text-align: center;font-weight: 700;user-select: none;}
-.commentProduct .photoProduct img{max-height: 150px;margin-top: 0}
+.commentProduct .photoProduct img{max-height: 150px;margin-top: 0;object-fit: contain;}
 .commentProduct h4{text-align: center}
-.commentProduct ul, .product .btnProduct{display: none}
+.commentProduct ul, .commentProduct .btnProduct{display: none}
 .commentInput{
-    margin:  30px 15% 20px 15%;
+    margin:  30px 5% 20px 5%;
     text-align: center;
     user-select: none;}
-.commentInput input, textarea{color:var(--crystalWhite)}
+.commentInput input, textarea{color:var(--truly-black)}
+.entryField{
+    background: var(--indigo-full-light);
+    border: 3px solid var(--aquamarine-dark);
+    border-radius: 1rem;
+    padding: 2rem 1rem 1rem;
+    text-align: left;}
+.commentImage{
+    object-fit: contain;
+    max-width: 100%;
+    min-width: 10rem;
+    max-height: 25rem;
+    min-height: 0;
+    border-radius: 1rem;
+    border: 2px solid var(--hoverTable);}
+.container .commentInput .inputImage{
+    font-size: 18px;
+    width: 20rem;
+    color: var(--truly-black);}

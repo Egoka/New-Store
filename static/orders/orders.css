@@ -1,18 +1,22 @@
 .orders{
     background: var(--indigo-light);
-    display: grid;
-    margin: 1rem auto;
-    width: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    width: 100%;
+    height: max-content;
+    min-width: 25rem;
+    max-width: 30rem;
     padding: 20px;
     border-radius: 10px;
     overflow: hidden;
-    transition: .4s linear;
-}
+    scroll-snap-align: start;
+    transition: .4s linear;}
 .orders span{
     font-size: 21px;
-    font-weight: 100;
+    font-weight: 700;
     margin: 20px 0 0;
-    text-align: left;
-}
+    text-align: center;}
 .orders li {font-size:17px;margin-left: 20px;}
 .orders li::marker{color: var(--quartz);}
+.orders .ordersProduct

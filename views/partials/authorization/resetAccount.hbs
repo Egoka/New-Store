@@ -1,11 +1,11 @@
 {{#if error}}<div id="authorizationError">{{error}}</div>{{/if}}
-<input placeholder="Email для востановления"
+<div><input placeholder="Email для востановления"
        name="email"
        type="text"
        value="{{email}}"
-       required
        class="validate{{#if error}} invalid{{/if}}"
        autocomplete="off"
        style="font-size: 20px;margin-bottom: 30px;"
        onclick="authorizationErrorDisplayNone(event)">
+    <div class="prompt"></div></div>
 <button type="submit" class="btn">Воостановить</button>

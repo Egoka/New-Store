@@ -1,20 +1,43 @@
-{{#each orders}}
-    <div class="orders">
-        <span>Заказ {{idOrders}}</span>
-        <span class="dateOrders"></span>
-        <ul>{{#each products}}
-            <li style="list-style-type: initial;">
-                {{productName}}
-                <strong class="price">{{priceProduct}}</strong>
-                <i>{{amountProduct}}шт.</i>
-            </li>{{/each}}
-        </ul>
-        <hr style="width: 100%">
-        <span style="text-align: center">Итог: <strong class="price">{{priseOrders}}</strong></span>
-    </div>
+{{#if orders}}
+    {{#each orders}}
+        <div class="orders">
+            <span class="numberOrder">Заказ {{_id}}</span>
+            <span class="dateOrders">{{date}}</span>
+            <ul>{{#each order}}
+                <li style="list-style-type: initial;">
+                    <a href="/catalog/product/{{_id}}" class="nameProduct">{{nameProduct}}</a>
+                    <div class="listSeller">
+                    {{#each listSeller}}<p class="ordersProduct">
+                        <a href="/catalog/seller/{{_id}}" class="nameSeller">{{nameSeller}}</a>
+                        <strong class="price priceProduct">{{price}}</strong>
+                        <i>{{count}}шт.</i>
+                    </p>{{/each}}
+                    </div>
+                </li>{{/each}}
+            </ul>
+            <hr style="width: 100%">
+            <span style="text-align: center">Итог: <strong class="price priseOrders">{{priseOrders}}</strong></span>
+        </div>
+    {{/each}}
     <script>
-        let date{{@index}} = new Date('{{dateOrders}}');
-        document.querySelectorAll('.dateOrders')[{{@index}}].textContent  = date{{@index}}.toLocaleString('ru',
-                {day: 'numeric',month: 'long',year: 'numeric',hour:'numeric',minute:'numeric'})
+        let i = document.querySelectorAll('.orders').length;
+        while (i) {i--;
+            document.querySelectorAll('.orders .dateOrders')[i].innerHTML =
+                    new Date(document.querySelectorAll('.dateOrders')[i].innerHTML).toLocaleString('ru',
+                            {day: 'numeric',month: 'long',year: 'numeric',hour:'numeric',minute:'numeric'})
+            document.querySelectorAll('.orders .priseOrders')[i].innerHTML=
+                    [...document.querySelectorAll('.orders')[i].children[2].children]
+                            .map(product=>[...product.children[1].children]
+                                    .map(price=> (+price.children[1].innerHTML.split(',')[0].split("&nbsp;").join('') *
+                                            (+price.children[2].innerHTML.split("шт.")[0]))))
+                            .map(sum=>sum.reduce(function(a, b){return a + b;}))
+                            .reduce(function(a, b) {return a + b;})
+            document.querySelectorAll('.orders .numberOrder')[i].innerHTML =
+                    document.querySelectorAll('.orders')[i].children[0].innerHTML.substr(0, 20)}
     </script>
-{{/each}}
+{{else}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Заказов нет</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(11rem, -4rem);">receipt</i>
+    </div>
+{{/if}}

@@ -1,32 +1,43 @@
-<div class="product">
+<div class="product flexCenter">
     <div  class="photoProduct">
         <img class="materialboxed" src="{{product.photoURL}}" alt="" >
     </div>
     <div class="descriptionProduct request">
-        <div class="centerMy flexCenter">
-            {{#if userStatus}}
-                <i class="material-icons js-filter"
-                   data-id="{{product.name}}" data-form="list" data-status="true"
-                   title="Добавить в список сравнения">playlist_add</i>
-                <i class="material-icons js-filter"
-                   data-id="{{product.name}}" data-form="like" data-status="true"
-                   title="Сохранить">favorite_border</i>
-            {{/if}}
-        </div>
-        <h5 class="price">{{product.price}}</h5>
-        <div class="centerMy flexCenter">
-            <button class="btn btnProduct" style="background:{{product.colorBackground}}">в корзину</button>
-        </div>
+        {{#if isAuth}}
+            <div class="centerMy flexCenter">
+                <i class="material-icons"
+                   onclick="userList(event,'{{product._id}}')"
+                   {{#if product.list}}style="color:var(--red-dark)"{{/if}}>
+                    {{#if product.list}}playlist_add_check{{else}}playlist_add{{/if}}</i>
+                <i class="material-icons"
+                   onclick="userLike(event,'{{product._id}}')"
+                   {{#if product.like}}style="color:var(--red-dark)"{{/if}}>
+                    {{#if product.like}}favorite{{else}}favorite_border{{/if}}</i>
+            </div>
+        {{/if}}
+        {{#ifgt product.stars 0}}
+            <div class="starProduct">
+                {{#stars product.stars}}{{body}}{{/stars}}
+            </div>
+        {{/ifgt}}
+        {{#if isAuth}}
+            <div class="centerMy flexCenter" style="flex-direction: column">
+                <h5 class="price">{{product.price}}</h5>
+                <button class="btn btnProduct" style="background:{{product.colorBackground}}" data-busketId="{{product.basket.idSeller}}"
+                        onclick="userBasket(event,'{{product._id}}')">
+                    <i class="material-icons">{{#if product.basket.basket}}shopping_cart{{else}}add_shopping_cart{{/if}}</i>
+                    <span>{{#if product.basket.basket}}в корзине{{else}}в корзину{{/if}}</span></button>
+            </div>
+        {{else}}
+            <div class="centerMy flexCenter">
+                <h5 class="price" style="margin: 65px 0">{{product.price}}</h5>
+            </div>
+        {{/if}}
         <ul>
-            {{#each product.description}}
-                {{#if @first}}
-                    {{#each parameter}}
-                        <li style="list-style-type: initial; color: {{@root.product.colorBackground}};"><span>{{value}}</span></li>
-                    {{/each}}
-                {{/if}}
+            {{#each product.depiction}}
+                <li style="list-style-type: initial; color: {{@root.product.colorBackground}};">
+                    <span>{{items}}</span></li>
             {{/each}}
         </ul>
     </div>
 </div>
-
-
