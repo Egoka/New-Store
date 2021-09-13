@@ -6,6 +6,12 @@ const users = new Schema({
     password:{type: String, required:true},
     theme:{type:Number, default:0, enum:[0,1,2]},
     verifiedUser: {type:Boolean, default: false},
+    verifiedToken:String,
+    resetToken:String,
+    resetDate:{
+        type: Date,
+        default: new Date(+new Date().setHours(new Date().getHours()+3)),
+    },
     viewedProducts:[{
         _id:{
             type: Schema.Types.ObjectId,

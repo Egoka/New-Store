@@ -3,6 +3,14 @@ const bcrypt = require('bcryptjs')
 const Users = require('../../modelsDB/users')
 const router = Router()
 const closedPage = require('../../middleware/auth')
+const nodemailer = require('nodemailer')
+const {mailKey,emailFrom:user,emailPassword:pass} = require('../../keys/private')
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {user, pass} })
+const regEmail = require('../../email/registrationEmail')
 router.get('/login',(req, res) => {
     if(req.session.isAuthorization){res.redirect(req.session.lastURL)}
     if(!req.session.lastURL){req.session.lastURL = '/'}
@@ -93,10 +101,13 @@ router.post('/registration',async (req,res)=>{
                                 const token = randStr()+randStr()
                                 const user = new Users({
                                     fullName:name, email,
-                                    resetToken:token,
+                                    verifiedToken:token,
                                     password:await bcrypt.hash(password,10)})
                                 await user.save()
+                                req.flash('email',email)
+                                req.flash('password', password)
                                 res.redirect('/authorization/login')
+                                await transporter.sendMail(regEmail(name, email, token))
                             }else{return flashMessage("Пароль должен быть сложнее",3)}
                         }else{return flashMessage("Пароль должен быть сложнее",3)}
                     }else{return flashMessage("Пароль должен быть длиннее, от 6 до 20 знапков",3)}
