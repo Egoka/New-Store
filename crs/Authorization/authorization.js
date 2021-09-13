@@ -142,5 +142,26 @@ router.post('/resetAccount',async (req,res)=>{
         req.flash('email', req.body.email)
         res.redirect('/authorization/resetAccount')}
 })
+router.get('/password/:token',async(req,res) =>{
+    if(!req.params.token) res.redirect('/entry/login')
+    const user = await Users.findOne({
+        resetToken: req.params.token,
+        resetDate: {$gt:Date.now()}})
+    if(!user) {
+        req.flash('registerEmailError', 'Время действия ссылки истекло')
+        res.redirect('/authorization/resetAccount')
+    }else{
+        res.render('authorization',{
+            title: 'Восстановить доступ',
+            authorization:true,
+            newPassword:true,
+            error: req.flash('error'),
+            userId: user._id.toString(),
+            token: req.params.token,
+            email:user.email,
+            registrationPassword:req.flash('registrationPassword'),
+            registrationPasswordDup:req.flash('registrationPasswordDup')
+        })}
+})
 })
 module.exports = router
