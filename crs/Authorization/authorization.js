@@ -14,7 +14,10 @@ const regEmail = require('../../email/registrationEmail')
 const resetPas = require('../../email/resetPassword')
 router.get('/login',(req, res) => {
     if(req.session.isAuthorization){res.redirect(req.session.lastURL)}
-    if(!req.session.lastURL){req.session.lastURL = '/'}
+    if(!req.session.lastURL){
+        if(typeof(req.headers.referer)!="undefined") {
+            req.session.lastURL = req.headers.referer.split(req.headers.host)[1]
+        }else{req.session.lastURL = "/"}}
     res.render('authorization', {
         link:'/',
         title: 'Авторизация',
