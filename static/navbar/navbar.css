@@ -3,6 +3,7 @@ html body .navMy a{
     text-align: center;
     border-radius: 1rem;
     color:var(--crystalWhite)}
+span.email{text-transform: lowercase;}
 html body nav{
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -20,8 +21,8 @@ html body nav{
     flex-direction: column;
     justify-content: space-around;}
 .avatar{
-    width: 150px;
-    height: 150px;
+    height: 100%;
+    aspect-ratio: 1/1;
     margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
@@ -50,8 +51,7 @@ body .section{
 body .navMy .personalInformation{
     display: flex;
     flex-direction: column;
-    /*aspect-ratio: 1 / 1;*/
-    height: min-content;
+    height: 100%;
     border-radius: 1.8rem;
     padding: 12px 32px 0;
     margin: 0;}

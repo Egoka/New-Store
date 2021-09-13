@@ -8,7 +8,9 @@ function editAccout(event){
             "event.target.parentElement.children[0].children[0].src = event.srcElement.value")
         inputElement.style.fontSize = "18px"
         inputElement.style.width = "max-content"
-        inputElement.value = document.querySelector('.photoAccount').children[0].src
+        let src = document.querySelector('.photoAccount').children[0].src
+        if(src==undefined){src="Ссылка на аватарку"}
+        inputElement.value = src
         inputElement.style.color = "var(--truly-black)"
         object[2].append(inputElement);
         function stylesElement(object,fontSize) {

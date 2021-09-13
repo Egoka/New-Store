@@ -7,7 +7,7 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const MongoSession =  require('connect-mongodb-session')(session)
 /////////////////////////////////////////////////
-const {urlMongoDB:URL} = require('./keys/private')
+const {urlMongoDB:URL,sessionKey} = require('./keys/private')
 const varMiddleware = require('./utils/variables')
 /////////////////////////////////////////////////
 const start = require('./crs/start')
@@ -40,7 +40,7 @@ const storeSession = new MongoSession({
     collation:'sessions',
     uri: URL })
 app.use(session({
-    secret: 'woot',
+    secret: sessionKey,
     resave: false,
     saveUninitialized: false,
     storeSession}));
