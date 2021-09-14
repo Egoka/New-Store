@@ -1,0 +1,46 @@
+{{#each product.listReviews}}
+    <div class="recallList">
+        <div class="recallUser">
+            <div class="author">
+                <div class="photoRecall">
+                    <img src="{{author.photoUrl}}" alt="">
+                </div>
+                <strong>{{author.fullName}}</strong>
+            </div>
+            <div class="author">
+                {{#if author.verifiedUser}}
+                    <i class="material-icons" style="color:var(--green-medium)">assignment_turned_in</i>
+                    <span>Проверенный покупатель</span>
+                {{else}}<span style="color: var(--quartz)">Не проверенный покупатель</span>{{/if}}
+            </div>
+            <div class="starsRecall">{{#stars rating}}{{body}}{{/stars}}</div>
+        </div>
+        <div class="messageRecall">
+            <div class="userComment">
+                <div>
+                    {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{#each advantages}}{{this}}<br/>{{/each}}</div>{{/if}}
+                    {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{#each limitations}}{{this}}<br/>{{/each}}</div>{{/if}}
+                    {{#if comment}}<div class="infRecall"><b>Комментарий: </b>{{#each comment}}{{this}}<br/>{{/each}}</div>{{/if}}
+                    {{#if photo}}<div class="photoRecall"><img class="materialboxed reviewsImage" src="{{photo}}" alt=""></div>{{/if}}
+                </div>
+            </div>
+            <div class="warp" style="display:none;">
+                <div class="curtain" onclick="editComment(event)" style="height: 8rem;">
+                    <span class="material-icons">expand_more</span></div></div>
+            <div class="dateRecall">
+                <div class="commentWasWritten">Коментарий был написан <b class="date">{{toDate date}}</b></div>
+                <div class="likeRecall">
+                    <div class="appraisal">
+                        <i class="material-icons"{{#if @root.isAuth}}
+                           onclick="addInListReviews(event,'{{_id}}',0)"{{/if}}>{{#if likeStatus}}thumb_up{{else}}thumb_up_off_alt{{/if}}</i>
+                        <span>{{like}}</span></div>
+                    <div class="appraisal">
+                        <i class="material-icons"{{#if @root.isAuth}}
+                           onclick="addInListReviews(event,'{{_id}}',1)"{{/if}}>{{#if dislikeStatus}}thumb_down{{else}}thumb_down_off_alt{{/if}}</i>
+                        <span>{{dislike}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+<script src="/product/recall.js"></script>

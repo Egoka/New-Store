@@ -1,8 +1,8 @@
 .btnShift{
     top: 0;
     position: absolute;
-    height: 28rem;
-    width: 12vh;
+    height: 100%;
+    width: 5rem;
     user-select: none;
     cursor: pointer;
     transition: .4s linear;
@@ -60,3 +60,11 @@
 .brandsMy img{
     max-width: 100%;
     max-height: 100%;}
+.container .carousel.carousel-slider .carousel-fixed-item{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5rem;
+    z-index: 1;
+    height: 92vh;
+}

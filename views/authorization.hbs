@@ -14,18 +14,18 @@
         </div>
     {{/if}}
     {{#if resetAccount}}
-        <div id="registration">
+        <div id="reset">
             <form action="/authorization/resetAccount" method="post">
                 {{>authorization/resetAccount}}
             </form>
         </div>
     {{/if}}
-    <script>
-        function authorizationErrorDisplayNone(event) {
-            if(document.querySelector('#authorizationError')!==null) {
-                document.querySelector('#authorizationError').style.display = 'none'
-                event.srcElement.style.color = '#458e2f'
-            }
-        }
-    </script>
+    {{#if newPassword}}
+        <div id="newPassword">
+            <form action="/authorization/password" method="post">
+                {{>authorization/newPassword}}
+            </form>
+        </div>
+    {{/if}}
 </div>
+<script src="/authorization/validation.js"></script>

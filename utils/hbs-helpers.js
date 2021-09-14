@@ -1,34 +1,30 @@
 module.exports = {
-    stars(rating){
+    stars(rating=0){
         const size = rating
         rating=rating.toFixed(0)
         const star = new Array(5).fill("#bcbcbc");
-        while(rating) {
-            rating -= 1
-            star[rating] = "#e7ad00"}
+        if(rating>0){
+            while(rating) {
+                rating -= 1
+                star[rating] = "#e7ad00"}}
         return (`<span data-id="${size}" class="material-icons recall-filter" style="color: ${star[0]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[1]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[2]}">star</span>
                  <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[3]}">star</span>
-                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</span>`)
-    },
+                 <span data-id="${size}" class="material-icons recall-filter" style="color: ${star[4]}">star</span>`)},
     starRecall(number){
         if (number>0) {
             if (number === 1) return `${number} отзыв`
             if (number < 5) return `${number} отзыва`
             return `${number} отзывов`}
-        return `--`
-    },
+        return `--`},
     paymentFormat(format){
-        if(format==='courier'){
+        if(format===1){
             return`<i class="material-icons">payment</i>
-                   <p>Оплата наличными курьеру</p>`
-        } else
-        if(format==='store'){
+                   <p>Оплата наличными курьеру</p>`}
+        if(format===2){
             return`<i class="material-icons">store</i>
-                   <p>Варианты оплаты уточняйте в магазине</p>`
-        }
-    },
+                   <p>Варианты оплаты уточняйте в магазине</p>`}},
     toDate(date){
         function monthDays(year, month) {
             return (month === 2 ?
@@ -37,8 +33,8 @@ module.exports = {
                 (((month < 8 && (month & 1) === 0) ||
                     (month > 7 && (month & 1) === 1)) ? 31 : 30));}
         function dateDiff(date1, date2) {
-            var years, months, days, hours, minutes, seconds;
-            var y1, m1, d1, d2, dd;
+            let years, months, days, hours, minutes, seconds;
+            let y1, m1, d1, d2, dd;
             years = date2.getUTCFullYear()-(y1 = date1.getUTCFullYear());
             months = date2.getUTCMonth()-(m1 = date1.getUTCMonth());
             days = (d2 = date2.getUTCDate())-(d1 = date1.getUTCDate());
@@ -75,20 +71,44 @@ module.exports = {
                 if(days<5)return `${days} дня назад`
                 return `${days} дней назад`}
             if (hours>0){
-                if(hours===1)return `${hours} час назад`
-                if(hours<5)return `${hours} часа назад`
+                if(hours%10===1)return `${hours} час назад`
+                if(hours%10<5)return `${hours} часа назад`
                 return `${hours} часов назад`}
             if (minutes>0) {
                 if(minutes===1)return `${minutes} минуту назад`
                 if(minutes<5)return `${minutes} минуты назад`
                 return `${minutes} минут назад`}
             if (seconds>0)return `${seconds} секунд назад`}
-        var d1 = new Date(date);
-        var d2 = new Date(+Date.now())
-        return dateDiff(d1, d2);
-    },
+        let d1 = new Date(date);
+        let d2 = new Date(+Date.now())
+        return dateDiff(d1, d2);},
+    listProperites(properties){
+        let result = ''
+        let marginRem=3
+        properties.forEach(value=>{
+            result +=`<div class="propertyNames" style="margin-top: ${20+marginRem}rem; font-size: 21px">
+               <div class="title"><b>${value.nameDescription}</b></div>
+            </div>`
+            value.parameter.forEach(parameter=>{
+                marginRem+=5
+                result +=`<div class="propertyNames" style="margin-top: ${19+marginRem}rem;">
+               <div class="title"
+               onmouseover="hoverEvent(event,${parameter.index})"
+               onmouseout="hoverEvent(event,${parameter.index}, 1)">
+               <span>${parameter.name}</span></div>
+               </div>` })
+            marginRem+=6 })
+        return result},
     ifeq(a,b,options){
         if(a==b) return options.fn(this)
-        return options.inverse(this)
-    }
+        return options.inverse(this)},
+    ifne(a,b,options){
+        if(a!=b) return options.fn(this)
+        return options.inverse(this)},
+    ifgt(a,b,options){
+        if(a>b) return options.fn(this)
+        return options.inverse(this)},
+    ifgtd(a,b,c,options){
+        if(a>b&&b>c) return options.fn(this)
+        return options.inverse(this)}
 }

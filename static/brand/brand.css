@@ -7,11 +7,17 @@
     animation-fill-mode: forwards;}
 .brandTypes h3{display: none}
 .productGrid{
-    width: 100%;
+    width: 92%;
     flex-wrap: wrap;}
+@media (max-width:1300px) {
+    .productGrid{width: 99%;}}
 .productGrid img{
     max-height: 100%;
     max-width: 100%;}
+.likeProduct{
+    position: relative;
+    color: var(--black-white);
+    transform: translateY(-2.5rem);}
 .productObject{
     display: block;
     text-align: center;
@@ -30,5 +36,6 @@
 .productObject div{height: 80%;}
 .productObject p{
     margin: 0;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: 200;
     color: var(--quartz)}

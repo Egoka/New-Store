@@ -1,23 +1,36 @@
-<form action="/catalog/{{product.id}}/comment" method="post">
-    <div class="input-field col s12">
-        <input id="inputAdvantages" name="inputAdvantages" type="text" data-length="100">
+<form action="/catalog/product/{{product._id}}/comment" method="post">
+    <div class="input-field">
+        <textarea id="inputAdvantages" name="advantages" class="materialize-textarea">{{product.advantages}}</textarea>
         <label for="inputAdvantages">Достоинства</label>
     </div>
-    <div class="input-field col s12">
-        <input id="inputDisadvantages" name="inputDisadvantages" type="text" data-length="100">
+    <div class="input-field">
+        <textarea id="inputDisadvantages" name="limitations" class="materialize-textarea">{{product.limitations}}</textarea>
         <label for="inputDisadvantages">Недостатки</label>
     </div>
-    <div class="input-field col s12">
-        <textarea id="textComment" name="textComment" class="materialize-textarea" data-length="1500"></textarea>
+    <div class="input-field">
+        <textarea id="textComment" name="comment" class="materialize-textarea">{{product.comment}}</textarea>
         <label for="textComment">Комментарий</label>
     </div>
+    <div class="input-field flexCenter" style="flex-direction: column">
+        <img src="{{product.photoComment}}" alt="" class="commentImage">
+        <input name="photo" type="url" class="inputImage" value="{{product.photoComment}}" onchange="event.target.parentElement.children[0].src = event.srcElement.value">
+    </div>
     <div class="commentInput" data-success="{{product.colorBackground}}">
-        <i data-id="1" class="material-icons comment-filter">star_border</i>
-        <i data-id="2" class="material-icons comment-filter">star_border</i>
-        <i data-id="3" class="material-icons comment-filter">star_border</i>
-        <i data-id="4" class="material-icons comment-filter">star_border</i>
-        <i data-id="5" class="material-icons comment-filter">star_border</i>
-        <input name="stars" id="stars"  type="number" style="display:none" value="${size}" required>
+        {{#if product.rating}}
+            <i data-id="1" class="material-icons comment-filter" style="color: {{#ifgt product.rating 0}}#e7ad00{{else}}#bcbcbc{{/ifgt}}">star</i>
+            <i data-id="2" class="material-icons comment-filter" style="color: {{#ifgt product.rating 1}}#e7ad00{{else}}#bcbcbc{{/ifgt}}">star</i>
+            <i data-id="3" class="material-icons comment-filter" style="color: {{#ifgt product.rating 2}}#e7ad00{{else}}#bcbcbc{{/ifgt}}">star</i>
+            <i data-id="4" class="material-icons comment-filter" style="color: {{#ifgt product.rating 3}}#e7ad00{{else}}#bcbcbc{{/ifgt}}">star</i>
+            <i data-id="5" class="material-icons comment-filter" style="color: {{#ifgt product.rating 4}}#e7ad00{{else}}#bcbcbc{{/ifgt}}">star</i>
+            <input name="rating" id="stars" class="commentStar" type="number" style="display: none" value="{{product.rating}}" required>
+        {{else}}
+            <i data-id="1" class="material-icons comment-filter">star_border</i>
+            <i data-id="2" class="material-icons comment-filter">star_border</i>
+            <i data-id="3" class="material-icons comment-filter">star_border</i>
+            <i data-id="4" class="material-icons comment-filter">star_border</i>
+            <i data-id="5" class="material-icons comment-filter">star_border</i>
+            <input name="rating" id="stars"  type="number" style="display:none" value="{{product.rating}}" required>
+        {{/if}}
         <label for="stars"></label>
     </div>
     <button class="btn" type="submit" style="background:{{product.colorBackground}};">Оставить отзыв</button>

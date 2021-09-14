@@ -1,16 +1,29 @@
 html body .navMy a{
     text-transform: uppercase;
     text-align: center;
+    border-radius: 1rem;
     color:var(--crystalWhite)}
-.navMy{background: var(--slateGray-light)}
-.navMy li:hover {background: var(--yellow-light)}
+span.email{text-transform: lowercase;}
+html body nav{
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: var(--navBar-color)}
+.navMy li{transition: .5s linear;}
+.navMy li:hover {
+    background: var(--yellow-light);
+    transition: .5s linear;}
 .navMy li:hover a{color: var(--truly-black)}
 .navMy .user-view{margin: 0;}
 .navMy .brand-logo{font-size: 1.6rem;}
+.navMy .listNavBar{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;}
 .avatar{
-    width: 150px;
-    height: 150px;
-    margin: 30px auto 10px;
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
     user-select: none;}
@@ -21,5 +34,24 @@ html body .navMy a{
 .activeMy a{color: var(--yellow-light)}
 @media (min-width: 500px) {
     .navbar-fixed .sidenav-trigger {
-        display: block;}
-}
+        display: block;}  }
+body .navMy{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 1rem;}
+body .section{
+    border-radius: 1rem;
+    margin: .5rem 1rem;
+    padding: 0;
+    border: 2px solid var(--transparent-black);}
+body .navMy .personalInformation{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 1.8rem;
+    padding: 12px 32px 0;
+    margin: 0;}

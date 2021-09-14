@@ -1,13 +1,14 @@
-#lowercase,#bloc{width: 75%}
+#catalog #lowercase, #catalog #bloc{width: 70%}
 .productFork{
-    width: 100%;
-    padding: 6rem 30% 0}
+    display: flex;
+    justify-content: space-between;
+    width: 75%;}
 .productFork li{
     width: 45%}
 .productFork a{
     padding: 0;}
 .productFork i{
-    font-size: 25px;
+    font-size: 30px;
     color: var(--indigo-medium)}
 .productFork a:focus{
     color: var(--green-medium);}
@@ -15,13 +16,16 @@
     position: static;
     width: 100%;
     min-width: 185px;
-    padding: 2%}
+    padding: 0 2%}
 .device{
-    margin: 10px 0;
+    height: 25rem;
+    margin: 10px auto;
     padding: 1.1rem;
-    width: 100%;
-    height: 280px;
+    max-width: 60rem;
+    max-height: 40rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     overflow: hidden;
     border-radius: 30px;
     border: 1px solid var(--transparent-black);}
@@ -31,47 +35,54 @@
     display: flex;
     justify-content: center;
     align-items: center;}
-#lowercase .filterImage{width: 35%;}
+#lowercase .filterImage{
+    width: 35%;
+    margin: 0 auto}
 .device .material-placeholder{
-    height: 250px;
+    height:20rem;
     margin-right: 10px;
     display:flex;
     align-items: center;
     justify-content: center;}
 .filterImage img{
     max-height: 100%;
-    max-width: 16rem;}
-@media (max-width: 850px){.filterImage img{max-width: 14rem;}}
-@media (max-width: 750px){.filterImage img{max-width: 12rem;}}
-@media (max-width: 650px){.filterImage img{max-width: 11rem;}}
-@media (max-width: 550px){.filterImage img{max-width: 10rem;}}
-@media (max-width: 500px){.filterImage img{max-width: 8rem;}}
-@media (max-width: 400px){.filterImage img{max-width: 6rem;}}
+    user-select: none;
+    -webkit-user-select:none;}
+#catalog .filterImage img{
+    max-width: 120%;
+    object-fit: contain;}
+#favorites .filterImage img{
+    max-width: 120%;
+    object-fit: contain;}
 .description{
     height: max-content;
-    width: 75%;
-    padding: 1.1rem;
+    width: 22rem;
+    margin: 0 auto;
+    padding:0 1.1rem;
     z-index: 10;}
+@media (max-width: 550px){.description{width: 75%;}}
 .description a{
     font-size: 22px;
     white-space: nowrap;
     color: var(--truly-black);
     font-weight: 700;
     transition: .4s linear}
-.description a:hover{
-    color:var(--slateGray-light);
-    transition: .4s linear}
+.depiction{
+    width: 100%;}
 @media (max-width: 1300px) {
-    .filteredProduct{
-        width: inherit;
+    #catalog .filteredProduct{
+        width: 76%;
         position: absolute;
-        left: 0;}
-}
-@media (max-width: 900px) {
-    .device .material-placeholder{margin-right: 0}
-}
+        left: 0;}  }
+@media (max-width:650px) {
+    #catalog .filteredProduct{width: 100%;}  }
+@media (max-width: 900px) {  .device .material-placeholder{margin-right: 0}  }
+.description .starProduct{
+    width: 100%;
+    margin:.5rem;}
 .purchase{
-    display: flex;
+    position: relative;
+    left: -20%;
     width: 100%;}
 .purchase i{
     position: static;
@@ -79,16 +90,62 @@
     margin: 15px;
     font-size: 28px;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select:none;
     transition: .2s linear}
 .purchase i:hover{
     color: var(--red-dark);
     transition: .2s linear}
 .priceFilter{
     display:flex;
+    flex-direction: column;
     align-items: center;
     margin: 0 1rem;
     color: var(--graphite);
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;}
-.priceFilter p{margin: 0;}
+.priceFilter p{
+    margin: 0;
+    font-size: 1rem}
+.messege {
+    display: none;
+    justify-content:center;
+    width: 100vw;
+    height: 100vh;
+    background: #f8f6f0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 900;
+    opacity: 0;}
+.productFork .tabs .indicator{background-color: var(--indigo-dark);}
+.productFork .tabs{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    width: 25rem;
+    height: 5rem;
+    background: transparent;}
+@media (max-width: 750px) {
+    .productFork .tabs{width: 12rem;}}
+.productFork .tabs .tab{margin-top:2rem;}
+.productFork .tabs .tab a{padding:0;}
+.tagNEW{
+    position: absolute;
+    width: 5rem;
+    height: 2rem;
+    background: var(--indigo-light);
+    transform: translateY(10.5rem);
+    border-radius: 30px;
+    border: 1px solid var(--transparent-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: var(--slateGray-dark);
+    text-transform: capitalize;
+    padding-bottom: 2px;
+    z-index: 100;
+}

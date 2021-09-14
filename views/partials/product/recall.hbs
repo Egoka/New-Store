@@ -1,50 +1,18 @@
 <div class="recall request">
     <div class="recallInf">
-        <h3>Отзовы <strong>{{recall.length}}</strong></h3>
+        {{#ifne product.countRecall 0}}<h3>Отзовы <strong>{{product.countRecall}}</strong></h3>
+        {{else}}<h3>Отзывов еще никто не оставил</h3>{{/ifne}}
         <div class="filterRecall">
-            <a class="btn" href="/catalog/{{product.id}}/comment" style="background:{{product.colorBackground}}">Оставить отзыв</a>
-            <div class="listStarsRecall">
-                <p>Показать отзывы с оценкой</p>
-                {{#each product.recallList}}
-                    <div><a class="recall-filter" data-id="{{size}}">
-                        {{#stars size}}{{body}}{{/stars}}
-                        <span class="recall-filter" data-id="{{size}}">{{#starRecall value}}{{body}}{{/starRecall}}</span>
-                    </a></div>
-                {{/each}}
-            </div>
+            {{#ifne product.countRecall 0}}
+                {{>reviews/reviewsStars}}
+            {{else}}
+                {{#if isAuth}}
+                    <a class="btn" href="/catalog/product/{{product._id}}/comment"
+                       style="background:{{product.colorBackground}}">Оставить первый отзыв</a>
+                {{/if}}
+            {{/ifne}}
         </div>
-        {{#each recall}}
-            <div class="recallList">
-                <div class="recallUser">
-                    <div class="photoRecall">
-                        <img src="{{photoUser}}" alt="">
-                    </div>
-                    <strong>{{name}}</strong>
-                    {{#if verifiedUser}}
-                        <i class="material-icons" style="color:var(--green-medium)">assignment_turned_in</i>
-                        <span>Проверенный покупатель</span>
-                    {{else}}
-                        <span style="color: var(--quartz)">Не проверенный покупатель</span>
-                    {{/if}}
-                    <div class="starsRecall">{{#stars rating}}{{body}}{{/stars}}</div>
-                </div>
-                <div class="messageRecall">
-                    {{#if photo}}
-                        <div class="photoRecall">
-                            <img class="materialboxed" src="{{photo}}" alt="">
-                        </div>
-                    {{/if}}
-                    {{#if advantages}}<div class="infRecall"><b>Достоинства: </b>{{advantages}}</div>{{/if}}
-                    {{#if limitations}}<div class="infRecall"><b>Недостатки: </b>{{limitations}}</div>{{/if}}
-                    {{#if comment}}<div class="infRecall"><b>Комментарий: </b><p>{{comment}}</p></div>{{/if}}
-                    <div class="dateRecall">Коментарий был написан <b class="date">{{toDate date}}</b>
-                        <div class="likeRecall">
-                            <i class="material-icons">thumb_up</i><span>{{like}}</span>
-                            <i class="material-icons">thumb_down</i><span>{{likeNot}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
+        {{>reviews/listReviews}}
     </div>
 </div>
+<script src="/product/recall.js"></script>

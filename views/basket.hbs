@@ -1,9 +1,16 @@
 <div class="displayFormat">
+    {{#if basketList}}
     {{>basket/tableBasket}}
     <div class="basketPrice">
-        <div>В корзине <b>{{sizeBasket}}</b> продкутво</div>
-        <div>Сумма <b class="price">{{sumPrise}}</b></div>
-        <a href="/"><button class="btn">Оплатить</button></a>
+        <div>В корзине <b>{{sizeBasket}}</b> {{#ifeq sizeBasket 1}}продкут{{/ifeq}}{{#ifgtd 5 sizeBasket 1}}продкута{{/ifgtd}}{{#ifgtd 100 sizeBasket 5}}продкутов{{/ifgtd}}</div>
+        <div>Сумма <b id="sum" class="price">{{sumPrise}}</b></div>
+        <a href="/basket/pay"><button class="btn">Оплатить</button></a>
     </div>
+    {{else}}
+        <div class="noDataBlock">
+            <div class="cartIsEmpty">Корзина пуста</div>
+            <i class="material-icons cartIsEmpty" style="font-size: 3rem;transform: translate(1rem, 1rem)rotate(45deg);margin-left: 0;">shopping_cart</i>
+        </div>
+    {{/if}}
 </div>
 

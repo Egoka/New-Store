@@ -2,6 +2,7 @@
     --green-dark: #458e2f;
     --green-light: #0cb84a;
     --green-medium:#23ac17;
+    --green-swampy:#49bb8a;
     --pink-medium: #e9897b;
     --red-medium: #f44336;
     --red-dark:#ff0000;
@@ -9,12 +10,18 @@
     --aquamarine-light:#bfe5d2;
     --aquamarine-medium:#a9efcd;
     --aquamarine-dark:#7bbfa2;
+    --aquamarine-dark-glass: #dbfff29e;
+    --indigo-full-light:#f0f8ff;
+    --indigo-full-light-full:#f0f8ff00;
     --indigo-light:#dee7f8;
+    --indigo-light-full:#dee7f800;
     --indigo-medium:#bbbfca;
     --indigo-dark:#828491;
     --slateGray-light:#929aab;
+    --navBar-color:#131f3a80;
     --slateGray-dark:#393e46;
     --crystalWhite:#ffffff;
+    --hoverTable: #f4f4f4;
     --zircon:#eaeaea;
     --sandstone:rgba(192,192,192,0.5);
     --charcoal: rgba(100, 100, 100, 0.2);
@@ -23,10 +30,15 @@
     --graphite:#2b2b2b;
     --truly-black:#000000;
     --transparent-black:rgba(0,0,0,0.3);
+    --black-white:#000;
+    --white-black:#fff;
+    --backgraund-color:#fff;
+    --backgraund-color-opacity: #FFFFFFd9;
+    --backgraund-color-opacity-full: #FFFFFF00;
     transition: color 1s linear;
 }
 html body{
-    color: #000000;
-    background: #ffffff;
+    background: var(--backgraund-color);
+    color:var(--black-white);
     transition: background .4s linear;
 }

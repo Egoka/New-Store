@@ -1,8 +1,8 @@
 <h3>Характеристики</h3>
 <div class="characteristics">
     {{#each product.description}}
-        <p>{{nameDescription}}</p>
-        {{#each parameter}}
+        <p>{{#each type}}{{typeName}}{{/each}}</p>
+        {{#each option}}
         <div class="parameter">
             <p>{{name}}</p>
             <div class="points"></div>

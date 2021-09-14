@@ -1,0 +1,9 @@
+<div class="recallProduct">
+    <a href="/catalog/product/{{product._id}}" class="productNameRecall" style="color:{{product.colorBackground}}">{{product.nameProduct}}</a>
+    <div class="shortProduct">
+        <img class="materialboxed" src="{{product.photoURL}}" alt="" >
+        {{>reviews/reviewsStars}}
+    </div>
+    <hr style="width: 90vw;"/>
+    {{>reviews/listReviews}}
+</div>

@@ -1,8 +1,11 @@
 .characteristics{
-    margin: 0 1rem 50px;
+    max-width: 46rem;
+    margin: 0 auto 50px;
+    padding: 1rem;
     overflow: hidden;
     border-bottom:1px solid var(--charcoal);}
 .characteristics p{
+    text-align: center;
     font-size: 18px;
     font-weight: 700;
     margin: 0;}
@@ -11,11 +14,19 @@
     margin: 20px 0;}
 .parameter p{
     font-weight: normal;
-    font-size: 1rem;}
+    font-size: 1rem;
+    width: max-content;
+    text-align: left;}
 .points {
+    width: 1rem;
     height: 18px;
     margin: 0 8px;
     background: linear-gradient(90deg, var(--gainsboro) 33%,transparent 0) repeat-x bottom;
     background-size: 3px 1px;
     flex-grow: 1;}
-.value{width: max-content}
+.value{
+    width: max-content;
+    max-width: 50%;}
+.value p{
+    width: 100%;
+    text-align: right;}

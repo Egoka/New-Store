@@ -3,12 +3,17 @@
     overflow-y: scroll;
     width: 18%;
     min-width: 185px;
-    height: 93%;
+    height: 94vh;
     right: 15%;
     z-index: 100}
 #filterMobile{display: none}
 .filter::-webkit-scrollbar {display:none}
-.filter .collapsible{margin: 0; border: none}
+.filter .collapsible{
+    margin: 0;
+    border: none;
+    padding-bottom: 5rem;
+    background: var(--indigo-light);
+    border-bottom-left-radius:30px;}
 .options{
     height: 100%;
     background-color: var(--zircon);
@@ -21,6 +26,7 @@
     border:transparent;
     font-size: 18px;
     white-space: normal;
+    justify-content: center;
     position: sticky;
     top: 0;
     z-index: 100;}
@@ -29,7 +35,8 @@
 .collapsible-header:hover{
     background-color: var(--gainsboro);
     transition: .4s linear}
-.collapsible-header>i{
+.filter .collapsible-header>i{
+    width: 0;
     color: var(--gainsboro);
     transition: .3s linear}
 .collapsible-header:hover i{
@@ -46,3 +53,60 @@
         width: 25%;
         right: 0;}
 }
+.sortList{
+    width: max-content;
+    min-width:14rem;
+    height: 40px;
+    margin: 2rem 1rem 0;
+    user-select: none;
+    border-radius: 10px;
+    background: var(--zircon);
+    z-index: 90;}
+.sortList .sortTytle{
+    height: 40px;
+    width: 100%;
+    min-width:14rem;
+    padding: 0 5px;
+    background: var(--zircon);
+    border: 2px solid var(--gainsboro);
+    border-radius: 10px;
+    justify-content: space-between;}
+.sortList .sortTytle:hover{
+    background-color: var(--gainsboro);
+    transition: .4s linear;}
+.sortList .sortTytle b{
+    margin:0 auto;
+    color: var(--graphite);
+    font-size: 18px;}
+.sortList .sortTytle i{
+    transition: .7s ease-in-out;}
+.sortList .sortTytle:hover b,
+.sortList .sortTytle:hover i{color:var(--white-black);}
+.sortList .sortBody{
+    max-height: 0;
+    position: relative;
+    padding-top: 1rem;
+    transform: translateY(-1.3rem);
+    background: var(--zircon);
+    border: 2px solid var(--gainsboro);
+    border-radius: 10px;
+    overflow:hidden;
+    transition: .2s ease-in-out;
+    z-index: -1;}
+.sortList .typeSort{
+    height: 35px;
+    padding: 5px;
+    font-weight: 600;
+    color: var(--graphite);
+    display: flex;
+    cursor: pointer;
+    transition: .2s linear}
+.sortList .typeSort:hover{
+    color: var(--black-white);
+    background:var(--charcoal)}
+.sortList:hover .sortBody{
+    max-height: 15rem;
+    transition: .2s ease-in-out;}
+.sortList:hover .sortTytle i{
+    transform:rotate(180deg);
+    transition: .7s ease-in-out;}

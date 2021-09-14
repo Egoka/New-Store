@@ -1,17 +1,36 @@
 ::selection{
-    background: var(--slateGray-light);
-    color: var(--yellow-light)}
-@media (max-width: 1300px) {
-    body .container{width: 100%;}
-}
+    background: inherit;
+    color: var(--green-medium)}
+@media (max-width: 1300px) {  body .container{width: 100%;}}
+@media (min-width: 1300px) {  body .container{min-width: 85%;}}
 body::-webkit-scrollbar {display:none}
 body h3{
     font-size: 2rem;
     user-select: none;
-    text-align: center;
-}
+    text-align: center;}
 .flexCenter{
     display: flex;
     justify-content: center;
+    align-items: center;}
+.noDataBlock{
+    position: absolute;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
+    user-select: none;
+    margin-top: 20vh;}
+.cartIsEmpty{
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--charcoal);
+    text-align: center;}
+body .sidenav-overlay{
+    background-color: #0000003d;
+    backdrop-filter: blur(5px);}
+body hr{
+    background: var(--zircon);
+    height: 1px;
+    border: none;}

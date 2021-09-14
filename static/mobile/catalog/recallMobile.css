@@ -1,0 +1,10 @@
+body .messageRecall .appraisal:first-child i{
+    color:var(--green-medium);
+    transition: .2s linear}
+body .messageRecall .appraisal:last-child i{
+    color: var(--pink-medium);
+    transition: .2s linear}
+body .shortProduct{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;}

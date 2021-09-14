@@ -1,8 +1,7 @@
+.container .product {align-items: flex-start;}
 .container .product ul{
     position: relative;
-    width: 200%;
-    left: -100%;
-    margin-top: 6rem;
-}
+    top: 8vh;
+    transform: translateX(-50%);}
 .container .product .photoProduct{align-items: flex-start;}
 .container .product .photoProduct img{max-height: 200px}

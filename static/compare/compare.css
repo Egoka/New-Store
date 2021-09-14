@@ -1,0 +1,137 @@
+.comparisonTape {
+    width: 100%;
+    max-width: 70rem;
+    margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    position: relative;
+    top: 6em;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    transition: all 1s linear;}
+.title{
+    color: var(--gainsboro);
+    width: 70vw;
+    text-align: center;}
+@media (max-width: 700px){  .title{width: 100vw;}}
+.model {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-width: 20rem;
+    scroll-snap-align: start;}
+.track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;}
+.track h4{
+    font-size: 1.7rem;
+    text-align: center;
+    white-space: nowrap;
+    width: max-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 1rem auto;}
+.track p{
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;}
+.track .deleteProduct{
+    opacity: 20%;
+    color: var(--black-white);
+    margin: 0.5rem;
+    cursor: default;
+    transition: .5s linear;}
+.track .deleteProduct:hover{
+    opacity: 100%;
+    color:var(--red-dark);
+    transition: .5s linear}
+.propertyNames{
+    position: sticky;
+    left: 0;
+    width: 0;
+    user-select: none;}
+.hatBig{
+    z-index: 90;
+    border-right: 1px dashed #9a9a9a8a;
+    background: var(--backgraund-color);
+    height: 20rem;}
+.hatSmall{
+    height: 0;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 80;}
+.hat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-right: 1px dashed #9a9a9a8a;
+    background: var(--backgraund-color);
+    padding-bottom: .7rem;
+    z-index: 80;}
+.photoSlider{
+    width: auto;
+    max-height: 14rem;
+    object-fit: contain;}
+.hatBig .deleteProduct{
+    position: relative;
+    left: 97%;
+    transform: translate(-100%, -2rem);}
+.titleParameter{
+    height: 4rem;
+    margin-top: 2rem;
+    background: var(--indigo-full-light);}
+.contentParameter{
+    text-align: center;
+    border-right: 1px dashed #9a9a9a8a;
+    height: 2.3rem;
+    margin-top: 2.7rem;
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+    line-height: 25px;
+    align-items: flex-start;
+    overflow: hidden;}
+@media (min-width: 1000px){.hatModel{margin-bottom: 2.7rem;}}
+.contentParameter span{
+    cursor:pointer;
+    margin: 0 auto;
+    font-weight: 700;}
+.value:hover:before{opacity:1}
+.value:before{
+    content: attr(aria-label);
+    opacity: 0;
+    position: absolute;
+    font-size: 1rem;
+    width: max-content;
+    max-width: 15rem;
+    padding: 5px 14px;
+    background: var(--zircon);
+    border-radius: 10px;
+    transform: translateY(2rem);
+    pointer-events: none;}
+.model:last-child .contentParameter,
+.model:last-child .hatModel,
+.model:last-child .hatBig,
+.model:last-child .hatSmall,
+.model:last-child .hat{border-right: none;}
+.bookmark{
+    text-align: right;
+    position: relative;
+    user-select: none;
+    cursor: help;
+    color: var(--gainsboro);}
+.gradientTransition{
+    width: 100%;
+    height: 3rem;
+    position: absolute;
+    background: linear-gradient(0deg, var(--backgraund-color-opacity-full) 0%, var( --backgraund-color-opacity) 35%, var(--backgraund-color) 75%);}
+.hatBig .gradientTransition{
+    transform: translateY(-2.5rem);
+    position: relative;}
+.hatSmall .gradientTransition{transform: translateY(7rem);}

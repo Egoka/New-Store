@@ -4,24 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {{#if catalogPage}}<link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/catalog/catalogMobile.css">{{/if}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     {{#if productPage}}<link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/catalog/productMobil.css">{{/if}}
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/animations.css">
     <link rel="stylesheet" href="/navbar/navbar.css">
-    <link rel="stylesheet" href="/theme/auto.css" id="colorTheme">
+    <link rel="stylesheet" href="/theme/{{#if isAuth}}{{#ifeq theme 0}}auto{{/ifeq}}{{#ifeq theme 1}}dark{{/ifeq}}{{#ifeq theme 2}}light{{/ifeq}}{{else}}auto{{/if}}.css" id="colorTheme">
     {{#if start}}
         <link rel="stylesheet" href="/start/start.css">{{/if}}
     {{#if catalogPage}}
         <link rel="stylesheet" href="/catalog/catalog.css">
+        <link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/catalog/catalogMobile.css">
         <link rel="stylesheet" href="/brand/brand.css">
         <link rel="stylesheet" href="/catalog/filtredProduct.css">{{/if}}
+    {{#if menuPage}}
+        <link rel="stylesheet" href="/menu/menu.css">{{/if}}
     {{#if productPage}}
         <link rel="stylesheet" href="/product/product.css">
         <link rel="stylesheet" href="/comment/comment.css">
         <link rel="stylesheet" href="/product/shop.css">
         <link rel="stylesheet" href="/catalog/filtredProduct.css">
         <link rel="stylesheet" href="/product/recall.css">
+        <link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/catalog/recallMobile.css">
+        <link rel="stylesheet" href="/reviews/rewiewsProduct.css">
         <link rel="stylesheet" href="/product/characteristics.css">{{/if}}
     {{#if commentPage}}
         <link rel="stylesheet" href="/comment/comment.css">
@@ -38,15 +44,16 @@
     {{#if favorites}}
         <link rel="stylesheet" href="/catalog/filtredProduct.css">
         <link rel="stylesheet" href="/catalog/tableProducts.css">
+        <link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/catalog/catalogMobile.css">
         <link rel="stylesheet" href="/brand/brand.css">{{/if}}
-    {{#if comparison}}
-        <link rel="stylesheet" href="/slider/comparison.css">
-        <link rel="stylesheet" href="/slider/slider.css">
+    {{#if compare}}
+        <link rel="stylesheet" href="/compare/compare.css">
         <link rel="stylesheet" href="/catalog/tableProducts.css">
         <link rel="stylesheet" href="/start/start.css">{{/if}}
     {{#if basket}}
         <link rel="stylesheet" href="/basket/basket.css">{{/if}}
     {{#if privateOffice}}
+        <link rel="stylesheet" media="screen and (max-device-width:650px)" href="/mobile/account/accountMobile.css">
         <link rel="stylesheet" href="/account/account.css">
         <link rel="stylesheet" href="/orders/orders.css">{{/if}}
 </head>
