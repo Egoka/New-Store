@@ -130,7 +130,7 @@
 .listStarsRecall .btn-floating:focus{
     background-color: var(--aquamarine-light);}
 .recallProduct .listStarsRecall .btn:hover{
-    background-color: var(--aquamarine-medium);
+    background-color: var(--zircon);
     color: var(--slateGray-dark);}
 .filterRecall .btn:hover{background-color: transparent;}
 .filterRecall p{

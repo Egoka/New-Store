@@ -7,15 +7,16 @@
     cursor: pointer;
     transition: .4s linear;
     border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;}
+    border-bottom-left-radius: 20px;
+    z-index: 10;}
 .btnShift i{
     font-size: 35px;
     color: var(--quartz);}
 .btnShift:hover{
     background-color: var(--sandstone);
     transition: .4s linear;}
-.btnShift:first-child{left: 0;}
-.btnShift:last-child{right: 0;}
+.btnShift:nth-child(1){left: 0;}
+.btnShift:nth-child(2){right: 0;}
 .infCarousel {
     width: max-content;
     padding: 0 1rem;

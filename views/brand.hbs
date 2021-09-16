@@ -1,3 +1,9 @@
+{{#if brandPage}}
+    <div class="noDataBlock">
+        <div class="cartIsEmpty">Этот раздел магазина находится на разработке.</div>
+        <i class="material-icons cartIsEmpty" style="font-size: 4rem;margin-left: 0;">build</i>
+    </div>
+{{else}}
 <div class="brandLogo flexCenter">
     <img src="{{brand.photoURL}}" alt="">
 </div>
@@ -10,3 +16,4 @@
     <h3>Смотрите также</h3>
     {{>start/brands}}
 </div>
+{{/if}}

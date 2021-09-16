@@ -59,7 +59,7 @@ router.get('/', closedPage, async (req, res) => {
         sumPrise,sizeBasket
     })
 })
-router.post('/pay', closedPage, async(req,res)=>{
+router.get('/pay', closedPage, async(req,res)=>{
     const{basketList} =await getAllProductsFromBusket(req.session.user._id)
     await Users.findByIdAndUpdate(req.session.user._id,
         {$push:{orders:{order:basketList}}})

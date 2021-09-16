@@ -1,6 +1,6 @@
 selection = [
     {
-        id: 0,
+        id: '6077fb85a2a4c4423bbf9b24',
         title:'Apple iPhone 12 Pro',
         text:'Твой лучший смартфон',
         photoURL:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-pro-max-gold-hero?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1604021660000',
@@ -8,7 +8,7 @@ selection = [
         titleColor:'#968967'
     },
     {
-        id: 1,
+        id: '6077fab741acd0422a6f9931',
         title:'Google Pixel 5',
         text:'Твой лучший смартфон',
         photoURL:'https://www.ixbt.com/img/n1/news/2020/8/5/google-pixel-5-official-press-renders-in-black-and-green-colors-243_large.png',
@@ -29,25 +29,29 @@ topics = [
         title:'Смартфоны',
         photoURL:'https://uswitch-mobiles-contentful.imgix.net/kf81nsuntxeb/7aw4bwl1kz4BJTu53zzrj2/9322e44aa2e721a2a8d83de6c38e9e0a/iphone-12-blue-back.png',
         backColor:'#e0d4bd',
-        titleColor:'#fff'
+        titleColor:'#fff',
+        link:'607c1ab83de7e20a834ff0f6'
     },
     {
         title:'Планшеты',
         photoURL:'https://nice-case.ru/images/detailed/6/ipad-air-select-wifi-silver-202009_n0ye-6s.png',
         backColor:'#ababab',
-        titleColor:'#fff'
+        titleColor:'#fff',
+        link:'607f422156dcb08f5a8a943b'
     },
     {
         title:'Умные часы',
         photoURL:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/42-alu-silver-sport-white-nc-s3-1up_GEO_RU?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1594318652000',
         backColor:'#d1e0bd',
-        titleColor:'#fff'
+        titleColor:'#fff',
+        link:'607c1ab93de7e20a834ff0f9'
     },
     {
         title:'Наушники',
         photoURL:'https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/hero-airpods-pro.png',
         backColor:'#434343',
-        titleColor:'#fff'
+        titleColor:'#fff',
+        link:'607c1ab93de7e20a834ff0f9'
     }
 ]
 brands = [

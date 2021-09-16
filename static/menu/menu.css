@@ -9,6 +9,8 @@
 .positionCategory{width: 100%;}
 /*----*/
 .listCategory{
+    height: 90vh;
+    overflow: auto;
     max-width: 100%;
     min-width:6rem;
     background:var(--indigo-full-light);

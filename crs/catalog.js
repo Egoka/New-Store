@@ -5,14 +5,15 @@ const Product = require('../modelsDB/product')
 const Users = require('../modelsDB/users')
 const Comments = require('../modelsDB/comments')
 const Description = require('../modelsDB/description')
+const Menus = require('../modelsDB/menus')
 const closedPage = require('../middleware/auth')
-const menu = require('../resources/menu.json')
 require('../modelsDB/seller')
 router.get('/',async (req, res) => {
     if(req.session.filter){req.session.filter=Array()}
     if(req.session.prohibitedOption){req.session.prohibitedOption=Array()}
+    const menu = await Menus.find().lean()
     res.render('menu', {
-        link:'/catalog/',
+        link:'/',
         title: 'Каталог',
         productPage: true,
         menuPage:true,
@@ -372,17 +373,17 @@ router.post('/product/:id/comment', closedPage, async (req, res) => {
         {$set: { stars: result[0].result }, $inc: { rating: 10 }})
     res.redirect(`/catalog/product/${req.params.id}`)
 })
-router.get('seller/:id/brand',async (req, res)=>{
+router.get('/seller/:id/brand',async (req, res)=>{
     const n = Number(req.params.id)
+    const brand = brands[Number(req.params.id)]
     res.render('brand',{
-        title:`${product.name}`,
+        // title:`${brand.name}`,
         brandPage: true,
         userStatus:true,
-        account,
-        brand:brands[n],
-        products,
-        brands,
-        topics
+        // brand,
+        // products,
+        // brands,
+        // topics
     })
 })
 module.exports = router

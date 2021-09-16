@@ -1,8 +1,6 @@
 <div class="carousel carousel-slider center" style="top:-5rem;min-height: 92vh;">
-    <div class="carousel-fixed-item center arrowSlider">
-        <div class="flexCenter btnShift slide-prev"><i class="material-icons">chevron_left</i></div>
-        <div class="flexCenter btnShift slide-next"><i class="material-icons">chevron_right</i></div>
-    </div>
+    <div class="flexCenter btnShift slide-prev"><i class="material-icons">chevron_left</i></div>
+    <div class="flexCenter btnShift slide-next"><i class="material-icons">chevron_right</i></div>
     {{#each selection}}
         <div class="carousel-item" href="#{{@index}}" style="background: radial-gradient(at top, {{colorBackground}} 0%, rgba(255,255,255,0) 70%)" >
             <img src="{{photoURL}}" alt="" style="height: 400px;width: auto; margin-top: 20vh">
